@@ -36,8 +36,9 @@ size = Vector3(20, 1, 20)
 [node name="Justin" type="Node3D" unique_id=195213207]
 script = ExtResource("1_script")
 
-[node name="NPC" parent="." unique_id=2091204191 instance=ExtResource("2_x3ip7")]
+[node name="NPC" parent="." unique_id=2091204191 node_paths=PackedStringArray("scared_of_player") instance=ExtResource("2_x3ip7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0469637, 0.837821, 0)
+scared_of_player = NodePath("../Player")
 
 [node name="Priest" parent="." unique_id=987654321 instance=ExtResource("3_priest")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.84, 0)
@@ -58,6 +59,7 @@ projection = 1
 size = 20.159
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1547012272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001162529, 0.008446217, 0.005788803)
 navigation_mesh = SubResource("NavigationMesh_jap2h")
 
 [node name="Floor" type="StaticBody3D" parent="NavigationRegion3D" unique_id=508144722]

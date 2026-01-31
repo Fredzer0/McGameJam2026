@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
-const SPEED = 8.0
+func _ready() -> void:
+	add_to_group("player")
+
+const SPEED = 5.0
 const ACCELERATION = 100.0
 const FRICTION = 80.0
 const ROTATION_SPEED = 14.0
@@ -53,9 +56,7 @@ func _physics_process(delta):
 		currentMana += manaRegen
 
 
-
 func becomeBox():
-
 	if (!is_hiding and currentMana >= hideCost):
 		is_hiding = true;
 		$WitchModel.hide()
@@ -65,4 +66,3 @@ func becomeBox():
 		is_hiding = false
 		$WitchModel.show()
 		$BoxModel.hide()
-	

@@ -6,4 +6,3 @@ extends Node3D
 func _ready() -> void:
 	if priest and player:
 		priest.set_follow_target(player)
-	pass
