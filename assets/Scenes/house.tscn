@@ -1,0 +1,23 @@
+[gd_scene format=4 uid="uid://cn0egmeo3v4t"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cbjmt"]
+data = PackedVector3Array(-2.5, -1.5, 1.5, -2.5, -1.5, -1.5, -2.5, 1.5, -1.5, 2.5, -1.5, -1.5, -2.5, -1.5, -1.5, -2.5, -1.5, 1.5, -2.5, 1.5, -1.5, -2.5, -1.5, -1.5, 2.5, -1.5, -1.5, -2.5, 1.5, -1.5, -2.5, 1.5, 1.5, -2.5, -1.5, 1.5, -2.5, -1.5, 1.5, -2.5, 1.5, 1.5, 2.5, 1.5, 1.5, 2.5, 1.5, 1.5, -2.5, 1.5, 1.5, -2.5, 1.5, -1.5, -2.5, -1.5, 1.5, 2.5, -1.5, 1.5, 2.5, -1.5, -1.5, 2.5, 1.5, 1.5, 2.5, -1.5, 1.5, -2.5, -1.5, 1.5, 2.5, -1.5, -1.5, 2.5, -1.5, 1.5, 2.5, 1.5, 1.5, 2.5, -1.5, -1.5, 2.5, 1.5, -1.5, -2.5, 1.5, -1.5, -2.5, 1.5, -1.5, 2.5, 1.5, -1.5, 2.5, 1.5, 1.5, 2.5, 1.5, 1.5, 2.5, 1.5, -1.5, 2.5, -1.5, -1.5)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7jfrl"]
+_surfaces = [{
+"aabb": AABB(-2.5, -1.5, -1.5, 5, 3, 3),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AAAgwAAAwL8AAMA/AAAgwAAAwL8AAMC/AAAgwAAAwD8AAMC/AAAgQAAAwL8AAMC/AAAgwAAAwL8AAMC/AAAgwAAAwL8AAMA/AAAgwAAAwD8AAMC/AAAgwAAAwL8AAMC/AAAgQAAAwL8AAMC/AAAgwAAAwD8AAMC/AAAgwAAAwD8AAMA/AAAgwAAAwL8AAMA/AAAgwAAAwL8AAMA/AAAgwAAAwD8AAMA/AAAgQAAAwD8AAMA/AAAgQAAAwD8AAMA/AAAgwAAAwD8AAMA/AAAgwAAAwD8AAMC/AAAgwAAAwL8AAMA/AAAgQAAAwL8AAMA/AAAgQAAAwL8AAMC/AAAgQAAAwD8AAMA/AAAgQAAAwL8AAMA/AAAgwAAAwL8AAMA/AAAgQAAAwL8AAMC/AAAgQAAAwL8AAMA/AAAgQAAAwD8AAMA/AAAgQAAAwL8AAMC/AAAgQAAAwD8AAMC/AAAgwAAAwD8AAMC/AAAgwAAAwD8AAMC/AAAgQAAAwD8AAMC/AAAgQAAAwD8AAMA/AAAgQAAAwD8AAMA/AAAgQAAAwD8AAMC/AAAgQAAAwL8AAMC/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
+}]
+
+[node name="house" type="StaticBody3D" unique_id=830056038]
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="." unique_id=573886350]
+shape = SubResource("ConcavePolygonShape3D_cbjmt")
+
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="." unique_id=1428625810]
+mesh = SubResource("ArrayMesh_7jfrl")

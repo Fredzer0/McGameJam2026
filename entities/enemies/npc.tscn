@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://whl2a2p8t4r5"]
 
+[ext_resource type="Script" uid="uid://e8fwn1465ipw" path="res://entities/enemies/npc.gd" id="1_rkkgd"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_voh54"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4tst"]
@@ -16,6 +18,7 @@ albedo_color = Color(7.8348074, 9.384245, 0, 1)
 disable_receive_shadows = true
 
 [node name="NPC" type="Node3D" unique_id=2091204191]
+script = ExtResource("1_rkkgd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2097227089]
 
@@ -42,3 +45,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_jjr52")
 transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1.9106855e-15, 1, -1.6703743e-22, -0.07623434, -0.48622108, 0)
 light_color = Color(1, 1, 0.3019608, 1)
 light_energy = 16.0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
