@@ -71,6 +71,7 @@ func _update_material_properties() -> void:
 
 func _ready() -> void:
 	_multimesh_instance = MultiMeshInstance3D.new()
+	_multimesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	# Important: Do NOT set name or owner if we don't want it saved. 
 	add_child(_multimesh_instance)
 	

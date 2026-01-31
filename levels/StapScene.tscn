@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b7ggpa1vwgrl2" path="res://vfx/ShaderComposer.tscn" id="1_3ut6a"]
 [ext_resource type="PackedScene" uid="uid://74m3t0e8b8cn" path="res://vfx/Fireball/Fireball.tscn" id="2_hh8b3"]
 [ext_resource type="PackedScene" uid="uid://dt5h0bmojprp0" path="res://systems/grass/grass_system.tscn" id="2_wxpfe"]
+[ext_resource type="PackedScene" uid="uid://bifgi2vv2grow" path="res://vfx/SmokePouff/Smoke.tscn" id="4_wxpfe"]
 
 [sub_resource type="Environment" id="Environment_hh8b3"]
 ambient_light_source = 2
@@ -87,3 +88,6 @@ shape = SubResource("BoxShape3D_8rnln")
 
 [node name="Node3D" parent="." unique_id=290144031 instance=ExtResource("2_hh8b3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5350767, 0.9980967, 0.22963071)
+
+[node name="Node3D2" parent="." unique_id=412120049 instance=ExtResource("4_wxpfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3765297, 0, -6.2252693)
