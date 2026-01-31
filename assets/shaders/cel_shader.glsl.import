@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://bu7wabb5utr0n"
+path="res://.godot/imported/cel_shader.glsl-d9a130e406891ac90871958c5cad463a.res"
+
+[deps]
+
+source_file="res://assets/shaders/cel_shader.glsl"
+dest_files=["res://.godot/imported/cel_shader.glsl-d9a130e406891ac90871958c5cad463a.res"]
+
+[params]
+

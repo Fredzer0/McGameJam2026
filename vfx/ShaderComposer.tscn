@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b7ggpa1vwgrl2"]
+
+[ext_resource type="Script" uid="uid://dhvy3xemupmd7" path="res://vfx/EdgeDetectionShader.gd" id="1_qgapr"]
+[ext_resource type="Script" uid="uid://dc41isxd36exy" path="res://vfx/CelShader.gd" id="2_xv40b"]
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_0atjh"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("2_xv40b")
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_xv40b"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = true
+script = ExtResource("1_qgapr")
+metadata/_custom_type_script = "uid://dhvy3xemupmd7"
+
+[sub_resource type="Compositor" id="Compositor_6pjld"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_0atjh"), SubResource("CompositorEffect_xv40b")])
+
+[node name="ShaderComposer" type="WorldEnvironment" unique_id=2001211638]
+compositor = SubResource("Compositor_6pjld")
