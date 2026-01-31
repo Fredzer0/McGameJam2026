@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://whl2a2p8t4r5" path="res://entities/enemies/npc.tscn" id="2_t0f4b"]
 [ext_resource type="PackedScene" path="res://entities/player/Player.tscn" id="3_hbm7b"]
 [ext_resource type="Script" uid="uid://hnap8lcnuimj" path="res://Scripts/suspicion_director.gd" id="5_0mfq7"]
+[ext_resource type="PackedScene" uid="uid://b5x8y1n2m3q1" path="res://ui/hud/HUD.tscn" id="6_57md5"]
 
 [sub_resource type="Environment" id="Environment_g4tst"]
 background_mode = 1
@@ -61,6 +62,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.842653, 2.0211096, 3.54759
 [node name="NPC" parent="Enemies" unique_id=2091204191 instance=ExtResource("2_t0f4b")]
 transform = Transform3D(0.1432853, 0, 0.9896814, 0, 1, 0, -0.9896814, 0, 0.1432853, -14.828926, 1.397454, -3.7148848)
 
+[node name="NPC2" parent="Enemies" unique_id=968488436 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(-0.9471935, 0, 0.32066256, 0, 1, 0, -0.32066256, 0, -0.9471935, -0.22622299, 1.397454, -3.7148848)
+
+[node name="NPC3" parent="Enemies" unique_id=685017053 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(0.9494145, 0, 0.3140257, 0, 1, 0, -0.3140257, 0, 0.9494145, 2.4966173, 1.397454, 2.864025)
+
+[node name="NPC4" parent="Enemies" unique_id=1609255914 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(-0.5829989, 0.0049982327, 0.81245756, 0.0071337693, 0.999974, -0.0010328216, -0.8124416, 0.005193752, -0.5830193, -1.536746, 1.397454, -21.591652)
+
+[node name="NPC5" parent="Enemies" unique_id=1040559120 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(-0.8761133, 0, -0.4821054, 0, 1, 0, 0.4821054, 0, -0.8761133, 19.192307, 1.397454, -3.7148848)
+
 [node name="Player" parent="." unique_id=253799011 groups=["player"] instance=ExtResource("3_hbm7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3858306, 0)
 
@@ -68,3 +81,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3858306, 0)
 
 [node name="SuspicionDirector" type="Node3D" parent="Systems" unique_id=851241639 groups=["suspicionDirector"]]
 script = ExtResource("5_0mfq7")
+
+[node name="HUD" parent="." unique_id=1053323662 instance=ExtResource("6_57md5")]

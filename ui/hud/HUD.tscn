@@ -1,30 +1,32 @@
 [gd_scene format=3 uid="uid://b5x8y1n2m3q1"]
 
-[ext_resource type="Script" path="res://ui/hud/hud.gd" id="1_hud"]
+[ext_resource type="Script" uid="uid://cnb7mi6rs4ya7" path="res://ui/hud/hud.gd" id="1_hud"]
 [ext_resource type="PackedScene" uid="uid://cdxokteuc1hu5" path="res://ui/menus/SettingsMenu.tscn" id="2_settings"]
+[ext_resource type="Script" uid="uid://uajey1mjdhtd" path="res://Scripts/panic_bar.gd" id="3_fdx20"]
+[ext_resource type="Script" uid="uid://b8di0xlxa26yo" path="res://Scripts/mana_bar.gd" id="4_ttn8j"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=999043377]
 script = ExtResource("1_hud")
 
-[node name="TasksMargin" type="MarginContainer" parent="."]
+[node name="TasksMargin" type="MarginContainer" parent="." unique_id=2029701175]
 offset_right = 300.0
 offset_bottom = 200.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="VBox" type="VBoxContainer" parent="TasksMargin"]
+[node name="VBox" type="VBoxContainer" parent="TasksMargin" unique_id=1093096693]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="TasksMargin/VBox"]
+[node name="Title" type="Label" parent="TasksMargin/VBox" unique_id=352722833]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "TASKS"
 
-[node name="TaskContainer" type="VBoxContainer" parent="TasksMargin/VBox"]
+[node name="TaskContainer" type="VBoxContainer" parent="TasksMargin/VBox" unique_id=1286780550]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TipPanel" type="PanelContainer" parent="."]
+[node name="TipPanel" type="PanelContainer" parent="." unique_id=1596062403]
 unique_name_in_owner = true
 anchors_preset = 5
 anchor_left = 0.5
@@ -35,18 +37,46 @@ offset_right = 200.0
 offset_bottom = 150.0
 grow_horizontal = 2
 
-[node name="Margin" type="MarginContainer" parent="TipPanel"]
+[node name="Margin" type="MarginContainer" parent="TipPanel" unique_id=557703706]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TipLabel" type="Label" parent="TipPanel/Margin"]
+[node name="TipLabel" type="Label" parent="TipPanel/Margin" unique_id=1611246560]
 unique_name_in_owner = true
 layout_mode = 2
 text = "This is a helpful tip!"
 horizontal_alignment = 1
 
-[node name="SettingsMenu" parent="." instance=ExtResource("2_settings")]
+[node name="SettingsMenu" parent="." unique_id=441645645 instance=ExtResource("2_settings")]
 visible = false
+
+[node name="BarsMargin" type="MarginContainer" parent="." unique_id=710418480]
+anchors_preset = -1
+anchor_left = 0.96500003
+anchor_right = 0.96500003
+offset_left = -35.680054
+offset_right = 38.319946
+offset_bottom = 362.0
+
+[node name="PanicBar" type="ProgressBar" parent="BarsMargin" unique_id=251381569]
+layout_mode = 2
+size_flags_vertical = 1
+fill_mode = 3
+script = ExtResource("3_fdx20")
+
+[node name="BarsMargin2" type="MarginContainer" parent="." unique_id=1371872423]
+anchors_preset = -1
+anchor_left = 0.966
+anchor_right = 0.966
+offset_left = -113.83203
+offset_right = -39.83203
+offset_bottom = 362.0
+
+[node name="ManaBar" type="ProgressBar" parent="BarsMargin2" unique_id=615128389]
+layout_mode = 2
+size_flags_vertical = 1
+fill_mode = 3
+script = ExtResource("4_ttn8j")
