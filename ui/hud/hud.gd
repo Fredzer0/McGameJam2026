@@ -20,7 +20,7 @@ func _ready() -> void:
 
 	await get_tree().create_timer(1.0).timeout
 	show_tip("This is a tip!", 3.0)
-	add_task("This is a test task.")
+	add_task("Transform all villagers into frogs!.")
 	add_task("Press ESC for Settings")
 
 func _unhandled_input(event: InputEvent) -> void:

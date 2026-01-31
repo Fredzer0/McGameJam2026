@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://b5x8y1n2m3q1"]
 
 [ext_resource type="Script" uid="uid://cnb7mi6rs4ya7" path="res://ui/hud/hud.gd" id="1_hud"]
+[ext_resource type="Script" uid="uid://cg2t1v4jivqp5" path="res://Scripts/remainingVillagerText.gd" id="2_i41ai"]
 [ext_resource type="PackedScene" uid="uid://cdxokteuc1hu5" path="res://ui/menus/SettingsMenu.tscn" id="2_settings"]
 [ext_resource type="Script" uid="uid://uajey1mjdhtd" path="res://Scripts/panic_bar.gd" id="3_fdx20"]
 [ext_resource type="Script" uid="uid://b8di0xlxa26yo" path="res://Scripts/mana_bar.gd" id="4_ttn8j"]
+[ext_resource type="Script" uid="uid://bl2vwxm31aty8" path="res://Scripts/timer.gd" id="6_lhd7q"]
 
 [node name="HUD" type="CanvasLayer" unique_id=999043377]
 script = ExtResource("1_hud")
@@ -21,6 +23,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "TASKS"
+script = ExtResource("2_i41ai")
 
 [node name="TaskContainer" type="VBoxContainer" parent="TasksMargin/VBox" unique_id=1286780550]
 unique_name_in_owner = true
@@ -80,3 +83,23 @@ layout_mode = 2
 size_flags_vertical = 1
 fill_mode = 3
 script = ExtResource("4_ttn8j")
+
+[node name="TimerMargin" type="MarginContainer" parent="." unique_id=1311682423]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="VBox" type="VBoxContainer" parent="TimerMargin" unique_id=673649809]
+layout_mode = 2
+
+[node name="Timer" type="Label" parent="TimerMargin/VBox" unique_id=1132768880]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "TASKS"
+script = ExtResource("6_lhd7q")
