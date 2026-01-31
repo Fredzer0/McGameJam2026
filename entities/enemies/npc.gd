@@ -71,7 +71,8 @@ func _on_move() -> void:
 	var current_position = global_transform.origin;
 	var next_position = navigation_agent_3d.get_next_path_position();
 	var direction = (next_position - current_position).normalized();
-	velocity = direction * SPEED;
+	var new_velocity = direction * SPEED;
+	navigation_agent_3d.set_velocity(new_velocity);
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
@@ -88,3 +89,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func _on_navigation_agent_3d_target_reached() -> void:
 	state = State.IDLE;
+
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
+	velocity = safe_velocity;
