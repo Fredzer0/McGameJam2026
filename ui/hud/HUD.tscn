@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b5x8y1n2m3q1"]
+
+[ext_resource type="Script" path="res://ui/hud/hud.gd" id="1_hud"]
+[ext_resource type="PackedScene" uid="uid://cdxokteuc1hu5" path="res://ui/menus/SettingsMenu.tscn" id="2_settings"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="TasksMargin" type="MarginContainer" parent="."]
+offset_right = 300.0
+offset_bottom = 200.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="VBox" type="VBoxContainer" parent="TasksMargin"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="TasksMargin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "TASKS"
+
+[node name="TaskContainer" type="VBoxContainer" parent="TasksMargin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TipPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+
+[node name="Margin" type="MarginContainer" parent="TipPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TipLabel" type="Label" parent="TipPanel/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "This is a helpful tip!"
+horizontal_alignment = 1
+
+[node name="SettingsMenu" parent="." instance=ExtResource("2_settings")]
+visible = false

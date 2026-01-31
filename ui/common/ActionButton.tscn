@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b8x7k1n2m3p4"]
+
+[ext_resource type="Script" uid="uid://bynhl5ry1uh5b" path="res://ui/common/action_button.gd" id="1_actionbtn"]
+
+[node name="ActionButton" type="Button" unique_id=31330878]
+offset_right = 200.0
+offset_bottom = 50.0
+text = "Action Button"
+script = ExtResource("1_actionbtn")
