@@ -14,16 +14,19 @@ var is_dashing = false
 var dash_timer = 0.0
 var currentMana = 100
 var is_hiding = false
+var is_casting = false
 
 @export var maxMana = 100
 @export var manaRegen = 0.1
 @export var dashCost = 10
 @export var hideCost = 20
 
+@onready var animPlayer = find_child("AnimationPlayer", true, false)
+
 func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if Input.is_action_just_pressed("dash") and direction and not is_dashing and currentMana >= dashCost:
+	if Input.is_action_just_pressed("dash") and direction and not is_dashing and currentMana >= dashCost and not is_casting:
 		is_dashing = true
 		dash_timer = DASH_DURATION
 		velocity.x = direction.x * DASH_SPEED
@@ -49,14 +52,18 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 		velocity.z = move_toward(velocity.z, 0, FRICTION * delta)
 
-	if !is_hiding:
+	if !is_hiding and not is_casting:
 		move_and_slide()
+		if input_dir:
+			animPlayer.play("WitchMoveSets/Walk")
+		else:
+			animPlayer.play("WitchMoveSets/Idle")
 
 
-	if Input.is_action_just_pressed("hide") and not is_dashing:
+	if Input.is_action_just_pressed("hide") and not is_dashing and not is_casting:
 		becomeBox()
 
-	if !is_dashing and not is_hiding and currentMana < 100:
+	if !is_dashing and not is_hiding and currentMana < 100 and not is_casting:
 		currentMana += manaRegen
 
 
@@ -73,8 +80,12 @@ func becomeBox():
 
 func try_transform_npc(body: Node3D) -> void:
 	if body.is_in_group("npc"):
-		if body.has_method("is_panicking") and body.is_panicking():
+		if body.has_method("is_panicking") and body.is_panicking() and body.is:
 			return
 		
 		if body.has_method("become_frog"):
+			is_casting = true
+			animPlayer.play("WitchMoveSets/Idle")
+			await animPlayer.animation_finished
 			body.become_frog()
+			is_casting = false

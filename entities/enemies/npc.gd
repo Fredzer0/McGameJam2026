@@ -14,7 +14,7 @@ const MIN_MOVE_RANGE = 12
 const MAX_MOVE_RANGE = 30
 const PANIC_MAX_DURATION = 10.0
 
-enum State {IDLE, WATING_TO_MOVE, MOVE, PANIC}
+enum State {IDLE, WATING_TO_MOVE, MOVE, PANIC, FROG}
 var state: State = State.IDLE
 
 enum Form {HUMAN, FROG}
@@ -136,6 +136,7 @@ func become_frog() -> void:
 	form = Form.FROG
 	$NpcModel.hide()
 	$FrogModel.show()
+	state = State.FROG
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if (body.is_in_group("player")) and form == Form.HUMAN:

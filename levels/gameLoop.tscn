@@ -35,15 +35,18 @@ size = Vector3(20, 1, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x3ip7"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iwipb"]
+
 [node name="Justin" type="Node3D" unique_id=195213207]
 script = ExtResource("1_lviyc")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=931713287]
 
-[node name="NPC" parent="Enemies" unique_id=2091204191 groups=["villager"] instance=ExtResource("2_7d5c5")]
+[node name="NPC" parent="Enemies" unique_id=2091204191 instance=ExtResource("2_7d5c5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0469637, 0.837821, 0)
 
 [node name="Priest" parent="." unique_id=987654321 instance=ExtResource("3_34y4k")]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.84, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1487729110]
@@ -61,46 +64,50 @@ transform = Transform3D(1, 0, 0, 0, 0.55067, 0.834723, 0, -0.834723, 0.55067, 0,
 projection = 1
 size = 20.159
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1547012272]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2111244591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001162529, 0.008446217, 0.005788803)
 navigation_mesh = SubResource("NavigationMesh_jap2h")
 
-[node name="Floor" type="StaticBody3D" parent="NavigationRegion3D" unique_id=508144722]
+[node name="Floor" type="StaticBody3D" parent="NavigationRegion3D" unique_id=814512117]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor" unique_id=535121543]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor" unique_id=1870651935]
 shape = SubResource("BoxShape3D_floor")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floor" unique_id=1548177704]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floor" unique_id=1114999956]
 mesh = SubResource("BoxMesh_floor")
 
-[node name="box1" type="StaticBody3D" parent="NavigationRegion3D" unique_id=2012838938]
+[node name="box1" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1467818322]
 transform = Transform3D(3.02, 0, 0, 0, 3.02, 0, 0, 0, 3.02, 0, 0.9493604, -3.4507284)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/box1" unique_id=1853198785]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/box1" unique_id=2027950525]
 mesh = SubResource("BoxMesh_jap2h")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/box1" unique_id=20766959]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/box1" unique_id=2016042855]
 shape = SubResource("BoxShape3D_x3ip7")
 
-[node name="box2" type="StaticBody3D" parent="NavigationRegion3D" unique_id=627019159]
+[node name="box2" type="StaticBody3D" parent="NavigationRegion3D" unique_id=325600161]
 transform = Transform3D(3.02, 0, 0, 0, 3.02, 0, 0, 0, 3.02, -6.3846393, 0.9493604, 4.304924)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/box2" unique_id=1147551916]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/box2" unique_id=532206805]
 mesh = SubResource("BoxMesh_jap2h")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/box2" unique_id=1341021234]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/box2" unique_id=1735408994]
 shape = SubResource("BoxShape3D_x3ip7")
 
-[node name="box3" type="StaticBody3D" parent="NavigationRegion3D" unique_id=380703257]
+[node name="box3" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1961016059]
 transform = Transform3D(3.02, 0, 0, 0, 3.02, 0, 0, 0, 3.02, 0, 0.9493604, -3.4507284)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/box3" unique_id=764036350]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/box3" unique_id=1391149863]
 transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0.9786367, 0, 2.3753862)
 mesh = SubResource("BoxMesh_jap2h")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/box3" unique_id=1891912738]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/box3" unique_id=1504466427]
 shape = SubResource("BoxShape3D_x3ip7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=375825510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56580925, 0)
+mesh = SubResource("CapsuleMesh_iwipb")
 
 [node name="Systems" parent="." unique_id=1364181550 instance=ExtResource("5_7d5c5")]
 
