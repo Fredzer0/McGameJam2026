@@ -1,16 +1,12 @@
 [gd_scene format=3 uid="uid://5ma7vxmlo1jb"]
 
 [ext_resource type="PackedScene" uid="uid://b0fms7bpidl4s" path="res://assets/Scenes/environment.tscn" id="1_g4tst"]
+[ext_resource type="PackedScene" uid="uid://whl2a2p8t4r5" path="res://entities/enemies/npc.tscn" id="2_t0f4b"]
 
 [sub_resource type="Environment" id="Environment_g4tst"]
 background_mode = 1
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.005
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4tst"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t0f4b"]
-albedo_color = Color(0.23137255, 0.52156866, 0.23921569, 1)
 
 [node name="FredScene" type="Node3D" unique_id=1742367876]
 
@@ -24,9 +20,11 @@ shadow_enabled = true
 environment = SubResource("Environment_g4tst")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1065322500]
-transform = Transform3D(1, 0, 0, 0, 0.8732795, 0.48721963, 0, -0.48721966, 0.8732795, -0.21056652, 14.402442, 15.522619)
+transform = Transform3D(1, 0, 0, 0, 0.7313537, 0.6819984, 0, -0.6819984, 0.7313537, 0, 22.932, 21.28)
+fov = 45.0
 
 [node name="Environment" parent="." unique_id=960804561 instance=ExtResource("1_g4tst")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0497818, -0.005147934, 0.023990154)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Environment" unique_id=566015549]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.39167, 1.8910618, -12)
@@ -49,45 +47,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60833, 1.8910618, -16)
 size = Vector3(5, 3, 3)
 
 [node name="FogVolume" type="FogVolume" parent="Environment" unique_id=936400773]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.763945, 4.492341, 1.8528414)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.492, 1.853)
 size = Vector3(14.95, 4, 76.65)
 
 [node name="FogVolume2" type="FogVolume" parent="Environment" unique_id=1338377357]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.5191555, 4.492341, -40.41882)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.5191555, 4.492341, -36.41882)
 size = Vector3(16.21316, 4, 76.65)
 
 [node name="FogVolume3" type="FogVolume" parent="Environment" unique_id=760853136]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.193064, 4.492341, 4.258648)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.492, 4.259)
 size = Vector3(16.21316, 4, 76.65)
 
-[node name="Player" type="Node3D" parent="." unique_id=333254752]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26)
+[node name="Enemies" type="Node3D" parent="." unique_id=1505769874]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=34485766]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4467463, 0)
-mesh = SubResource("CapsuleMesh_g4tst")
-surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
+[node name="NPC" parent="Enemies" unique_id=2091204191 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(0.1432853, 0, 0.9896814, 0, 1, 0, -0.9896814, 0, 0.1432853, -14.828926, 1.397454, -3.7148848)
 
-[node name="Player2" type="Node3D" parent="." unique_id=17995921]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.614255, 0, 7.001189)
+[node name="NPC2" parent="Enemies" unique_id=590000621 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(0.13550803, 0, -0.99077624, 0, 1, 0, 0.99077624, 0, 0.13550803, 14.951938, 1.397454, -3.7148848)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player2" unique_id=382773525]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5709906, 0)
-mesh = SubResource("CapsuleMesh_g4tst")
-surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
+[node name="NPC3" parent="Enemies" unique_id=1752416207 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4556699, 1.397454, -3.7148848)
 
-[node name="Player3" type="Node3D" parent="." unique_id=1204440679]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4556699, -0.283453, -3.7148848)
+[node name="NPC4" parent="Enemies" unique_id=844692854 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(0.5538567, 0, -0.83261204, 0, 1, 0, 0.83261204, 0, 0.5538567, -2.4556699, 1.397454, 6.8656425)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player3" unique_id=357415837]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7984691, 0)
-mesh = SubResource("CapsuleMesh_g4tst")
-surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
-
-[node name="Player4" type="Node3D" parent="." unique_id=912748227]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.171406, -0.34513474, -7.4297695)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player4" unique_id=1297996470]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8814921, 0)
-mesh = SubResource("CapsuleMesh_g4tst")
-surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
+[node name="NPC5" parent="Enemies" unique_id=1457926108 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(0.12271811, 0, 0.9924416, 0, 1, 0, -0.9924416, 0, 0.12271811, -2.4556699, 1.397454, -20.197994)
