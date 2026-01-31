@@ -28,11 +28,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 4
+stretch_shrink = 6
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=826980038]
 handle_input_locally = false
-size = Vector2i(288, 162)
+size = Vector2i(192, 108)
 render_target_update_mode = 4
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=340714600]
@@ -61,7 +61,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1240926, 1.5454535, 0)
 mesh = SubResource("SphereMesh_nlp81")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=838391467]
-transform = Transform3D(0.9912455, -0.08439596, 0.10153638, 0, 0.7690315, 0.6392109, -0.13203149, -0.6336149, 0.76229906, 1.1545491, 2.9314213, 4.4244556)
+transform = Transform3D(0.9912455, -0.08439596, 0.10153638, 0, 0.7690315, 0.6392109, -0.13203149, -0.6336149, 0.76229906, 1.1545491, 4.532778, 6.2972927)
+projection = 1
+size = 5.0
+far = 50.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport" unique_id=1380971151]
 transform = Transform3D(1, 0, 0, 0, -0.0058468683, 0.9999829, 0, -0.9999829, -0.0058468683, 0, 3.461728, 0)
