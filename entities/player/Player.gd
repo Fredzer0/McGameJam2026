@@ -15,7 +15,6 @@ var dash_timer = 0.0
 var currentMana = 100
 var is_hiding = false
 
-
 @export var maxMana = 100
 @export var manaRegen = 0.1
 @export var dashCost = 10
@@ -30,6 +29,11 @@ func _physics_process(delta):
 		velocity.x = direction.x * DASH_SPEED
 		velocity.z = direction.z * DASH_SPEED
 		currentMana -= dashCost;
+
+	if Input.is_action_just_pressed("attack"):
+		var bodies = $Area3D.get_overlapping_bodies()
+		for body in bodies:
+			try_transform_npc(body)
 
 	if is_dashing:
 		dash_timer -= delta
@@ -66,3 +70,11 @@ func becomeBox():
 		is_hiding = false
 		$WitchModel.show()
 		$BoxModel.hide()
+
+func try_transform_npc(body: Node3D) -> void:
+	if body.is_in_group("npc"):
+		if body.has_method("is_panicking") and body.is_panicking():
+			return
+		
+		if body.has_method("become_frog"):
+			body.become_frog()

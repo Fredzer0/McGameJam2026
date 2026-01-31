@@ -36,9 +36,8 @@ size = Vector3(20, 1, 20)
 [node name="Justin" type="Node3D" unique_id=195213207]
 script = ExtResource("1_script")
 
-[node name="NPC" parent="." unique_id=2091204191 node_paths=PackedStringArray("scared_of_player") instance=ExtResource("2_x3ip7")]
+[node name="NPC" parent="." unique_id=2091204191 instance=ExtResource("2_x3ip7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0469637, 0.837821, 0)
-scared_of_player = NodePath("../Player")
 
 [node name="Priest" parent="." unique_id=987654321 instance=ExtResource("3_priest")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.84, 0)
