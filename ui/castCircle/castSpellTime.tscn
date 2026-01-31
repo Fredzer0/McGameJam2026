@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bc31tl7pyh31j"]
+
+[ext_resource type="Texture2D" uid="uid://c0dx3im1cnfgt" path="res://ui/castCircle/emptyCircle.png" id="1_xkxy8"]
+[ext_resource type="Texture2D" uid="uid://ddrv6uti6npa7" path="res://ui/castCircle/fullCircle.png" id="2_j3hmk"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tsvdw"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="Node3D" type="Node3D" unique_id=2086192879]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1661186453]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.16803622, 0.6849251, -0.51817083)
+texture = SubResource("ViewportTexture_tsvdw")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=2126540719]
+transparent_bg = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Sprite3D/SubViewport" unique_id=970566606]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 59.0
+fill_mode = 4
+texture_under = ExtResource("1_xkxy8")
+texture_progress = ExtResource("2_j3hmk")

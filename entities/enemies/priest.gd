@@ -18,12 +18,9 @@ var idle_timer_count: float = 0
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	panic_signal.connect(_on_area_3d_body_entered);
 	calm_signal.connect(_on_area_3d_body_exited);
-	
 
 	director = get_tree().get_first_node_in_group("suspicionDirector");
 
@@ -31,8 +28,7 @@ func _ready() -> void:
 		panic_signal.connect(director.on_npc_panic_signal);
 		calm_signal.connect(director.on_npc_calm_signal);
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	
 func _physics_process(delta: float) -> void:
@@ -46,6 +42,9 @@ func _physics_process(delta: float) -> void:
 		State.MOVE:
 			_on_move()
 			
+	if target_node:
+		_on_follow_target()
+
 	move_and_slide()
 	
 	var horizontal_velocity = Vector2(velocity.x, velocity.z)
@@ -56,11 +55,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_idle() -> void:
+	if target_node: return
 	velocity = Vector3.ZERO;
 	idle_timer_count = idle_wait_time;
 	state = State.WATING_TO_MOVE;
 
 func _on_wating_to_move(delta: float) -> void:
+	if target_node: return
 	idle_timer_count -= delta;
 	if (idle_timer_count <= 0.0):
 		var target = get_new_target_position();
@@ -75,27 +76,54 @@ func get_new_target_position() -> Vector3:
 	return global_transform.origin + Vector3(offset_x, 0, offset_z);
 
 func _on_move() -> void:
+	if target_node: return
 	var current_position = global_transform.origin;
 	var next_position = navigation_agent_3d.get_next_path_position();
 	var direction = (next_position - current_position).normalized();
 	var new_velocity = direction * SPEED;
 	navigation_agent_3d.set_velocity(new_velocity);
 
+var target_node: Node3D = null
+
+func set_follow_target(target: Node3D):
+	target_node = target
+
+func _on_follow_target():
+	if not target_node: return
+
+	var nav_map = navigation_agent_3d.get_navigation_map()
+	if not nav_map.is_valid() or NavigationServer3D.map_get_iteration_id(nav_map) == 0:
+		return
+		
+	var target_pos = target_node.global_position
+	var safe_target = NavigationServer3D.map_get_closest_point(nav_map, target_pos)
+	navigation_agent_3d.target_position = safe_target
+	
+	if navigation_agent_3d.is_target_reached():
+		return
+
+
+	var current_position = global_transform.origin
+	var next_position = navigation_agent_3d.get_next_path_position()
+	var direction = (next_position - current_position).normalized()
+	
+	var new_velocity = direction * SPEED
+	navigation_agent_3d.set_velocity(new_velocity)
+
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if (body.is_in_group("player")):
 		calm_signal.emit();
-	pass # Replace with function body.
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if (body.is_in_group("player")):
 		panic_signal.emit();
-	pass # Replace with function body.
 
 
 func _on_navigation_agent_3d_target_reached() -> void:
-	state = State.IDLE;
+	if not target_node:
+		state = State.IDLE;
 
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:

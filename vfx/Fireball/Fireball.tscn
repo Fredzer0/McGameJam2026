@@ -46,43 +46,58 @@ vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_texture = ExtResource("5_pn34p")
 
+[sub_resource type="Curve" id="Curve_gfpes"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pn34p"]
+curve = SubResource("Curve_gfpes")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mytdf"]
+particle_flag_align_y = true
 emission_shape = 2
-emission_sphere_radius = 0.5
-direction = Vector3(-5, 0, 0)
-spread = 25.976
-initial_velocity_min = 3.0
-initial_velocity_max = 3.0
+emission_sphere_radius = 0.3
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 5.0
+initial_velocity_max = 7.0
+radial_velocity_min = 0.99997765
+radial_velocity_max = 1.9999776
 gravity = Vector3(0, 0, 0)
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_pn34p")
+color = Color(0.9058309, 0.7875862, 0.8559276, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_rd210"]
-size = Vector2(0.36, 0.1)
+size = Vector2(0.1, 0.3)
 
 [node name="Node3D" type="Node3D" unique_id=290144031]
 
-[node name="FireMesh" type="MeshInstance3D" parent="." unique_id=372013084]
+[node name="VFX_Fireball" type="Node3D" parent="." unique_id=1803759635]
+
+[node name="FireMesh" type="MeshInstance3D" parent="VFX_Fireball" unique_id=372013084]
 transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_6tsjc")
 cast_shadow = 0
 mesh = ExtResource("2_4phh8")
 
-[node name="FireHeader" type="MeshInstance3D" parent="." unique_id=1217488735]
+[node name="FireHeader" type="MeshInstance3D" parent="VFX_Fireball" unique_id=1217488735]
 transform = Transform3D(0.928, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.16106695, 0, 0)
 mesh = SubResource("SphereMesh_pn34p")
 
-[node name="FireTrail" type="MeshInstance3D" parent="." unique_id=1226528269]
+[node name="FireTrail" type="MeshInstance3D" parent="VFX_Fireball" unique_id=1226528269]
 transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 0.5, -1.3649743, 0, 0)
 material_override = SubResource("ShaderMaterial_v0dmc")
 mesh = SubResource("PlaneMesh_62ltb")
 
-[node name="FireTrail2" type="MeshInstance3D" parent="." unique_id=1104575301]
+[node name="FireTrail2" type="MeshInstance3D" parent="VFX_Fireball" unique_id=1104575301]
 transform = Transform3D(1.6, 0, 0, 0, -4.371139e-08, -0.5, 0, 1, -2.1855694e-08, -1.3649743, 0, 0)
 material_override = SubResource("ShaderMaterial_w8hj1")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_62ltb")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1251967209]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43150067, 1.8266336, 0)
+[node name="GPUParticles3D" type="GPUParticles3D" parent="VFX_Fireball" unique_id=1251967209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27480555, 0.050698638, 0)
 material_override = SubResource("StandardMaterial3D_erf5i")
 lifetime = 0.7
 explosiveness = 0.3

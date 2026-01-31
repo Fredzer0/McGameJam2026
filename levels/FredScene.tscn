@@ -1,16 +1,23 @@
 [gd_scene format=3 uid="uid://5ma7vxmlo1jb"]
 
-[ext_resource type="PackedScene" uid="uid://b0fms7bpidl4s" path="res://assets/Scenes/environment.tscn" id="1_g4tst"]
 [ext_resource type="PackedScene" uid="uid://cn0egmeo3v4t" path="res://assets/Scenes/house.tscn" id="2_q66dy"]
 [ext_resource type="PackedScene" uid="uid://whl2a2p8t4r5" path="res://entities/enemies/npc.tscn" id="2_t0f4b"]
-[ext_resource type="PackedScene" path="res://entities/player/Player.tscn" id="3_hbm7b"]
+[ext_resource type="PackedScene" uid="uid://b812iuikvckso" path="res://entities/player/Player.tscn" id="3_hbm7b"]
 [ext_resource type="Script" uid="uid://hnap8lcnuimj" path="res://Scripts/suspicion_director.gd" id="5_0mfq7"]
+[ext_resource type="Script" uid="uid://bf8ihgj0m2qtb" path="res://Scripts/game_director.gd" id="5_o7s4l"]
+[ext_resource type="Script" uid="uid://bd2xdysjc05n8" path="res://Scripts/camera_3d.gd" id="5_qahgl"]
 [ext_resource type="PackedScene" uid="uid://b5x8y1n2m3q1" path="res://ui/hud/HUD.tscn" id="6_57md5"]
+[ext_resource type="PackedScene" uid="uid://bh5xd7i8ik0ls" path="res://assets/ground.tscn" id="7_o7s4l"]
 
 [sub_resource type="Environment" id="Environment_g4tst"]
 background_mode = 1
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.005
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_qahgl"]
+vertices = PackedVector3Array(-99.5, 0.5, -99.5, -99.5, 0.5, 99.5, 99.5, 0.5, 99.5, 99.5, 0.5, -99.5, 7, 4, -17.5, 7, 4, -15.25, 11.25, 4, -15.25, 11.25, 4, -17.5, -11.5, 4, -10.75, -11.5, 4, -8.5, -7.25, 4, -8.5, -7.25, 4, -10.75, 7, 4, -1.25, 7, 4, 1, 11.25, 4, 1, 11.25, 4, -1.25, -11, 4, 2.25, -11, 4, 4.5, -6.75, 4, 4.5, -6.75, 4, 2.25, 7, 4, 8.75, 7, 4, 11, 11.25, 4, 11, 11.25, 4, 8.75)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21)]
+agent_height = 0.2
 
 [node name="FredScene" type="Node3D" unique_id=1742367876]
 
@@ -23,12 +30,74 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=825585174]
 environment = SubResource("Environment_g4tst")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1065322500]
-transform = Transform3D(1, 0, 0, 0, 0.7313537, 0.6819984, 0, -0.6819984, 0.7313537, 0, 22.932, 21.28)
-fov = 45.0
+[node name="Enemies" type="Node3D" parent="." unique_id=1505769874]
 
-[node name="Environment" parent="." unique_id=960804561 instance=ExtResource("1_g4tst")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04693985, 0.08450127, -0.057396412)
+[node name="NPC" parent="Enemies" unique_id=2091204191 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.828926, 1.397454, -3.7148848)
+axis_lock_linear_y = false
+
+[node name="NPC2" parent="Enemies" unique_id=968488436 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(-0.9471935, 0, 0.32066256, 0, 1, 0, -0.32066256, 0, -0.9471935, -0.22622299, 1.397454, -3.7148848)
+axis_lock_linear_y = false
+
+[node name="NPC3" parent="Enemies" unique_id=685017053 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(0.9494145, 0, 0.3140257, 0, 1, 0, -0.3140257, 0, 0.9494145, 2.4966173, 1.1676304, 2.864025)
+axis_lock_linear_y = false
+
+[node name="NPC4" parent="Enemies" unique_id=1609255914 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(-0.5829989, 0.0049982327, 0.81245756, 0.0071337693, 0.999974, -0.0010328216, -0.8124416, 0.005193752, -0.5830193, -1.536746, 1.397454, -21.591652)
+axis_lock_linear_y = false
+
+[node name="NPC5" parent="Enemies" unique_id=1040559120 instance=ExtResource("2_t0f4b")]
+transform = Transform3D(-0.8761133, 0, -0.4821054, 0, 1, 0, 0.4821054, 0, -0.8761133, 19.192307, 1.397454, -3.7148848)
+axis_lock_linear_y = false
+
+[node name="Player" parent="." unique_id=253799011 groups=["player"] instance=ExtResource("3_hbm7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=1065322500]
+transform = Transform3D(0.9848077, -0.11619332, 0.12904574, 0, 0.7431448, 0.6691306, -0.17364818, -0.658965, 0.73185474, 3.8083897, 21.799608, 22.199783)
+projection = 1
+fov = 37.849285
+size = 18.757
+near = 0.001
+script = ExtResource("5_qahgl")
+
+[node name="Systems" type="Node3D" parent="." unique_id=213108628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -37.565052, 0)
+
+[node name="SuspicionDirector" type="Node3D" parent="Systems" unique_id=851241639 groups=["suspicionDirector"]]
+script = ExtResource("5_0mfq7")
+
+[node name="GameDirector" type="Node3D" parent="Systems" unique_id=761007549]
+script = ExtResource("5_o7s4l")
+
+[node name="HUD" parent="." unique_id=1053323662 instance=ExtResource("6_57md5")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=93847155]
+navigation_mesh = SubResource("NavigationMesh_qahgl")
+metadata/_edit_lock_ = true
+
+[node name="house" parent="NavigationRegion3D" unique_id=830056038 instance=ExtResource("2_q66dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.031464, 2.1167986, -16.462164)
+
+[node name="house2" parent="NavigationRegion3D" unique_id=1542438002 instance=ExtResource("2_q66dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.031464, 2.1167986, -0.06241274)
+
+[node name="house3" parent="NavigationRegion3D" unique_id=489939588 instance=ExtResource("2_q66dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.031464, 2.1167986, 9.966841)
+
+[node name="house4" parent="NavigationRegion3D" unique_id=160811268 instance=ExtResource("2_q66dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.299389, 2.1167986, -9.698135)
+
+[node name="house5" parent="NavigationRegion3D" unique_id=1209818540 instance=ExtResource("2_q66dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.81119, 2.1167986, 3.4851832)
+
+[node name="ground" parent="NavigationRegion3D" unique_id=1434387679 instance=ExtResource("7_o7s4l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004981041, 0.06409407, -0.06724739)
+
+[node name="Environment" type="Node3D" parent="." unique_id=960804561]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.031463623, 0.09568906, -0.06241274)
 
 [node name="FogVolume" type="FogVolume" parent="Environment" unique_id=936400773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.492, 1.853)
@@ -41,45 +110,3 @@ size = Vector3(16.21316, 4, 76.65)
 [node name="FogVolume3" type="FogVolume" parent="Environment" unique_id=760853136]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.492, 4.259)
 size = Vector3(16.21316, 4, 76.65)
-
-[node name="house" parent="Environment" unique_id=830056038 instance=ExtResource("2_q66dy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.0211096, -16.399752)
-
-[node name="house2" parent="Environment" unique_id=1542438002 instance=ExtResource("2_q66dy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.0211096, 0)
-
-[node name="house3" parent="Environment" unique_id=489939588 instance=ExtResource("2_q66dy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.0211096, 10.029253)
-
-[node name="house4" parent="Environment" unique_id=160811268 instance=ExtResource("2_q66dy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.3308525, 2.0211096, -9.635723)
-
-[node name="house5" parent="Environment" unique_id=1209818540 instance=ExtResource("2_q66dy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.842653, 2.0211096, 3.547596)
-
-[node name="Enemies" type="Node3D" parent="." unique_id=1505769874]
-
-[node name="NPC" parent="Enemies" unique_id=2091204191 instance=ExtResource("2_t0f4b")]
-transform = Transform3D(0.1432853, 0, 0.9896814, 0, 1, 0, -0.9896814, 0, 0.1432853, -14.828926, 1.397454, -3.7148848)
-
-[node name="NPC2" parent="Enemies" unique_id=968488436 instance=ExtResource("2_t0f4b")]
-transform = Transform3D(-0.9471935, 0, 0.32066256, 0, 1, 0, -0.32066256, 0, -0.9471935, -0.22622299, 1.397454, -3.7148848)
-
-[node name="NPC3" parent="Enemies" unique_id=685017053 instance=ExtResource("2_t0f4b")]
-transform = Transform3D(0.9494145, 0, 0.3140257, 0, 1, 0, -0.3140257, 0, 0.9494145, 2.4966173, 1.397454, 2.864025)
-
-[node name="NPC4" parent="Enemies" unique_id=1609255914 instance=ExtResource("2_t0f4b")]
-transform = Transform3D(-0.5829989, 0.0049982327, 0.81245756, 0.0071337693, 0.999974, -0.0010328216, -0.8124416, 0.005193752, -0.5830193, -1.536746, 1.397454, -21.591652)
-
-[node name="NPC5" parent="Enemies" unique_id=1040559120 instance=ExtResource("2_t0f4b")]
-transform = Transform3D(-0.8761133, 0, -0.4821054, 0, 1, 0, 0.4821054, 0, -0.8761133, 19.192307, 1.397454, -3.7148848)
-
-[node name="Player" parent="." unique_id=253799011 groups=["player"] instance=ExtResource("3_hbm7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3858306, 0)
-
-[node name="Systems" type="Node3D" parent="." unique_id=213108628]
-
-[node name="SuspicionDirector" type="Node3D" parent="Systems" unique_id=851241639 groups=["suspicionDirector"]]
-script = ExtResource("5_0mfq7")
-
-[node name="HUD" parent="." unique_id=1053323662 instance=ExtResource("6_57md5")]
