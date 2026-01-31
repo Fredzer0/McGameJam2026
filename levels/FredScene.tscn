@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://whl2a2p8t4r5" path="res://entities/enemies/npc.tscn" id="2_t0f4b"]
 [ext_resource type="PackedScene" uid="uid://b812iuikvckso" path="res://entities/player/Player.tscn" id="3_hbm7b"]
 [ext_resource type="Script" uid="uid://hnap8lcnuimj" path="res://Scripts/suspicion_director.gd" id="5_0mfq7"]
+[ext_resource type="Script" uid="uid://bf8ihgj0m2qtb" path="res://Scripts/game_director.gd" id="5_o7s4l"]
 [ext_resource type="Script" uid="uid://bd2xdysjc05n8" path="res://Scripts/camera_3d.gd" id="5_qahgl"]
 [ext_resource type="PackedScene" uid="uid://b5x8y1n2m3q1" path="res://ui/hud/HUD.tscn" id="6_57md5"]
 [ext_resource type="PackedScene" uid="uid://bh5xd7i8ik0ls" path="res://assets/ground.tscn" id="7_o7s4l"]
@@ -32,7 +33,7 @@ environment = SubResource("Environment_g4tst")
 [node name="Enemies" type="Node3D" parent="." unique_id=1505769874]
 
 [node name="NPC" parent="Enemies" unique_id=2091204191 instance=ExtResource("2_t0f4b")]
-transform = Transform3D(0.1432853, 0, 0.9896814, 0, 1, 0, -0.9896814, 0, 0.1432853, -14.828926, 1.397454, -3.7148848)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.828926, 1.397454, -3.7148848)
 axis_lock_linear_y = false
 
 [node name="NPC2" parent="Enemies" unique_id=968488436 instance=ExtResource("2_t0f4b")]
@@ -52,7 +53,7 @@ transform = Transform3D(-0.8761133, 0, -0.4821054, 0, 1, 0, 0.4821054, 0, -0.876
 axis_lock_linear_y = false
 
 [node name="Player" parent="." unique_id=253799011 groups=["player"] instance=ExtResource("3_hbm7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3858306, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, 1, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=1065322500]
 transform = Transform3D(0.9848077, -0.11619332, 0.12904574, 0, 0.7431448, 0.6691306, -0.17364818, -0.658965, 0.73185474, 3.8083897, 21.799608, 22.199783)
@@ -67,6 +68,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -37.565052, 0)
 
 [node name="SuspicionDirector" type="Node3D" parent="Systems" unique_id=851241639 groups=["suspicionDirector"]]
 script = ExtResource("5_0mfq7")
+
+[node name="GameDirector" type="Node3D" parent="Systems" unique_id=761007549]
+script = ExtResource("5_o7s4l")
 
 [node name="HUD" parent="." unique_id=1053323662 instance=ExtResource("6_57md5")]
 
@@ -90,6 +94,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.299389, 2.1167986, -9.6981
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.81119, 2.1167986, 3.4851832)
 
 [node name="ground" parent="NavigationRegion3D" unique_id=1434387679 instance=ExtResource("7_o7s4l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004981041, 0.06409407, -0.06724739)
 
 [node name="Environment" type="Node3D" parent="." unique_id=960804561]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.031463623, 0.09568906, -0.06241274)
