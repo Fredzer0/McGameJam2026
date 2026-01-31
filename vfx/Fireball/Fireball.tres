@@ -1,0 +1,61 @@
+[gd_resource type="VisualShader" format=3 uid="uid://cve2fgi054sea"]
+
+[ext_resource type="Texture2D" uid="uid://dmixvqiw0u5au" path="res://vfx/Fireball/T_VFX_Noi55.png" id="1_dwrdy"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_o3807"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_p5r7k"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_yi0ji"]
+texture = ExtResource("1_dwrdy")
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_sv10s"]
+operator = 2
+
+[sub_resource type="Gradient" id="Gradient_2fqs6"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r7d3u"]
+gradient = SubResource("Gradient_2fqs6")
+fill_from = Vector2(0.5641026, 0.8888889)
+fill_to = Vector2(0.57834756, 0)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_3kukv"]
+texture = SubResource("GradientTexture2D_r7d3u")
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_ef57x"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_2elvf"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_cvmxu"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_j17i6"]
+parameter_name = "Vector2Parameter"
+
+[resource]
+flags/unshaded = true
+flags/shadows_disabled = true
+flags/ambient_light_disabled = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeClamp_p5r7k")
+nodes/fragment/2/position = Vector2(-53.333332, 626.6667)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_yi0ji")
+nodes/fragment/3/position = Vector2(-666.6667, 520)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatOp_sv10s")
+nodes/fragment/4/position = Vector2(-320, 640)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_3kukv")
+nodes/fragment/5/position = Vector2(-666.6667, 893.3333)
+nodes/fragment/6/node = SubResource("VisualShaderNodeColorParameter_ef57x")
+nodes/fragment/6/position = Vector2(0, 93.333336)
+nodes/fragment/7/node = SubResource("VisualShaderNodeUVFunc_2elvf")
+nodes/fragment/7/position = Vector2(-1000, 533.3333)
+nodes/fragment/8/node = SubResource("VisualShaderNodeVectorOp_cvmxu")
+nodes/fragment/8/position = Vector2(-1413.3334, 600)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVec2Parameter_j17i6")
+nodes/fragment/9/position = Vector2(-1760, 680)
+nodes/fragment/10/node = SubResource("VisualShaderNodeInput_o3807")
+nodes/fragment/10/position = Vector2(-1853.3334, 453.33334)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 1, 3, 0, 4, 0, 4, 0, 2, 0, 5, 0, 4, 1, 6, 0, 0, 0, 7, 0, 3, 0, 9, 0, 8, 1, 8, 0, 7, 2, 10, 0, 8, 0)
