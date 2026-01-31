@@ -80,7 +80,7 @@ func becomeBox():
 
 func try_transform_npc(body: Node3D) -> void:
 	if body.is_in_group("npc"):
-		if body.has_method("is_panicking") and body.is_panicking() and body.is:
+		if body.has_method("is_panicking") and body.is_panicking() or body.is_frog():
 			return
 		
 		if body.has_method("become_frog"):

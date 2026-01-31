@@ -438,9 +438,8 @@ mesh = SubResource("CapsuleMesh_mab2k")
 surface_material_override/0 = SubResource("StandardMaterial3D_453mm")
 
 [node name="Node3D" type="Node3D" parent="WitchModel" unique_id=1917188508]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="SK_Witch" type="Node3D" parent="WitchModel/Node3D" unique_id=281123797]
+[node name="SK_Witch" type="Node3D" parent="WitchModel/Node3D" unique_id=1236977500]
 
 [node name="LR_T_WitchGr_1" type="Node3D" parent="WitchModel/Node3D/SK_Witch" unique_id=615049218]
 
@@ -470,15 +469,15 @@ bones/3/name = "Head_jnt"
 bones/3/parent = 2
 bones/3/rest = Transform3D(0.9960164, -0.053540476, -0.071307376, -0.05367712, -0.9985583, -1.1641532e-10, -0.07120457, 0.0038275747, -0.9974543, 0.33017176, 0, -0.002622412)
 bones/3/enabled = true
-bones/3/position = Vector3(0.33017176, 0, -0.002622412)
-bones/3/rotation = Quaternion(0.9990032, -0.026831148, -0.03566354, 0.0009578487)
+bones/3/position = Vector3(0.32757518, 0, -0.0025159975)
+bones/3/rotation = Quaternion(0.9990985, -0.023006951, -0.035666943, 0.000821328)
 bones/3/scale = Vector3(0.99999994, 0.99999994, 0.9999999)
 bones/4/name = "Hat_jnt"
 bones/4/parent = 3
 bones/4/rest = Transform3D(-0.028424501, 0.9993492, 0.022208184, 0, 0.022217155, -0.9997531, -0.9995959, -0.028417468, -0.0006314516, 0.34737024, -0.022595108, 0.008009362)
 bones/4/enabled = true
-bones/4/position = Vector3(0.34737024, -0.022595108, 0.008009362)
-bones/4/rotation = Quaternion(0.48733714, 0.51265806, -0.50139207, 0.49828735)
+bones/4/position = Vector3(0.33761287, -0.021198414, 0.008476635)
+bones/4/rotation = Quaternion(0.49444008, 0.5054075, -0.5086998, 0.49124005)
 bones/4/scale = Vector3(0.99999994, 0.99999994, 0.99999994)
 bones/5/name = "Tip_jnt"
 bones/5/parent = 4
@@ -505,15 +504,15 @@ bones/8/name = "L_Hand_jnt"
 bones/8/parent = 1
 bones/8/rest = Transform3D(0.04292649, 0.9990782, 0, 0, 0, 1, 0.9990782, -0.04292646, 0, -0.15172438, -0.17265157, 0.50240266)
 bones/8/enabled = true
-bones/8/position = Vector3(-0.15172438, -0.17265157, 0.50240266)
+bones/8/position = Vector3(-0.15993509, -0.17898698, 0.48862785)
 bones/8/rotation = Quaternion(-0.51061887, -0.4891507, -0.4891507, 0.51061887)
 bones/8/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/9/name = "R_Hand_jnt"
 bones/9/parent = 1
 bones/9/rest = Transform3D(0.13299179, 0.7831848, -0.60739994, 0.41616577, 0.5120729, 0.7513903, 0.8995105, -0.3527078, -0.25783324, 0.0029265909, 0.4519705, -0.5158584)
 bones/9/enabled = true
-bones/9/position = Vector3(0.0029265909, 0.4519705, -0.5158584)
-bones/9/rotation = Quaternion(-0.4687089, -0.6397098, -0.15580599, 0.58890396)
+bones/9/position = Vector3(-0.018637877, 0.44771478, -0.5057339)
+bones/9/rotation = Quaternion(-0.45916075, -0.64191186, -0.15289219, 0.5947643)
 bones/9/scale = Vector3(0.99999994, 0.99999994, 1)
 bones/10/name = "Wand_jnt"
 bones/10/parent = 9
@@ -521,7 +520,7 @@ bones/10/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029313503, 0.06428321,
 bones/10/enabled = true
 bones/10/position = Vector3(-0.029313503, 0.06428321, 0.03476923)
 bones/10/rotation = Quaternion(0.20253113, -0.0055393064, 0.110319145, 0.9730263)
-bones/10/scale = Vector3(1, 1, 1)
+bones/10/scale = Vector3(0.99999994, 1, 1)
 
 [node name="LR_T_witchDress_1" type="MeshInstance3D" parent="WitchModel/Node3D/SK_Witch/Skeleton3D" unique_id=1549585733]
 mesh = SubResource("ArrayMesh_qwvc4")
@@ -553,14 +552,14 @@ mesh = SubResource("ArrayMesh_tuum4")
 skin = SubResource("Skin_4y3jc")
 skeleton = NodePath("..")
 
-[node name="HatNode" type="Node3D" parent="WitchModel/Node3D/SK_Witch/Skeleton3D" unique_id=1502877060]
+[node name="HatNode" type="Node3D" parent="WitchModel/Node3D/SK_Witch/Skeleton3D" unique_id=1154331478]
 
 [node name="LR_T_witchHat_1" type="MeshInstance3D" parent="WitchModel/Node3D/SK_Witch/Skeleton3D/HatNode" unique_id=1497274129]
 mesh = SubResource("ArrayMesh_rmdsa")
 skin = SubResource("Skin_gvrvg")
 skeleton = NodePath("../..")
 
-[node name="WandNode" type="Node3D" parent="WitchModel/Node3D/SK_Witch/Skeleton3D" unique_id=1495457964]
+[node name="WandNode" type="Node3D" parent="WitchModel/Node3D/SK_Witch/Skeleton3D" unique_id=914409210]
 
 [node name="LR_T_wand_1" type="MeshInstance3D" parent="WitchModel/Node3D/SK_Witch/Skeleton3D/WandNode" unique_id=1432568846]
 mesh = SubResource("ArrayMesh_tla8r")

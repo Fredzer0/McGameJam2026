@@ -163,3 +163,7 @@ func _on_detect_look_body_exited(body: Node3D) -> void:
 
 func is_panicking() -> bool:
 	return state == State.PANIC
+
+
+func is_frog() -> bool:
+	return state == State.FROG
