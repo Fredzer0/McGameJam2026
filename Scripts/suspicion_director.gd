@@ -8,12 +8,12 @@ var panicStatus = false;
 @export var passiveCooling = 0.001;
 var detection = false;
 
-
+var player 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	currentPanic = 0;
 	detection = false;
-
+	player = get_tree().get_first_node_in_group("player")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -21,7 +21,6 @@ func _process(delta: float) -> void:
 
 	if (detection && !panicStatus):
 		raisePanic();
-
 
 	print_debug(currentPanic);
 	if (currentPanic >= 100):
@@ -46,8 +45,8 @@ func raisePanic() -> void:
 	currentPanic += panicRate;
 
 func on_npc_panic_signal() -> void:
-	detection = true;
+	if !player.is_hiding:
+		detection = true;
 
 func on_npc_calm_signal() -> void:
 	detection = false;
-
