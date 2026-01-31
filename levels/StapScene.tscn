@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dx6rvrc3s05ia"]
 
 [ext_resource type="PackedScene" uid="uid://b7ggpa1vwgrl2" path="res://vfx/ShaderComposer.tscn" id="1_3ut6a"]
+[ext_resource type="PackedScene" uid="uid://74m3t0e8b8cn" path="res://vfx/Fireball/Fireball.tscn" id="2_hh8b3"]
+[ext_resource type="PackedScene" uid="uid://dt5h0bmojprp0" path="res://systems/grass/grass_system.tscn" id="2_wxpfe"]
 
 [sub_resource type="Environment" id="Environment_hh8b3"]
 ambient_light_source = 2
@@ -17,6 +19,9 @@ size = Vector3(3, 1, 3)
 size = Vector3(1.5, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_nlp81"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8rnln"]
+size = Vector3(32, 1, 32)
 
 [node name="StapScene" type="Node3D" unique_id=73656724]
 
@@ -61,10 +66,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1240926, 1.5454535, 0)
 mesh = SubResource("SphereMesh_nlp81")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=838391467]
-transform = Transform3D(0.9912455, -0.08439596, 0.10153638, 0, 0.7690315, 0.6392109, -0.13203149, -0.6336149, 0.76229906, 1.1545491, 4.532778, 6.2972927)
+transform = Transform3D(0.9912455, -0.08439596, 0.10153638, 0, 0.7690315, 0.6392109, -0.13203149, -0.6336149, 0.76229906, 1.1545491, 8.668759, 11.515389)
 projection = 1
-size = 5.0
+size = 10.0
 far = 50.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport" unique_id=1380971151]
 transform = Transform3D(1, 0, 0, 0, -0.0058468683, 0.9999829, 0, -0.9999829, -0.0058468683, 0, 3.461728, 0)
+
+[node name="GrassSystem" parent="SubViewportContainer/SubViewport" unique_id=829710211 instance=ExtResource("2_wxpfe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.4680004, 0)
+density = 2.0
+uniform_rotation_degrees = 20.0
+
+[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/GrassSystem" unique_id=506428651]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/GrassSystem/Area3D" unique_id=1249310870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9919863, 0)
+shape = SubResource("BoxShape3D_8rnln")
+
+[node name="Node3D" parent="." unique_id=290144031 instance=ExtResource("2_hh8b3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5350767, 0.9980967, 0.22963071)

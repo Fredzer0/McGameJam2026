@@ -27,13 +27,19 @@ void main() {
 		return;
 	}
 
+	vec2 uv_normalized = vec2(uv) / size;
 	vec4 color = imageLoad(color_image, uv);
 	
-	// Simple quantization
-	vec3 quantized = floor(color.rgb * COLOR_LEVELS) / COLOR_LEVELS;
+	// Check Roughness from Normal Texture (Alpha channel)
+	// If Roughness is 0.0 (like our grass), skip quantization
+	float roughness = texture(normal_texture, uv_normalized).a;
 	
-	// Optional: You could do luminance based quantization or something fancier,
-	// but direct RGB quantization is the simplest "cel" look.
-	
-	imageStore(color_image, uv, vec4(quantized, color.a));
+	if (roughness < 0.01) {
+		// Skip quantization for "unshaded" or special material objects
+		imageStore(color_image, uv, color);
+	} else {
+		// Simple quantization
+		vec3 quantized = floor(color.rgb * COLOR_LEVELS) / COLOR_LEVELS;
+		imageStore(color_image, uv, vec4(quantized, color.a));
+	}
 }

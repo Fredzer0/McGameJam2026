@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ds550ln226he3"]
+
+[ext_resource type="PackedScene" uid="uid://dt5h0bmojprp0" path="res://systems/grass/grass_system.tscn" id="1_grass"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5mqg4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_grass"]
+size = Vector3(50, 2, 50)
+
+[node name="TestGrass" type="Node3D" unique_id=1711438562]
+
+[node name="GrassSystem" parent="." unique_id=768491884 instance=ExtResource("1_grass")]
+density = 5.0
+uniform_rotation_degrees = 45.0
+noise_texture = SubResource("NoiseTexture2D_5mqg4")
+
+[node name="GrassArea" type="Area3D" parent="GrassSystem" unique_id=988018576]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrassSystem/GrassArea" unique_id=1062485590]
+shape = SubResource("BoxShape3D_grass")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=143422265]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 10, 10)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=944888350]
+transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 0, 0)
