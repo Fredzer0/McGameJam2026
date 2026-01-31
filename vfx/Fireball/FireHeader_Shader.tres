@@ -1,0 +1,18 @@
+[gd_resource type="VisualShader" format=3 uid="uid://dg5xnltkcwbes"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_5wkpu"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_kao1n"]
+default_input_values = [2, true, 3, 2.77]
+
+[resource]
+flags/unshaded = true
+flags/shadows_disabled = true
+flags/ambient_light_disabled = true
+flags/fog_disabled = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_5wkpu")
+nodes/fragment/2/position = Vector2(-80, 120)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFresnel_kao1n")
+nodes/fragment/3/position = Vector2(-66.666664, 346.66666)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 1)
