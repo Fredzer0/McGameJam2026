@@ -5,7 +5,8 @@ signal calm_signal();
 
 var director: Node;
 
-const SPEED = 5.0
+const SPEED = 3.0
+const ROTATION_SPEED = 14.0
 const MIN_MOVE_RANGE = 6
 const MAX_MOVE_RANGE = 10
 
@@ -46,6 +47,12 @@ func _physics_process(delta: float) -> void:
 			_on_move()
 			
 	move_and_slide()
+	
+	var horizontal_velocity = Vector2(velocity.x, velocity.z)
+	if horizontal_velocity.length() > 0.2:
+		var target_angle = atan2(velocity.x, velocity.z) - PI / 2
+		$MeshInstance3D.rotation.y = lerp_angle($MeshInstance3D.rotation.y, target_angle, ROTATION_SPEED * delta)
+		$Area3D.rotation.y = lerp_angle($Area3D.rotation.y, target_angle, ROTATION_SPEED * delta)
 
 
 func _on_idle() -> void:
