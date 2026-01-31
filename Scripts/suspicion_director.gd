@@ -5,7 +5,7 @@ var currentPanic;
 var panicStatus = false;
 @export var panicRate = 1;
 @export var cooloffRate = 1;
-@export var passiveCooling = 0.01;
+@export var passiveCooling = 0.001;
 var detection = false;
 
 
@@ -33,7 +33,8 @@ func _process(delta: float) -> void:
 	if (panicStatus):
 		currentPanic -= cooloffRate;
 
-	currentPanic -= passiveCooling;
+	if (currentPanic > 0):
+		currentPanic -= passiveCooling;
 
 func panic() -> void:
 	print_debug('PANIC TIME');
