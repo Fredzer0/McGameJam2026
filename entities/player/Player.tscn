@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bb3v21qpm6bnf"]
+[gd_scene format=3 uid="uid://b812iuikvckso"]
 
 [ext_resource type="Script" uid="uid://caq6eorqv7tg6" path="res://entities/player/Player.gd" id="1_script"]
 
@@ -13,16 +13,28 @@ height = 1.515
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_453mm"]
 albedo_color = Color(1, 0, 0, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_mab2k"]
+
 [node name="Player" type="CharacterBody3D" unique_id=253799011]
 script = ExtResource("1_script")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1747807594]
 shape = SubResource("CapsuleShape3D_1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=795629174]
+[node name="WitchModel" type="Node3D" parent="." unique_id=1809021184]
+
+[node name="model" type="MeshInstance3D" parent="WitchModel" unique_id=795629174]
 mesh = SubResource("CapsuleMesh_1")
 
-[node name="nose" type="MeshInstance3D" parent="MeshInstance3D" unique_id=2121753403]
+[node name="nose" type="MeshInstance3D" parent="WitchModel/model" unique_id=2121753403]
 transform = Transform3D(1, 0, 0, 0, 0.07047033, 0.9975139, 0, -0.9975139, 0.07047033, 0, 0.50180423, 0.5673036)
 mesh = SubResource("CapsuleMesh_mab2k")
 surface_material_override/0 = SubResource("StandardMaterial3D_453mm")
+
+[node name="BoxModel" type="Node3D" parent="." unique_id=916300823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5777941, -1.7648041, 1.388298)
+visible = false
+
+[node name="BoxMode" type="MeshInstance3D" parent="BoxModel" unique_id=1744310496]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5777941, 1.7648041, -1.388298)
+mesh = SubResource("BoxMesh_mab2k")
