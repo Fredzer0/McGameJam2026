@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b0fms7bpidl4s" path="res://assets/Scenes/environment.tscn" id="1_g4tst"]
 [ext_resource type="PackedScene" uid="uid://cn0egmeo3v4t" path="res://assets/Scenes/house.tscn" id="2_q66dy"]
 [ext_resource type="PackedScene" uid="uid://whl2a2p8t4r5" path="res://entities/enemies/npc.tscn" id="2_t0f4b"]
-[ext_resource type="PackedScene" path="res://entities/player/Player.tscn" id="3_hbm7b"]
+[ext_resource type="PackedScene" uid="uid://b812iuikvckso" path="res://entities/player/Player.tscn" id="3_hbm7b"]
 [ext_resource type="Script" uid="uid://hnap8lcnuimj" path="res://Scripts/suspicion_director.gd" id="5_0mfq7"]
 [ext_resource type="PackedScene" uid="uid://b5x8y1n2m3q1" path="res://ui/hud/HUD.tscn" id="6_57md5"]
 
@@ -28,7 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 0.7313537, 0.6819984, 0, -0.6819984, 0.73135
 fov = 45.0
 
 [node name="Environment" parent="." unique_id=960804561 instance=ExtResource("1_g4tst")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04693985, 0.08450127, -0.057396412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.046571255, 0.0956893, -0.06581974)
 
 [node name="FogVolume" type="FogVolume" parent="Environment" unique_id=936400773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.492, 1.853)
