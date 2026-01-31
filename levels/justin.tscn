@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://ctodcfwf4462d"]
 
-[ext_resource type="PackedScene" uid="uid://bb3v21qpm6bnf" path="res://entities/player/Player.tscn" id="1_jap2h"]
+[ext_resource type="PackedScene" uid="uid://b812iuikvckso" path="res://entities/player/Player.tscn" id="1_jap2h"]
+[ext_resource type="Script" uid="uid://bvcrbg4k0fhlp" path="res://levels/justin.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://whl2a2p8t4r5" path="res://entities/enemies/npc.tscn" id="2_x3ip7"]
+[ext_resource type="PackedScene" uid="uid://d2y22dtsfn7sr" path="res://entities/enemies/priest.tscn" id="3_priest"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -32,9 +34,13 @@ size = Vector3(20, 1, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_x3ip7"]
 
 [node name="Justin" type="Node3D" unique_id=195213207]
+script = ExtResource("1_script")
 
 [node name="NPC" parent="." unique_id=2091204191 instance=ExtResource("2_x3ip7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0469637, 0.837821, 0)
+
+[node name="Priest" parent="." unique_id=987654321 instance=ExtResource("3_priest")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.84, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1487729110]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
