@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://5ma7vxmlo1jb"]
+
+[ext_resource type="PackedScene" uid="uid://b0fms7bpidl4s" path="res://assets/Scenes/environment.tscn" id="1_g4tst"]
+
+[sub_resource type="Environment" id="Environment_g4tst"]
+background_mode = 1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.005
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4tst"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t0f4b"]
+albedo_color = Color(0.23137255, 0.52156866, 0.23921569, 1)
+
+[node name="FredScene" type="Node3D" unique_id=1742367876]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=414410689]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.22844607, 0.36254466, 0.41763422, 1)
+light_energy = 2.426
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=825585174]
+environment = SubResource("Environment_g4tst")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1065322500]
+transform = Transform3D(1, 0, 0, 0, 0.8732795, 0.48721963, 0, -0.48721966, 0.8732795, -0.21056652, 14.402442, 15.522619)
+
+[node name="Environment" parent="." unique_id=960804561 instance=ExtResource("1_g4tst")]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment" unique_id=566015549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.39167, 1.8910618, -12)
+size = Vector3(5, 3, 3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment" unique_id=1467975655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60833, 1.8910618, -5)
+size = Vector3(5, 3, 3)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment" unique_id=1064539338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.39167, 1.8910618, 1)
+size = Vector3(5, 3, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment" unique_id=1435706417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60833, 1.8910618, 6)
+size = Vector3(5, 3, 3)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment" unique_id=1656066006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60833, 1.8910618, -16)
+size = Vector3(5, 3, 3)
+
+[node name="FogVolume" type="FogVolume" parent="Environment" unique_id=936400773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.763945, 4.492341, 1.8528414)
+size = Vector3(14.95, 4, 76.65)
+
+[node name="FogVolume2" type="FogVolume" parent="Environment" unique_id=1338377357]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.5191555, 4.492341, -40.41882)
+size = Vector3(16.21316, 4, 76.65)
+
+[node name="FogVolume3" type="FogVolume" parent="Environment" unique_id=760853136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.193064, 4.492341, 4.258648)
+size = Vector3(16.21316, 4, 76.65)
+
+[node name="Player" type="Node3D" parent="." unique_id=333254752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=34485766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4467463, 0)
+mesh = SubResource("CapsuleMesh_g4tst")
+surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
+
+[node name="Player2" type="Node3D" parent="." unique_id=17995921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.614255, 0, 7.001189)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player2" unique_id=382773525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5709906, 0)
+mesh = SubResource("CapsuleMesh_g4tst")
+surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
+
+[node name="Player3" type="Node3D" parent="." unique_id=1204440679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4556699, -0.283453, -3.7148848)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player3" unique_id=357415837]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7984691, 0)
+mesh = SubResource("CapsuleMesh_g4tst")
+surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
+
+[node name="Player4" type="Node3D" parent="." unique_id=912748227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.171406, -0.34513474, -7.4297695)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player4" unique_id=1297996470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8814921, 0)
+mesh = SubResource("CapsuleMesh_g4tst")
+surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
