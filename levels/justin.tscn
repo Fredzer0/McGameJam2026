@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ctodcfwf4462d"]
+
+[ext_resource type="PackedScene" uid="uid://bb3v21qpm6bnf" path="res://entities/player/Player.tscn" id="1_jap2h"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_env"]
+sky_material = SubResource("ProceduralSkyMaterial_sky")
+
+[sub_resource type="Environment" id="Environment_default"]
+background_mode = 2
+sky = SubResource("Sky_env")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jap2h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x3ip7"]
+
+[node name="Justin" type="Node3D" unique_id=195213207]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1487729110]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=581321174]
+environment = SubResource("Environment_default")
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=508144722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=535121543]
+shape = SubResource("BoxShape3D_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1548177704]
+mesh = SubResource("BoxMesh_floor")
+
+[node name="Player" parent="." unique_id=1313064075 instance=ExtResource("1_jap2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1454675, 0)
+
+[node name="box1" type="StaticBody3D" parent="." unique_id=2012838938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.4507284)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="box1" unique_id=1853198785]
+mesh = SubResource("BoxMesh_jap2h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="box1" unique_id=20766959]
+shape = SubResource("BoxShape3D_x3ip7")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1279967936]
+transform = Transform3D(1, 0, 0, 0, 0.55067, 0.834723, 0, -0.834723, 0.55067, 0, 10, 6.363197)
+projection = 1
+size = 20.159
