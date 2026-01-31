@@ -38,7 +38,7 @@ curve = SubResource("Curve_quajr")
 
 [sub_resource type="Curve" id="Curve_xfbyf"]
 _limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 1.3473685, 0, 0, Vector2(1, 1.2301886), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.535849), 0.0, 1.3473685, 0, 0, Vector2(1, 1.4415094), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_yxm33"]
@@ -48,15 +48,14 @@ curve = SubResource("Curve_xfbyf")
 lifetime_randomness = 0.5
 particle_flag_align_y = true
 emission_shape = 1
-emission_sphere_radius = 8.6
+emission_sphere_radius = 0.01
 spread = 180.0
-initial_velocity_max = 1.0
-radial_velocity_min = 14.999977
-radial_velocity_max = 19.999977
+radial_velocity_min = 0.99997765
+radial_velocity_max = 4.9999776
 radial_velocity_curve = SubResource("CurveTexture_iji3p")
 gravity = Vector3(0, 0, 0)
-scale_min = 2.0
-scale_max = 5.0
+scale_min = 0.7
+scale_max = 0.7
 scale_over_velocity_curve = SubResource("CurveTexture_yxm33")
 color_ramp = SubResource("GradientTexture1D_tdswr")
 alpha_curve = SubResource("CurveTexture_7og8l")
@@ -84,9 +83,12 @@ blend_shape_mode = 0
 
 [node name="Node3D" type="Node3D" unique_id=412120049]
 
-[node name="VFX_smokePouff" type="GPUParticles3D" parent="." unique_id=1820700557]
+[node name="SmokeTransform" type="Node3D" parent="." unique_id=1050336789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.967415, -11.275419, -0.79769325)
+
+[node name="VFX_smokePouff" type="GPUParticles3D" parent="SmokeTransform" unique_id=1820700557]
 material_override = SubResource("ShaderMaterial_nr2v5")
 amount = 16
-explosiveness = 0.79
+explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_qyjgg")
 draw_pass_1 = SubResource("ArrayMesh_17msm")
