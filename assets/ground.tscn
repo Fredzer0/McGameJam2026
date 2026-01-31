@@ -4,6 +4,9 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_plhkx"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plhkx"]
+albedo_color = Color(8.374751e-06, 0.8441049, 0.24235466, 1)
+
 [node name="ground" type="StaticBody3D" unique_id=1434387679]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1577638343]
@@ -13,3 +16,4 @@ shape = SubResource("WorldBoundaryShape3D_plhkx")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1856947745]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
 mesh = SubResource("PlaneMesh_plhkx")
+surface_material_override/0 = SubResource("StandardMaterial3D_plhkx")
