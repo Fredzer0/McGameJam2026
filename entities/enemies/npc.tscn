@@ -28,6 +28,10 @@ shape = SubResource("CapsuleShape3D_voh54")
 mesh = SubResource("CapsuleMesh_g4tst")
 surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=695016243]
+avoidance_enabled = true
+debug_enabled = true
+
 [node name="Area3D" type="Area3D" parent="." unique_id=1158340794]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D" unique_id=1965569671]
@@ -45,11 +49,7 @@ transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1
 light_color = Color(1, 1, 0.3019608, 1)
 light_energy = 16.0
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=695016243]
-avoidance_enabled = true
-debug_enabled = true
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
