@@ -9,6 +9,20 @@ func remove_slowdown() -> void:
 
 func _ready() -> void:
 	add_to_group("player")
+	
+	var model_path = CharacterManager.get_current_model_path()
+	var new_model = load(model_path).instantiate()
+	
+	for child in $WitchModel.get_children():
+		$WitchModel.remove_child(child)
+		child.queue_free()
+		
+	$WitchModel.add_child(new_model)
+	
+	animPlayer = new_model.find_child("AnimationPlayer", true, false)
+	if not animPlayer:
+		animPlayer = find_child("AnimationPlayer", true, false)
+	
 	if fireball_scene:
 		fireball_model = fireball_scene.instantiate()
 		add_child(fireball_model)
@@ -31,8 +45,8 @@ var is_casting = false
 
 @export var maxMana = 100
 @export var manaRegen = 0.1
-@export var dashCost = 10
-@export var hideCost = 20
+@export var dashCost = 20
+@export var hideCost = 30
 
 @onready var animPlayer = find_child("AnimationPlayer", true, false)
 @export var vfx_scene: PackedScene
@@ -40,8 +54,18 @@ var is_casting = false
 @export var fireball_scene: PackedScene
 
 var fireball_model: Node3D
+var can_move = true
+
+func disable_movement():
+	can_move = false
+	velocity = Vector3.ZERO
+	animPlayer.play("WitchAnimPlayer/Idle")
 
 func _physics_process(delta):
+	if not can_move:
+		move_and_slide()
+		return
+
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if Input.is_action_just_pressed("dash") and direction and not is_dashing and currentMana >= dashCost and not is_casting:
@@ -118,7 +142,6 @@ func start_dash_visuals() -> void:
 		#var vfx = vfx_scene.instantiate()
 		#add_child(vfx)
 		#vfx.transform.origin = Vector3.ZERO
-	
 	$WitchModel.hide()
 	$BoxModel.hide()
 	if fireball_model:
@@ -132,7 +155,6 @@ func end_dash_visuals() -> void:
 		#var vfx = vfx_scene.instantiate()
 		#add_child(vfx)
 		#vfx.transform.origin = Vector3.ZERO
-		
 	if fireball_model:
 		fireball_model.hide()
 		

@@ -25,6 +25,8 @@ var idle_timer_count: float = 0
 var panic_timer: float = 0.0
 var path_update_timer: float = 0.0
 
+@onready var spot_light_3d: SpotLight3D = $Area3D/SpotLight3D
+
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var animPlayer = find_child("AnimationPlayer", true, false)
 
@@ -53,22 +55,24 @@ func _physics_process(delta: float) -> void:
 			_on_move()
 		State.PANIC:
 			_on_panic()
+		State.FROG:
+			velocity = Vector3.ZERO
 			
 	move_and_slide()
 	
 	if look_at_target and state == State.PANIC:
 		var direction = look_at_target.global_position - global_position
-		var target_angle = atan2(direction.x, direction.z) - PI / 2
+		var target_angle = atan2(direction.x, direction.z)
 		rotate_mesh(target_angle, delta)
 	else:
 		var horizontal_velocity = Vector2(velocity.x, velocity.z)
 		if horizontal_velocity.length() > 0.2:
-			var target_angle = atan2(velocity.x, velocity.z) - PI / 2
+			var target_angle = atan2(velocity.x, velocity.z)
 			rotate_mesh(target_angle, delta)
 
 func rotate_mesh(target_angle: float, delta: float) -> void:
 	$NpcModel.rotation.y = lerp_angle($NpcModel.rotation.y, target_angle, ROTATION_SPEED * delta)
-	$Area3D.rotation.y = lerp_angle($Area3D.rotation.y, target_angle, ROTATION_SPEED * delta)
+	$Area3D.rotation.y = lerp_angle($Area3D.rotation.y, target_angle - PI / 2, ROTATION_SPEED * delta)
 
 
 func _on_idle() -> void:
@@ -146,8 +150,17 @@ func become_frog() -> void:
 	form = Form.FROG
 	$NpcModel.hide()
 	$FrogModel.show()
+	$Area3D/SpotLight3D.hide()
 	state = State.FROG
 	gDirector.morphVillager()
+
+func become_human() -> void:
+	form = Form.HUMAN
+	$NpcModel.show()
+	$FrogModel.hide()
+	$Area3D/SpotLight3D.show()
+	state = State.IDLE
+	gDirector.unmorphVillager()
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if (body.is_in_group("player")) and form == Form.HUMAN:

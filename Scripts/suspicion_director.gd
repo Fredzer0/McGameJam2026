@@ -3,8 +3,8 @@ extends Node3D
 @export var maxPanic = 100;
 var currentPanic;
 var panicStatus = false;
-@export var panicRate = 30;
-@export var cooloffRate = 30;
+@export var panicRate = 50;
+@export var cooloffRate = 8;
 @export var passiveCooling = 1;
 var detection = false;
 @onready var player: CharacterBody3D
@@ -23,10 +23,16 @@ func _process(delta: float) -> void:
 		raisePanic(delta);
 
 	if (currentPanic >= 100):
-		panicStatus = true;
+		if not panicStatus:
+			panicStatus = true;
+			if priest:
+				priest.start_global_chase(player)
 		panic();
 	elif (currentPanic <= 0):
-		panicStatus = false;
+		if panicStatus:
+			panicStatus = false;
+			if priest:
+				priest.stop_global_chase()
 	
 	if (panicStatus):
 		currentPanic -= cooloffRate * delta;

@@ -10,9 +10,9 @@ enum WitchType {
 
 var current_index: int = 0
 var models: Array[String] = [
-	"res://animation/witch/models/SK_Witch_And_ConeHat.fbx",
-	"res://animation/witch/models/SK_Witch_And_FlowerHat.fbx",
-	"res://animation/witch/models/SK_Witch_And_HorseHat.fbx"
+	"res://animation/witch/animations/AnimationWitchConeHat.tscn",
+	"res://animation/witch/animations/AnimationWitchFlowerHat.tscn",
+	"res://animation/witch/animations/AnimationWitchHorseHat.tscn"
 ]
 
 func next_character() -> void:
