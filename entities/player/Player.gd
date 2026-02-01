@@ -51,6 +51,7 @@ var is_casting = false
 @onready var animPlayer = find_child("AnimationPlayer", true, false)
 @export var vfx_scene: PackedScene
 @export var castingCircle: PackedScene
+@export var target_highlight_scene: PackedScene
 @export var fireball_scene: PackedScene
 
 @onready var spellSound = $Audio/Spell
@@ -193,3 +194,53 @@ func try_transform_npc(body: Node3D) -> void:
 			vfx.transform.origin = Vector3.ZERO
 			body.become_frog()
 			is_casting = false
+
+var active_target_visuals = {}
+
+func _process(delta: float) -> void:
+	update_target_visuals()
+
+func is_valid_target(body: Node3D) -> bool:
+	if not body.is_in_group("npc"):
+		return false
+	if body.has_method("is_panicking") and body.is_panicking():
+		return false
+	if body.has_method("is_frog") and body.is_frog():
+		return false
+	if not body.has_method("become_frog"):
+		return false
+	return true
+
+func update_target_visuals() -> void:
+	if is_casting or is_hiding:
+		# cleanup all visuals if we are busy
+		for body in active_target_visuals.keys():
+			if is_instance_valid(active_target_visuals[body]):
+				active_target_visuals[body].queue_free()
+		active_target_visuals.clear()
+		return
+
+	var current_bodies = []
+	if $Area3D:
+		current_bodies = $Area3D.get_overlapping_bodies()
+	
+	# Check for new targets
+	for body in current_bodies:
+		if is_valid_target(body):
+			if not active_target_visuals.has(body):
+				if target_highlight_scene:
+					var vfx = target_highlight_scene.instantiate()
+					body.add_child(vfx)
+					vfx.transform.origin = Vector3.ZERO
+					active_target_visuals[body] = vfx
+	
+	# Cleanup targets that are no longer valid or in range
+	var bodies_to_remove = []
+	for body in active_target_visuals.keys():
+		if not is_instance_valid(body) or body not in current_bodies or not is_valid_target(body):
+			if is_instance_valid(active_target_visuals[body]):
+				active_target_visuals[body].queue_free()
+			bodies_to_remove.append(body)
+	
+	for body in bodies_to_remove:
+		active_target_visuals.erase(body)
