@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ciu6pv82d0340" path="res://ui/Assets/sketch1769874446368.png" id="2_nsdl4"]
 [ext_resource type="PackedScene" uid="uid://cdxokteuc1hu5" path="res://ui/menus/SettingsMenu.tscn" id="2_settings"]
 [ext_resource type="Texture2D" uid="uid://5uyextkamhxc" path="res://ui/Assets/sketch1769870407981.png" id="2_sysec"]
+[ext_resource type="FontFile" uid="uid://rjr0wb2j0b1g" path="res://assets/ui/Gamejamfont_v2-Regular.ttf" id="3_aqjl5"]
 [ext_resource type="Script" uid="uid://uajey1mjdhtd" path="res://Scripts/panic_bar.gd" id="3_fdx20"]
 [ext_resource type="Script" uid="uid://b8di0xlxa26yo" path="res://Scripts/mana_bar.gd" id="4_ttn8j"]
 [ext_resource type="Texture2D" uid="uid://cvgnbmy435gin" path="res://ui/Assets/Health.png" id="5_kf6g7"]
@@ -12,7 +13,6 @@
 [ext_resource type="Script" uid="uid://bl2vwxm31aty8" path="res://Scripts/timer.gd" id="6_lhd7q"]
 [ext_resource type="Texture2D" uid="uid://dvgisf0r8mhxx" path="res://ui/Assets/sketch1769874172872.png" id="7_swsqs"]
 [ext_resource type="Texture2D" uid="uid://3h3cwc1k6872" path="res://ui/Assets/sketch1769874140280.png" id="8_aqjl5"]
-[ext_resource type="FontFile" uid="uid://cwxf67pkc7i5y" path="res://assets/ui/Mcgamejam_font_1-Regular.ttf" id="11_aqjl5"]
 
 [node name="HUD" type="CanvasLayer" unique_id=999043377]
 script = ExtResource("1_hud")
@@ -34,9 +34,9 @@ stretch_mode = 4
 
 [node name="TasksMargin" type="MarginContainer" parent="." unique_id=2029701175]
 offset_left = -1.0
-offset_top = -6.0
+offset_top = 3.0
 offset_right = 299.0
-offset_bottom = 194.0
+offset_bottom = 203.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
@@ -51,7 +51,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="TasksMargin/VBox/TaskContainer" unique_id=352722833]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("11_aqjl5")
+theme_override_fonts/font = ExtResource("3_aqjl5")
 theme_override_font_sizes/font_size = 33
 text = "TASKS"
 script = ExtResource("2_i41ai")
@@ -143,9 +143,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -66.0
-offset_top = 20.0
+offset_top = 35.0
 offset_right = 234.0
-offset_bottom = 220.0
+offset_bottom = 235.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -156,8 +156,8 @@ layout_mode = 2
 [node name="Timer" type="Label" parent="TimerMargin/VBox" unique_id=1132768880]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("11_aqjl5")
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = ExtResource("3_aqjl5")
+theme_override_font_sizes/font_size = 69
 text = "TASKS"
 script = ExtResource("6_lhd7q")
 

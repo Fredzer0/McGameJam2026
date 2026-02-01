@@ -22,6 +22,7 @@ CharacterManager="*res://Scripts/character_manager.gd"
 [display]
 
 window/size/mode=2
+mouse_cursor/custom_image="uid://bqt0m8thbl3p7"
 
 [global_group]
 
