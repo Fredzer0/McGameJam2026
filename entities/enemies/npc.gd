@@ -161,6 +161,7 @@ func become_frog() -> void:
 	$NpcModel.hide()
 	$FrogModel.show()
 	$Area3D/SpotLight3D.hide()
+	$CollisionShape3D.disabled = true
 	state = State.FROG
 	gDirector.morphVillager()
 
@@ -169,6 +170,7 @@ func become_human() -> void:
 	$NpcModel.show()
 	$FrogModel.hide()
 	$Area3D/SpotLight3D.show()
+	$CollisionShape3D.disabled = false
 	state = State.IDLE
 	gDirector.unmorphVillager()
 
