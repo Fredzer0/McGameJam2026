@@ -1,3 +1,67 @@
 [gd_scene format=3 uid="uid://ptut0w1q13vl"]
 
-[node name="GameOver" type="Node3D" unique_id=458265006]
+[ext_resource type="Texture2D" uid="uid://dwdepwbnuotx7" path="res://ui/Assets/GameOver.png" id="1_3vmk3"]
+[ext_resource type="Texture2D" uid="uid://fxwwphb8vhn2" path="res://ui/Assets/QuitToMenu.png" id="1_h1ksd"]
+[ext_resource type="Script" uid="uid://cnew2pnnxfead" path="res://Scripts/quitButton.gd" id="2_d516h"]
+[ext_resource type="Texture2D" uid="uid://b4og18jsvoh83" path="res://ui/Assets/sketch1769919467290.png" id="3_d516h"]
+
+[node name="GameOver" type="Control" unique_id=160681823]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+scale = Vector2(0.8998144, 0.90051776)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1116225422]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1708677774]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 6.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer" unique_id=2106728632]
+anchors_preset = -1
+offset_left = 175.0
+offset_top = 318.0
+offset_right = 1790.0
+offset_bottom = 923.0
+scale = Vector2(0.2084272, 0.17515777)
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/MarginContainer2" unique_id=481641400]
+layout_mode = 2
+texture_normal = ExtResource("1_h1ksd")
+stretch_mode = 4
+script = ExtResource("2_d516h")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1281477585]
+anchors_preset = -1
+offset_left = 69.0
+offset_top = 93.999985
+offset_right = 109.0
+offset_bottom = 134.0
+scale = Vector2(14.641516, 4.706824)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer" unique_id=763380421]
+layout_mode = 2
+texture = ExtResource("1_3vmk3")
+expand_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer" unique_id=1500121295]
+anchors_preset = -1
+offset_left = 716.0
+offset_top = 36.0
+offset_right = 756.0
+offset_bottom = 76.0
+scale = Vector2(10.956202, 14.543624)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer3" unique_id=616839582]
+layout_mode = 2
+texture = ExtResource("3_d516h")
+expand_mode = 2
