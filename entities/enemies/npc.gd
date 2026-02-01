@@ -178,6 +178,8 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if (body.is_in_group("player")) and form == Form.HUMAN:
+		if body.get("is_hiding"):
+			return
 		panic_signal.emit(body.global_position);
 		start_panic(body);
 
@@ -189,6 +191,8 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 
 func _on_detect_look_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") and form == Form.HUMAN:
+		if body.get("is_hiding"):
+			return
 		look_at_target = body
 
 func _on_detect_look_body_exited(body: Node3D) -> void:

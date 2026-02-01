@@ -124,7 +124,6 @@ func _physics_process(delta):
 
 func becomeBox():
 	if (!is_hiding and currentMana >= hideCost):
-		is_hiding = true
 		is_casting = true
 		animPlayer.play("WitchAnimPlayer/Spell")
 		spellSound.play()
@@ -132,6 +131,7 @@ func becomeBox():
 		add_child(cast)
 		cast.transform.origin = Vector3.ZERO
 		await animPlayer.animation_finished
+		is_hiding = true
 		var vfx = vfx_scene.instantiate()
 		add_child(vfx)
 		vfx.transform.origin = Vector3.ZERO
