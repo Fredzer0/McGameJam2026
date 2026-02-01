@@ -41,9 +41,10 @@ mesh = SubResource("PrismMesh_rkkgd")
 surface_material_override/0 = SubResource("StandardMaterial3D_jjr52")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Area3D" unique_id=2075479088]
-transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1.9106855e-15, 1, 0, -0.5176501, 0.14496166, 1.9294895e-08)
+transform = Transform3D(-0.699364, 1.2467979e-08, -0.71476567, -0.71476567, 3.057017e-08, 0.699364, 3.0570163e-08, 1, -1.2467989e-08, 0.5026256, 0.8139127, -2.5302773e-08)
 light_color = Color(1, 1, 0.3019608, 1)
 light_energy = 16.0
+spot_range = 4.07
 
 [node name="detectLook" type="Area3D" parent="." unique_id=296766401]
 
@@ -59,6 +60,7 @@ visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="FrogModel" unique_id=474683856]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.4327665, 0)
+pixel_size = 0.006
 texture = ExtResource("3_dfu3g")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1355890666]

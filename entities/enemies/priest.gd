@@ -29,6 +29,7 @@ var path_update_timer: float = 0.0
 @onready var spot_light_3d: SpotLight3D = $Area3D/SpotLight3D
 
 @onready var thunder_sound: AudioStreamPlayer = $Audio/ThunderSound
+@onready var choir: AudioStreamPlayer = $Audio2/Choir
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var animPlayer = find_child("AnimationPlayer", true, false)
@@ -76,6 +77,7 @@ func _physics_process(delta: float) -> void:
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
+		if not collider: return
 		if collider.is_in_group("player") and state != State.GAME_OVER:
 			state = State.GAME_OVER
 			velocity = Vector3.ZERO
@@ -86,7 +88,7 @@ func _physics_process(delta: float) -> void:
 				# If player is hiding, ignore collision/game over logic (or just return/pass)
 				if "is_hiding" in collider and collider.is_hiding:
 					return
-			
+			choir.play()
 			animPlayer.play("NPCAnimPlayer/ClerkPrayer")
 			
 			var tree = get_tree()
@@ -118,6 +120,7 @@ func _physics_process(delta: float) -> void:
 				if body.has_method("is_frog") and body.is_frog():
 					state = State.PRAYING
 					velocity = Vector3.ZERO
+					choir.play()
 					animPlayer.play("NPCAnimPlayer/ClerkPrayer")
 					var smoke = LIGHTING_VFX.instantiate()
 					get_parent().add_child(smoke)

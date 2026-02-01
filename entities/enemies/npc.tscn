@@ -41,9 +41,10 @@ mesh = SubResource("PrismMesh_rkkgd")
 surface_material_override/0 = SubResource("StandardMaterial3D_jjr52")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Area3D" unique_id=2075479088]
-transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1.9106855e-15, 1, 0, -0.34777668, 0.224688, 1.186949e-08)
+transform = Transform3D(-0.6727672, 1.13713305e-08, -0.7398542, -0.7398542, 2.940759e-08, 0.6727672, 2.9407587e-08, 1, -1.1371334e-08, 0.44869465, 0.5958585, 0.40123084)
 light_color = Color(1, 1, 0.3019608, 1)
 light_energy = 16.0
+spot_range = 4.07
 
 [node name="detectLook" type="Area3D" parent="." unique_id=296766401]
 
@@ -59,7 +60,7 @@ visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="FrogModel" unique_id=474683856]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.4327665, 0)
-pixel_size = 0.002
+pixel_size = 0.006
 billboard = 1
 texture_filter = 2
 texture = ExtResource("3_oh6r5")
