@@ -15,6 +15,10 @@ run/main_scene="uid://dnldj87l5o3ui"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://assets/textures/icon.svg"
 
+[autoload]
+
+CharacterManager="*res://Scripts/character_manager.gd"
+
 [display]
 
 window/size/mode=2
