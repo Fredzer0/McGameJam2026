@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bxkwvymuucao"]
+
+[ext_resource type="Script" uid="uid://e8fwn1465ipw" path="res://entities/enemies/npc.gd" id="1_dfu3g"]
+[ext_resource type="PackedScene" uid="uid://0sh3cpfeak6y" path="res://animation/NPC/animations/villagerWoman.tscn" id="2_dfu3g"]
+[ext_resource type="Texture2D" uid="uid://dvlxmjbcxjrtc" path="res://assets/textures/sketch1769860693258.png" id="3_dfu3g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_voh54"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_rkkgd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjr52"]
+shading_mode = 0
+specular_mode = 2
+albedo_color = Color(7.8348074, 9.384245, 0, 1)
+disable_receive_shadows = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rkkgd"]
+radius = 7.9379883
+
+[node name="NPC" type="CharacterBody3D" unique_id=1478535759 groups=["npc"]]
+axis_lock_linear_y = true
+script = ExtResource("1_dfu3g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=639564354]
+shape = SubResource("CapsuleShape3D_voh54")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=695016243]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1158340794]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D" unique_id=1965569671]
+transform = Transform3D(1, 0, -4.371139e-08, -4.371139e-08, 1.9106855e-15, -1, 0, 1, 1.9106855e-15, 0, 0, 0)
+polygon = PackedVector2Array(3.3070269, 2.05431, 3.4425368, -2.2747815, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D/CollisionPolygon3D" unique_id=63008050]
+transform = Transform3D(-1.7484555e-07, -3, 3.19156e-38, 4, -1.3113416e-07, 2.646978e-23, 0, -2.5055613e-22, 0.2, 1.5043552, 0, 0.91069376)
+visible = false
+mesh = SubResource("PrismMesh_rkkgd")
+surface_material_override/0 = SubResource("StandardMaterial3D_jjr52")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Area3D" unique_id=2075479088]
+transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1.9106855e-15, 1, 0, -0.7477135, 0.13085109, 2.9351284e-08)
+light_color = Color(1, 1, 0.3019608, 1)
+light_energy = 16.0
+
+[node name="detectLook" type="Area3D" parent="." unique_id=296766401]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="detectLook" unique_id=1218516951]
+shape = SubResource("CylinderShape3D_rkkgd")
+
+[node name="NpcModel" type="Node3D" parent="." unique_id=956098065]
+
+[node name="Node3D2" parent="NpcModel" unique_id=1285294220 instance=ExtResource("2_dfu3g")]
+
+[node name="FrogModel" type="Node3D" parent="." unique_id=827817256]
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="FrogModel" unique_id=474683856]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.4327665, 0)
+texture = ExtResource("3_dfu3g")
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="detectLook" to="." method="_on_detect_look_body_entered"]
+[connection signal="body_exited" from="detectLook" to="." method="_on_detect_look_body_exited"]
