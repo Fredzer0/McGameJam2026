@@ -37,10 +37,27 @@ void vertex() {
 	float speed = TIME * wind_speed;
 	float displace_ammount = wind_strength * grass_bend_amount;
 	
-	// Use wind direction directly in world space (no view matrix transform)
-	vec3 direction = normalize(wind_direction);
+	// Billboard Logic
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
+			vec4(normalize(cross(vec3(0.0, 1.0, 0.0), MAIN_CAM_INV_VIEW_MATRIX[2].xyz)), 0.0),
+			vec4(0.0, 1.0, 0.0, 0.0),
+			vec4(normalize(cross(MAIN_CAM_INV_VIEW_MATRIX[0].xyz, vec3(0.0, 1.0, 0.0))), 0.0),
+			MODEL_MATRIX[3]);
 
-	vec4 displace = CalculateWind(world_pos, speed, direction, wind_scale, 2.0);
+	// Billboard Keep Scale: Enabled
+	MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(
+			vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0),
+			vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0),
+			vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0),
+			vec4(0.0, 0.0, 0.0, 1.0));
+	
+	// Re-calculate normal matrix for correct lighting on billboard
+	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+	
+	// Calculate wind direction in view space so it applies correctly to the billboard
+	vec4 direction = normalize(VIEW_MATRIX * vec4(wind_direction, 0.0));
+
+	vec4 displace = CalculateWind(world_pos, speed, direction.xyz, wind_scale, 2.0);
 	float uv_mask = 1. - UV.y;
 	displace *= displace_ammount * uv_mask;
 

@@ -82,7 +82,6 @@ far = 50.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.4680004, 0)
 density = 100.0
 tall_grass_threshold = 0.27
-uniform_rotation_degrees = 20.0
 
 [node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/ShortGrassSystem" unique_id=506428651]
 

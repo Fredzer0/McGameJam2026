@@ -7,12 +7,6 @@ extends Node3D
 		if is_node_ready():
 			populate_grass()
 
-@export var random_rotation: bool = false:
-	set(value):
-		random_rotation = value
-		if is_node_ready():
-			populate_grass()
-
 @export_group("Tall Grass Settings")
 @export var tall_grass_noise: FastNoiseLite:
 	set(value):
@@ -26,12 +20,6 @@ extends Node3D
 @export_range(-1.0, 1.0) var tall_grass_threshold: float = 0.1:
 	set(value):
 		tall_grass_threshold = value
-		if is_node_ready():
-			populate_grass()
-
-@export_range(0, 360) var uniform_rotation_degrees: float = 0.0:
-	set(value):
-		uniform_rotation_degrees = value
 		if is_node_ready():
 			populate_grass()
 
@@ -147,11 +135,9 @@ func populate_grass() -> void:
 			
 			point_local.y += 0.5 
 			
-			var rotation_y = deg_to_rad(uniform_rotation_degrees)
-			if random_rotation:
-				rotation_y = rng.randf_range(0, TAU)
+			point_local.y += 0.5 
 			
-			var basis = Basis(Vector3.UP, rotation_y)
+			var basis = Basis()
 			var transform = Transform3D(basis, point_local)
 			
 			# Decide if tall or short
