@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[node name="root" type="Control" unique_id=2004940471]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Background" type="ColorRect" parent="." unique_id=1302070361]
+layout_mode = 1
+color = Color(0, 0, 0, 1)
+
+[node name="LoadingLabel" type="Label" parent="." unique_id=508560256]
+layout_mode = 1
+text = "Loading..."

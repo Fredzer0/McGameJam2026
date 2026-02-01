@@ -20,10 +20,10 @@ func _on_play_pressed() -> void:
 	$MarginContainer/HBoxContainer/VBox/PlayButton.disabled = true
 	
 	# Transition to level scene
-	get_tree().change_scene_to_file("res://levels/gameLoop.tscn")
+	SceneLoader.load_scene("res://levels/gameLoop.tscn")
 
 func _on_options_pressed() -> void:
-	get_tree().change_scene_to_file("res://levels/HowToPlay.tscn")
+	SceneLoader.load_scene("res://levels/HowToPlay.tscn")
 
 func _on_settings_closed() -> void:
 	settings_menu.hide()

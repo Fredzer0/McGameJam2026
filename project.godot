@@ -18,6 +18,7 @@ config/icon="res://assets/textures/icon.svg"
 [autoload]
 
 CharacterManager="*res://Scripts/character_manager.gd"
+SceneLoader="*res://Scripts/SceneLoader.gd"
 
 [display]
 

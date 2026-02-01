@@ -36,9 +36,9 @@ func _on_timer_timeout() -> void:
 func win():
 	#$AnimationPlayer.play("fade_out")
 	#await $AnimationPlayer.animation_finished
-	get_tree().change_scene_to_file("res://levels/GameWin.tscn")
+	SceneLoader.load_scene("res://levels/GameWin.tscn")
 
 func lose():
 	#$AnimationPlayer.play("fade_out")
 	#await $AnimationPlayer.animation_finished
-	get_tree().change_scene_to_file("res://levels/GameOver.tscn")
+	SceneLoader.load_scene("res://levels/GameOver.tscn")
