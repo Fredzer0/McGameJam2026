@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjkef4knswc8l"]
 
-[ext_resource type="PackedScene" uid="uid://dtf0pfs01eqx6" path="res://animation/witch/models/SK_Witch_And_ConeHat.fbx" id="1_q0itw"]
+[ext_resource type="PackedScene" uid="uid://bi01c56fovftf" path="res://animation/witch/models/SK_WitchDefault_Fit.fbx" id="1_q0itw"]
 [ext_resource type="Animation" uid="uid://cc1c7kw0h0lwu" path="res://animation/witch/animations/Idle.res" id="2_genth"]
 [ext_resource type="Animation" uid="uid://bboicec6bkekj" path="res://animation/witch/animations/Spell.res" id="3_3t8s7"]
 [ext_resource type="Animation" uid="uid://c8qknlqh0fn5q" path="res://animation/witch/animations/Walk.res" id="4_s01cj"]
@@ -14,7 +14,7 @@ _data = {
 
 [node name="Node3D" type="Node3D" unique_id=1917188508]
 
-[node name="SK_Witch_And_ConeHat" parent="." unique_id=1204774838 instance=ExtResource("1_q0itw")]
+[node name="SK_WitchDefault_Fit" parent="." unique_id=350828485 instance=ExtResource("1_q0itw")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SK_Witch_And_ConeHat" unique_id=1971144834]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SK_WitchDefault_Fit" unique_id=1971144834]
 libraries/WitchAnimPlayer = SubResource("AnimationLibrary_q0itw")
