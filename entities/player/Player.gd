@@ -107,13 +107,15 @@ func _physics_process(delta):
 		if input_dir:
 			animPlayer.play("WitchAnimPlayer/Walk")
 			if !walkSound.playing:
-				walkSound.play(0.4)
+				walkSound.play(0.5)
 		else:
 			animPlayer.play("WitchAnimPlayer/Idle")
 			walkSound.stop()
 
 
 	if Input.is_action_just_pressed("hide") and not is_dashing and not is_casting:
+		if walkSound.playing:
+			walkSound.stop()
 		becomeBox()
 
 	if !is_dashing and not is_hiding and currentMana < 100 and not is_casting:

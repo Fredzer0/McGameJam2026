@@ -4,11 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://whl2a2p8t4r5" path="res://entities/enemies/npc.tscn" id="2_7d5c5"]
 [ext_resource type="PackedScene" uid="uid://d2y22dtsfn7sr" path="res://entities/enemies/priest.tscn" id="3_34y4k"]
 [ext_resource type="PackedScene" uid="uid://b812iuikvckso" path="res://entities/player/Player.tscn" id="4_c15db"]
-[ext_resource type="PackedScene" uid="uid://cnq3tqiw5vasx" path="res://levels/environement_village_v_02.scn" id="4_hmgtm"]
-[ext_resource type="PackedScene" path="res://systems/systems.tscn" id="5_7d5c5"]
+[ext_resource type="PackedScene" path="res://levels/environement_village_v_02.scn" id="4_hmgtm"]
+[ext_resource type="PackedScene" uid="uid://bgf6av22o0etn" path="res://systems/systems.tscn" id="5_7d5c5"]
 [ext_resource type="PackedScene" uid="uid://b5x8y1n2m3q1" path="res://ui/hud/HUD.tscn" id="6_34y4k"]
 [ext_resource type="PackedScene" uid="uid://b7ggpa1vwgrl2" path="res://vfx/ShaderComposer.tscn" id="9_mmkkx"]
 [ext_resource type="PackedScene" path="res://ui/hud/FPSCounter.tscn" id="10_fpscnt"]
+[ext_resource type="AudioStream" uid="uid://chwvr4ygpj3ab" path="res://assets/audio/sfx/SFX_NightSound_1.mp3" id="10_mmkkx"]
 
 [sub_resource type="Environment" id="Environment_4js07"]
 background_energy_multiplier = 0.0
@@ -92,3 +93,8 @@ far = 60.0
 
 [node name="EnvironementVillage_v03" parent="." unique_id=378639700 instance=ExtResource("4_hmgtm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.028837, 0.0004462162, -7.4192114)
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=786206917]
+stream = ExtResource("10_mmkkx")
+volume_db = -8.0
+autoplay = true

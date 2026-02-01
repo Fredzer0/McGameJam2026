@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://brruxpqotaeex" path="res://entities/enemies/priest.gd" id="1_p85cn"]
 [ext_resource type="PackedScene" uid="uid://33l7m5l84rmv" path="res://animation/NPC/animations/villagerClerk.tscn" id="2_nmvpk"]
+[ext_resource type="AudioStream" uid="uid://cp2ndf2hctda6" path="res://assets/audio/sfx/SFX_ThunderSpell.mp3" id="3_go57i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_thg7q"]
 
@@ -51,6 +52,12 @@ light_energy = 16.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="detectplayer" unique_id=1945565649]
 shape = SubResource("CylinderShape3D_nmvpk")
+
+[node name="Audio" type="Node" parent="." unique_id=1608467867]
+
+[node name="ThunderSound" type="AudioStreamPlayer" parent="Audio" unique_id=1644477086]
+stream = ExtResource("3_go57i")
+volume_db = -16.0
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
