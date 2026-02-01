@@ -9,6 +9,7 @@ var is_exiting := false
 
 func _ready():
 	video.finished.connect(_on_video_finished)
+	anim.play("fade_in")
 	video.play()
 
 func _input(event):

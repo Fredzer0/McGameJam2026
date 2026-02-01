@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" format=3 uid="uid://bamoupyrqkhjq"]
 
-[ext_resource type="Texture2D" uid="uid://douo02pivhk6s" path="res://vfx/LightningStrike/Texture_GroundImpact.png" id="1_a3h6d"]
+[ext_resource type="Texture2D" uid="uid://dpndwr3crrti3" path="res://vfx/LightningStrike/Texture_GroundImpact.png" id="1_a3h6d"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_oeavq"]
 texture = ExtResource("1_a3h6d")
@@ -24,7 +24,7 @@ gradient = SubResource("Gradient_aq6x6")
 texture = SubResource("GradientTexture2D_o3yns")
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_fcqpk"]
-default_input_values = [0, 0.0, 1, 10.0]
+default_input_values = [0, 0.0, 1, 0.5]
 operator = 2
 
 [resource]

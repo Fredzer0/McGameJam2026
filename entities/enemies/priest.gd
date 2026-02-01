@@ -28,10 +28,11 @@ var path_update_timer: float = 0.0
 @onready var collision_shape_3d: CollisionShape3D = $detectplayer/CollisionShape3D
 @onready var spot_light_3d: SpotLight3D = $Area3D/SpotLight3D
 
+@onready var thunder_sound: AudioStreamPlayer = $Audio/ThunderSound
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var animPlayer = find_child("AnimationPlayer", true, false)
-const SMOKE_VFX = preload("res://vfx/SmokePouff/Smoke.tscn")
+const LIGHTING_VFX = preload("res://vfx/LightningStrike/LightningStrikeVfx.tscn")
 
 func _ready() -> void:
 	# Removed bad self-connections
@@ -85,7 +86,7 @@ func _physics_process(delta: float) -> void:
 				# If player is hiding, ignore collision/game over logic (or just return/pass)
 				if "is_hiding" in collider and collider.is_hiding:
 					return
-
+			
 			animPlayer.play("NPCAnimPlayer/ClerkPrayer")
 			
 			var tree = get_tree()
@@ -96,11 +97,12 @@ func _physics_process(delta: float) -> void:
 				
 			if not is_inside_tree(): return
 			
-			var smoke = SMOKE_VFX.instantiate()
+			var smoke = LIGHTING_VFX.instantiate()
 			get_parent().add_child(smoke)
 			smoke.global_position = collider.global_position
+			smoke.get_node("GPUParticles3D").emitting = true
 			
-
+			thunder_sound.play()
 			await animPlayer.animation_finished
 			
 			if not is_inside_tree(): return
@@ -117,7 +119,12 @@ func _physics_process(delta: float) -> void:
 					state = State.PRAYING
 					velocity = Vector3.ZERO
 					animPlayer.play("NPCAnimPlayer/ClerkPrayer")
+					var smoke = LIGHTING_VFX.instantiate()
+					get_parent().add_child(smoke)
+					smoke.global_position = body.global_position
+					smoke.get_node("GPUParticles3D").emitting = true
 					await animPlayer.animation_finished
+					thunder_sound.play()
 					body.become_human()
 					state = State.IDLE
 					break
