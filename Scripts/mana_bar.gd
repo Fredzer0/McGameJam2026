@@ -1,14 +1,14 @@
 extends TextureProgressBar
 
-@onready var player: CharacterBody3D = $"../../../SubViewportContainer/SubViewport/Player"
+@onready var player: CharacterBody3D
 
 ## Called when the node enters the scene tree for the first time.
-#func _ready() -> void:
-	#player = get_tree().get_first_node_in_group("player");
-	#
-
+func _ready() -> void:
+	# Wait a frame to ensure player is ready
+	await get_tree().process_frame
+	player = get_tree().get_first_node_in_group("player")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	value = player.currentMana;
-	pass
+	if player:
+		value = player.currentMana
