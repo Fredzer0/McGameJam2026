@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b7okhwwhxke2r"]
 
 [ext_resource type="Shader" uid="uid://vkcwo6qef5xg" path="res://vfx/Fireflies/fireflies.tres" id="1_2hqt6"]
-[ext_resource type="PackedScene" uid="uid://bi01c56fovftf" path="res://animation/witch/models/SK_WitchDefault_Fit.fbx" id="2_hix7j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_do7ht"]
 render_priority = 0
@@ -60,5 +59,3 @@ amount = 25
 lifetime = 10.0
 process_material = SubResource("ParticleProcessMaterial_do7ht")
 draw_pass_1 = SubResource("PlaneMesh_u1g4r")
-
-[node name="SK_WitchDefault_Fit" parent="." unique_id=350828485 instance=ExtResource("2_hix7j")]
