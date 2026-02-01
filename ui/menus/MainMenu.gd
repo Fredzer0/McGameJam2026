@@ -23,9 +23,7 @@ func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://levels/gameLoop.tscn")
 
 func _on_options_pressed() -> void:
-	# Show settings overlay
-	settings_menu.show()
-	main_container.hide()
+	get_tree().change_scene_to_file("res://levels/HowToPlay.tscn")
 
 func _on_settings_closed() -> void:
 	settings_menu.hide()

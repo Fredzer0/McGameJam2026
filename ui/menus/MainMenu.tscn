@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cdxokteuc1hu5" path="res://ui/menus/SettingsMenu.tscn" id="3_settings"]
 [ext_resource type="Texture2D" uid="uid://bxwtmb45sl03n" path="res://assets/ui/Controls.png" id="4_controls"]
 [ext_resource type="Texture2D" uid="uid://cqhhgu38ul4gj" path="res://assets/ui/Quit.png" id="5_quit"]
-[ext_resource type="AudioStream" uid="uid://bcel12k6vuk5w" path="res://assets/audio/Doom Eternal OST  The Only Thing They Fear Is You Mick Gordon Doom Eternal Theme.mp3" id="6_doom"]
+[ext_resource type="AudioStream" uid="uid://cqi5anoq78jqo" path="res://assets/audio/01 - boba date.mp3" id="7_34sxx"]
 
 [node name="MainMenu" type="Control" unique_id=1857477556]
 layout_mode = 3
@@ -75,7 +75,7 @@ visible = false
 layout_mode = 1
 
 [node name="DoomMusic" type="AudioStreamPlayer" parent="." unique_id=123456789]
-stream = ExtResource("6_doom")
+stream = ExtResource("7_34sxx")
 autoplay = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1618041216]

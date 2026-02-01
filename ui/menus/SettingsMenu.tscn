@@ -12,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.0503279, 1)
 script = ExtResource("1_sm")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=266261575]
@@ -71,6 +72,5 @@ text = "BACK"
 
 [node name="QuitButton" parent="MarginContainer/VBox" unique_id=1260811072 instance=ExtResource("2_btn")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 text = "QUIT TO MENU"
