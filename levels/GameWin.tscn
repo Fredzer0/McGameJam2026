@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://b44kc7g827iel"]
 
-[ext_resource type="Texture2D" uid="uid://fxwwphb8vhn2" path="res://ui/Assets/QuitToMenu.png" id="1_e7tgi"]
+[ext_resource type="Texture2D" uid="uid://c80ou56tjwgpe" path="res://ui/Assets/QuitToMenu.png" id="1_e7tgi"]
 [ext_resource type="Script" uid="uid://grox067uivyv" path="res://Scripts/GameEnd.gd" id="1_q1doe"]
 [ext_resource type="Texture2D" uid="uid://css8g0dea4dte" path="res://ui/Assets/Victory.png" id="3_e7tgi"]
 [ext_resource type="Texture2D" uid="uid://c8kdlp04waiqe" path="res://ui/Assets/sketch1769922131705.png" id="4_qs7o3"]
+[ext_resource type="AudioStream" uid="uid://dutv5irwge18w" path="res://assets/audio/WinningMusic.mp3" id="5_q1doe"]
 
 [sub_resource type="Animation" id="Animation_swsbe"]
 length = 0.001
@@ -114,3 +115,8 @@ color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect" unique_id=692009244]
 libraries/ = SubResource("AnimationLibrary_e7tgi")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2094770636]
+stream = ExtResource("5_q1doe")
+volume_db = -10.0
+autoplay = true
