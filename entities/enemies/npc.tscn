@@ -33,7 +33,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D" unique_id=1965569671]
 transform = Transform3D(1, 0, -4.371139e-08, -4.371139e-08, 1.9106855e-15, -1, 0, 1, 1.9106855e-15, 0, 0, 0)
-polygon = PackedVector2Array(3, 2, 3, -2, 0, 0)
+polygon = PackedVector2Array(3.3070269, 2.05431, 3.4425368, -2.2747815, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D/CollisionPolygon3D" unique_id=63008050]
 transform = Transform3D(-1.7484555e-07, -3, 3.19156e-38, 4, -1.3113416e-07, 2.646978e-23, 0, -2.5055613e-22, 0.2, 1.5043552, 0, 0.91069376)
@@ -42,7 +42,7 @@ mesh = SubResource("PrismMesh_rkkgd")
 surface_material_override/0 = SubResource("StandardMaterial3D_jjr52")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Area3D" unique_id=2075479088]
-transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1.9106855e-15, 1, -1.6703743e-22, -0.07623434, 0.13085109, 0)
+transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1.9106855e-15, 1, 0, -0.7477135, 0.13085109, 2.9351284e-08)
 light_color = Color(1, 1, 0.3019608, 1)
 light_energy = 16.0
 

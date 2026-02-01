@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ox278dmr1idy"]
+
+[ext_resource type="PackedScene" uid="uid://0qhoaxd8dh3f" path="res://assets/models/Rock/EX_BigRock.fbx" id="1_2u6f2"]
+
+[node name="Node3D" type="Node3D" unique_id=1248312728]
+
+[node name="EX_BigRock" parent="." unique_id=926067561 instance=ExtResource("1_2u6f2")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
