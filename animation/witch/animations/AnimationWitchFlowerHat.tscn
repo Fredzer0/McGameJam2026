@@ -2,11 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://cpygakc56immv" path="res://animation/witch/models/SK_WitchFlower_Fit.fbx" id="1_a53st"]
 [ext_resource type="Animation" uid="uid://cc1c7kw0h0lwu" path="res://animation/witch/animations/Idle.res" id="2_s1g4d"]
+[ext_resource type="Animation" uid="uid://dwv15ar38je2i" path="res://animation/witch/animations/Emote.res" id="2_xt446"]
 [ext_resource type="Animation" uid="uid://bboicec6bkekj" path="res://animation/witch/animations/Spell.res" id="3_xt446"]
 [ext_resource type="Animation" uid="uid://c8qknlqh0fn5q" path="res://animation/witch/animations/Walk.res" id="4_ear56"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a53st"]
 _data = {
+&"Emote": ExtResource("2_xt446"),
 &"Idle": ExtResource("2_s1g4d"),
 &"Spell": ExtResource("3_xt446"),
 &"Walk": ExtResource("4_ear56")
