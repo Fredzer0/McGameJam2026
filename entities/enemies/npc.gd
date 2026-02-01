@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-signal panic_signal()
+signal panic_signal(position)
 signal calm_signal()
 
 var susDirector: Node
@@ -25,6 +25,7 @@ var idle_timer_count: float = 0
 var panic_timer: float = 0.0
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@onready var animPlayer = find_child("AnimationPlayer", true, false)
 
 func _ready() -> void:
 	susDirector = get_tree().get_first_node_in_group("suspicionDirector")
@@ -146,7 +147,7 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if (body.is_in_group("player")) and form == Form.HUMAN:
-		panic_signal.emit();
+		panic_signal.emit(body.global_position);
 		start_panic(body);
 
 func _on_navigation_agent_3d_target_reached() -> void:

@@ -6,7 +6,6 @@ var currentVillagerCount
 var remainingTime
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
 	totalVillagerCount = get_tree().get_nodes_in_group("npc").size()
 	currentVillagerCount = totalVillagerCount
 	$Timer.timeout.connect(_on_timer_timeout)
@@ -18,13 +17,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-
 	remainingTime = $Timer.time_left
-	print_debug(remainingTime)
+	
 	if (currentVillagerCount == 0):
 		win()
 	pass
-
 
 
 func morphVillager():

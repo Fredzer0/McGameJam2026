@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _on_play_pressed() -> void:
 	# Transition to level scene
-	get_tree().change_scene_to_file("res://levels/justin.tscn")
+	get_tree().change_scene_to_file("res://levels/gameLoop.tscn")
 
 func _on_options_pressed() -> void:
 	# Show settings overlay

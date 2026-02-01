@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://whl2a2p8t4r5"]
+[gd_scene format=3 uid="uid://bxkwvymuucao"]
 
-[ext_resource type="Script" uid="uid://e8fwn1465ipw" path="res://entities/enemies/npc.gd" id="1_rkkgd"]
-[ext_resource type="PackedScene" uid="uid://ba7nixn4vyapb" path="res://animation/NPC/animations/villagerMan.tscn" id="2_jjr52"]
-[ext_resource type="Texture2D" uid="uid://cke7uip5ssacc" path="res://assets/textures/sketch1769860507731.png" id="3_oh6r5"]
+[ext_resource type="Script" uid="uid://e8fwn1465ipw" path="res://entities/enemies/npc.gd" id="1_dfu3g"]
+[ext_resource type="PackedScene" uid="uid://0sh3cpfeak6y" path="res://animation/NPC/animations/villagerWoman.tscn" id="2_dfu3g"]
+[ext_resource type="Texture2D" uid="uid://dvlxmjbcxjrtc" path="res://assets/textures/sketch1769860693258.png" id="3_dfu3g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_voh54"]
 
@@ -19,7 +19,7 @@ radius = 7.9379883
 
 [node name="NPC" type="CharacterBody3D" unique_id=1478535759 groups=["npc"]]
 axis_lock_linear_y = true
-script = ExtResource("1_rkkgd")
+script = ExtResource("1_dfu3g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=639564354]
 shape = SubResource("CapsuleShape3D_voh54")
@@ -53,14 +53,14 @@ shape = SubResource("CylinderShape3D_rkkgd")
 
 [node name="NpcModel" type="Node3D" parent="." unique_id=956098065]
 
-[node name="Node3D" parent="NpcModel" unique_id=1471463205 instance=ExtResource("2_jjr52")]
+[node name="Node3D2" parent="NpcModel" unique_id=1285294220 instance=ExtResource("2_dfu3g")]
 
 [node name="FrogModel" type="Node3D" parent="." unique_id=827817256]
 visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="FrogModel" unique_id=474683856]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.4327665, 0)
-texture = ExtResource("3_oh6r5")
+texture = ExtResource("3_dfu3g")
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

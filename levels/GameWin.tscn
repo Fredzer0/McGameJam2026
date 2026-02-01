@@ -1,3 +1,55 @@
 [gd_scene format=3 uid="uid://b44kc7g827iel"]
 
-[node name="GameWin" type="Node3D" unique_id=172415933]
+[ext_resource type="Texture2D" uid="uid://fxwwphb8vhn2" path="res://ui/Assets/QuitToMenu.png" id="1_e7tgi"]
+[ext_resource type="Script" uid="uid://cnew2pnnxfead" path="res://Scripts/quitButton.gd" id="2_q1doe"]
+[ext_resource type="Texture2D" uid="uid://css8g0dea4dte" path="res://ui/Assets/Victory.png" id="3_e7tgi"]
+[ext_resource type="Texture2D" uid="uid://c8kdlp04waiqe" path="res://ui/Assets/sketch1769922131705.png" id="4_qs7o3"]
+
+[node name="GameWin" type="Node2D" unique_id=2079960466]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1613381102]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1863617593]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer" unique_id=794586571]
+offset_left = 177.0
+offset_top = 319.0
+offset_right = 1792.0
+offset_bottom = 924.0
+scale = Vector2(0.2084272, 0.17515777)
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/MarginContainer2" unique_id=1561662371]
+layout_mode = 2
+texture_normal = ExtResource("1_e7tgi")
+stretch_mode = 4
+script = ExtResource("2_q1doe")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1698095159]
+offset_left = 63.0
+offset_top = 85.999985
+offset_right = 103.0
+offset_bottom = 125.99999
+scale = Vector2(14.641516, 4.706824)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer" unique_id=212590887]
+layout_mode = 2
+texture = ExtResource("3_e7tgi")
+expand_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer" unique_id=2012898794]
+offset_left = 710.0
+offset_top = 28.0
+offset_right = 750.0
+offset_bottom = 68.0
+scale = Vector2(10.956202, 14.543624)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer3" unique_id=947362522]
+layout_mode = 2
+texture = ExtResource("4_qs7o3")
+expand_mode = 2

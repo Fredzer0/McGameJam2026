@@ -1,9 +1,18 @@
 extends CharacterBody3D
 
+
+func apply_slowdown() -> void:
+	move_speed = SLOW_SPEED
+
+func remove_slowdown() -> void:
+	move_speed = BASE_SPEED
+
 func _ready() -> void:
 	add_to_group("player")
 
-const SPEED = 5.0
+const BASE_SPEED = 5.0
+var move_speed = BASE_SPEED
+const SLOW_SPEED = 2.0
 const ACCELERATION = 100.0
 const FRICTION = 80.0
 const ROTATION_SPEED = 14.0
@@ -23,7 +32,7 @@ var is_casting = false
 
 @onready var animPlayer = find_child("AnimationPlayer", true, false)
 @export var vfx_scene: PackedScene
-@export var castingCircle : PackedScene
+@export var castingCircle: PackedScene
 
 func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -45,8 +54,8 @@ func _physics_process(delta):
 		if dash_timer <= 0:
 			is_dashing = false
 	elif direction:
-		velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCELERATION * delta)
-		velocity.z = move_toward(velocity.z, direction.z * SPEED, ACCELERATION * delta)
+		velocity.x = move_toward(velocity.x, direction.x * move_speed, ACCELERATION * delta)
+		velocity.z = move_toward(velocity.z, direction.z * move_speed, ACCELERATION * delta)
 		
 		var target_angle = atan2(direction.x, direction.z)
 		$WitchModel.rotation.y = lerp_angle($WitchModel.rotation.y, target_angle, ROTATION_SPEED * delta)
@@ -103,11 +112,11 @@ func try_transform_npc(body: Node3D) -> void:
 			is_casting = true
 			animPlayer.play("WitchAnimPlayer/Spell")
 			var cast = castingCircle.instantiate()
-			add_child(cast)
+			body.add_child(cast)
 			cast.transform.origin = Vector3.ZERO
 			await animPlayer.animation_finished
 			var vfx = vfx_scene.instantiate()
-			add_child(vfx)
+			body.add_child(vfx)
 			vfx.transform.origin = Vector3.ZERO
 			body.become_frog()
 			is_casting = false
