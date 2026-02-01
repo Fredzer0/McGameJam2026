@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://33l7m5l84rmv"]
 
-[ext_resource type="PackedScene" uid="uid://durj746sx3rax" path="res://animation/NPC/models/SK_VillagerClerk_v2.fbx" id="1_e2j2t"]
+[ext_resource type="PackedScene" uid="uid://c0r68v7qews4x" path="res://animation/NPC/models/SK_VillagerClerk_v2.fbx" id="1_e2j2t"]
 [ext_resource type="Animation" uid="uid://cw2qia3wph3cd" path="res://animation/NPC/animations/NPCIdle.res" id="2_7px6g"]
+[ext_resource type="Animation" uid="uid://dw0tgcjlk3qel" path="res://animation/NPC/animations/ClerkPrayer.res" id="2_fb8ha"]
 [ext_resource type="Animation" uid="uid://f2ti2oumq86o" path="res://animation/NPC/animations/NPCWalk.res" id="3_fb8ha"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e2j2t"]
 _data = {
+&"ClerkPrayer": ExtResource("2_fb8ha"),
 &"NPCIdle": ExtResource("2_7px6g"),
 &"NPCWalk": ExtResource("3_fb8ha")
 }
