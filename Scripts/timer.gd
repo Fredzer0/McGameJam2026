@@ -11,8 +11,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 
-
-	text = format_time(director.remainingTime)
+	if (director.remainingTime):
+		text = format_time(director.remainingTime)
 
 	
 func format_time(seconds: float) -> String:

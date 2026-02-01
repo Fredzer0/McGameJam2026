@@ -15,13 +15,7 @@ func _ready() -> void:
 	# Enable Quit Button for in-game settings
 	settings_menu.show_quit_button(true)
 
-	# Hide tip initially
-	tip_panel.hide()
-
 	await get_tree().create_timer(1.0).timeout
-	show_tip("This is a tip!", 3.0)
-	add_task("Transform all villagers into frogs!.")
-	add_task("Press ESC for Settings")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

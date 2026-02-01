@@ -35,7 +35,7 @@ func _physics_process(delta):
 		velocity.z = direction.z * DASH_SPEED
 		currentMana -= dashCost;
 
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and not is_casting:
 		var bodies = $Area3D.get_overlapping_bodies()
 		for body in bodies:
 			try_transform_npc(body)
@@ -57,9 +57,9 @@ func _physics_process(delta):
 	if !is_hiding and not is_casting:
 		move_and_slide()
 		if input_dir:
-			animPlayer.play("WitchMoveSets/Walk")
+			animPlayer.play("WitchAnimPlayer/Walk")
 		else:
-			animPlayer.play("WitchMoveSets/Idle")
+			animPlayer.play("WitchAnimPlayer/Idle")
 
 
 	if Input.is_action_just_pressed("hide") and not is_dashing and not is_casting:
@@ -71,8 +71,9 @@ func _physics_process(delta):
 
 func becomeBox():
 	if (!is_hiding and currentMana >= hideCost):
-		is_hiding = true;
-		animPlayer.play("WitchMoveSets/Spell")
+		is_hiding = true
+		is_casting = true
+		animPlayer.play("WitchAnimPlayer/Spell")
 		var cast = castingCircle.instantiate()
 		add_child(cast)
 		cast.transform.origin = Vector3.ZERO
@@ -82,9 +83,10 @@ func becomeBox():
 		vfx.transform.origin = Vector3.ZERO
 		$WitchModel.hide()
 		$BoxModel.show()
+		is_casting = false
 		
 		currentMana -= hideCost;
-	else:
+	elif is_hiding:
 		is_hiding = false
 		var vfx = vfx_scene.instantiate()
 		add_child(vfx)
@@ -99,7 +101,7 @@ func try_transform_npc(body: Node3D) -> void:
 		
 		if body.has_method("become_frog"):
 			is_casting = true
-			animPlayer.play("WitchMoveSets/Spell")
+			animPlayer.play("WitchAnimPlayer/Spell")
 			var cast = castingCircle.instantiate()
 			add_child(cast)
 			cast.transform.origin = Vector3.ZERO

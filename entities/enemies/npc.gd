@@ -1,10 +1,10 @@
 extends CharacterBody3D
 
-signal panic_signal();
-signal calm_signal();
+signal panic_signal()
+signal calm_signal()
 
-var director: Node;
-
+var susDirector: Node
+var gDirector: Node
 var look_at_target: Node3D = null
 
 const SPEED = 3.0
@@ -27,11 +27,12 @@ var panic_timer: float = 0.0
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
 func _ready() -> void:
-	director = get_tree().get_first_node_in_group("suspicionDirector");
+	susDirector = get_tree().get_first_node_in_group("suspicionDirector")
+	gDirector = get_tree().get_first_node_in_group("gameDirector")
 
-	if (director):
-		panic_signal.connect(director.on_npc_panic_signal);
-		calm_signal.connect(director.on_npc_calm_signal);
+	if (susDirector):
+		panic_signal.connect(susDirector.on_npc_panic_signal);
+		calm_signal.connect(susDirector.on_npc_calm_signal);
 
 	add_to_group("npc")
 
@@ -137,6 +138,7 @@ func become_frog() -> void:
 	$NpcModel.hide()
 	$FrogModel.show()
 	state = State.FROG
+	gDirector.morphVillager()
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if (body.is_in_group("player")) and form == Form.HUMAN:

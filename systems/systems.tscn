@@ -14,5 +14,6 @@ script = ExtResource("2_gj4yf")
 [node name="Timer" type="Timer" parent="GameDirector" unique_id=1098500674]
 wait_time = 300.0
 one_shot = true
+ignore_time_scale = true
 
 [connection signal="timeout" from="GameDirector/Timer" to="GameDirector" method="_on_timer_timeout"]

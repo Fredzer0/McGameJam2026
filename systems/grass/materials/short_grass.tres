@@ -1,7 +1,5 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://bije0kvrykk1f"]
 
-[ext_resource type="Texture2D" uid="uid://c31wrng78aih" path="res://systems/grass/materials/T_GrassBlade2_A.png" id="2_nsnwb"]
-
 [sub_resource type="Shader" id="Shader_r8r37"]
 code = "shader_type spatial;
 render_mode cull_back;
@@ -91,8 +89,7 @@ void light(){
 [resource]
 render_priority = 0
 shader = SubResource("Shader_r8r37")
-shader_parameter/grass_color = Color(0.36857042, 0.643002, 0.29906118, 1)
-shader_parameter/grass_alpha = ExtResource("2_nsnwb")
+shader_parameter/grass_color = Color(0, 0, 0, 1)
 shader_parameter/grass_bend_amount = 1.0
 shader_parameter/sway_back = 1.0
-shader_parameter/light_steps = 5.0
+shader_parameter/light_steps = 3.0

@@ -35,8 +35,6 @@ size = Vector3(20, 1, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x3ip7"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_iwipb"]
-
 [node name="Justin" type="Node3D" unique_id=195213207]
 script = ExtResource("1_lviyc")
 
@@ -56,8 +54,8 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=581321174]
 environment = SubResource("Environment_default")
 
-[node name="Player" parent="." unique_id=1313064075 instance=ExtResource("4_c15db")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1454675, 0)
+[node name="Player" parent="." unique_id=253799011 instance=ExtResource("4_c15db")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04950142, 0.35300016, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=1279967936]
 transform = Transform3D(1, 0, 0, 0, 0.55067, 0.834723, 0, -0.834723, 0.55067, 0, 8.854532, 6.363197)
@@ -105,10 +103,6 @@ mesh = SubResource("BoxMesh_jap2h")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/box3" unique_id=1504466427]
 shape = SubResource("BoxShape3D_x3ip7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=375825510]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56580925, 0)
-mesh = SubResource("CapsuleMesh_iwipb")
+[node name="HUD" parent="." unique_id=999043377 instance=ExtResource("6_34y4k")]
 
 [node name="Systems" parent="." unique_id=1364181550 instance=ExtResource("5_7d5c5")]
-
-[node name="HUD" parent="." unique_id=999043377 instance=ExtResource("6_34y4k")]
