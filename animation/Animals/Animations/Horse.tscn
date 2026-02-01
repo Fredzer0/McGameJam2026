@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bn0cb7kwvqr35"]
+
+[ext_resource type="PackedScene" uid="uid://bmo4bn0voegv1" path="res://animation/Animals/Models/SK_Horse.fbx" id="1_lv0fa"]
+[ext_resource type="Animation" uid="uid://bjtihrt723p4r" path="res://animation/Animals/Animations/idleHorse.res" id="2_8uxh3"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xeeqw"]
+_data = {
+&"idleHorse": ExtResource("2_8uxh3")
+}
+
+[node name="Node3D" type="Node3D" unique_id=993905967]
+
+[node name="SK_Horse" parent="." unique_id=1657516154 instance=ExtResource("1_lv0fa")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SK_Horse" unique_id=1954193854]
+libraries/HorseAnimationPlayer = SubResource("AnimationLibrary_xeeqw")
