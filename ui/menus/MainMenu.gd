@@ -2,7 +2,7 @@ extends Control
 
 @onready var settings_menu = $SettingsMenu
 @onready var main_container = $MarginContainer
-@onready var character_switcher: Control = $MarginContainer2/CharacterSwitcher
+@onready var character_switcher: Node3D = $MarginContainer2/CharacterSwitcher
 
 func _ready() -> void:
 	# Connect Button Signals

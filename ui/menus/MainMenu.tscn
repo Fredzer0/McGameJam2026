@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bxwtmb45sl03n" path="res://assets/ui/Controls.png" id="4_controls"]
 [ext_resource type="Texture2D" uid="uid://cqhhgu38ul4gj" path="res://assets/ui/Quit.png" id="5_quit"]
 [ext_resource type="AudioStream" uid="uid://cqi5anoq78jqo" path="res://assets/audio/01 - boba date.mp3" id="7_34sxx"]
+[ext_resource type="PackedScene" uid="uid://cvjyeenvvo6qd" path="res://ui/menus/character switcher.tscn" id="8_charsw"]
 
 [node name="MainMenu" type="Control" unique_id=1857477556]
 layout_mode = 3
@@ -84,3 +85,5 @@ offset_left = 2685.9685
 offset_top = 1091.0469
 offset_right = 2725.9685
 offset_bottom = 1131.0469
+
+[node name="CharacterSwitcher" parent="MarginContainer2" instance=ExtResource("8_charsw")]

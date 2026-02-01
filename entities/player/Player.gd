@@ -227,10 +227,11 @@ func update_target_visuals() -> void:
 	for body in current_bodies:
 		if is_valid_target(body):
 			if not active_target_visuals.has(body):
-				if vfx_scene:
-					var vfx = vfx_scene.instantiate()
+				if castingCircle:
+					var vfx = castingCircle.instantiate()
 					body.add_child(vfx)
 					vfx.transform.origin = Vector3.ZERO
+					vfx.auto_fill = false
 					active_target_visuals[body] = vfx
 	
 	# Cleanup targets that are no longer valid or in range

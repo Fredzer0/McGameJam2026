@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="McGameJam-2026"
-run/main_scene="uid://ccq08143tymp7"
+run/main_scene="res://levels/Intro.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://assets/textures/icon.svg"
 

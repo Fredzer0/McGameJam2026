@@ -1,5 +1,7 @@
 extends Node3D
 
+@export var auto_fill: bool = true
+
 @onready var bar = $Sprite3D/SubViewport/TextureProgressBar
 
 # Called when the node enters the scene tree for the first time.
@@ -10,7 +12,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	bar.value += 1
+	if auto_fill:
+		bar.value += 1
 
 
 	if bar.value == bar.max_value:
