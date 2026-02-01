@@ -1,16 +1,27 @@
 [gd_scene format=3 uid="uid://c6bayq08na6rs"]
 
+[ext_resource type="Script" uid="uid://0wu3gfal264h" path="res://Scripts/sheep.gd" id="1_0hpif"]
 [ext_resource type="PackedScene" uid="uid://rwipp8dnhntb" path="res://animation/Animals/Models/SK_Mouton.fbx" id="1_1iigj"]
-[ext_resource type="Animation" uid="uid://bngilqotmpl7w" path="res://animation/Animals/Animations/idleSheep.res" id="2_0hpif"]
+[ext_resource type="Animation" uid="uid://dpoai6oa073vp" path="res://animation/Animals/Animations/idleSheep.res" id="2_0hpif"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8v3vs"]
 _data = {
 &"idleSheep": ExtResource("2_0hpif")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0hpif"]
+size = Vector3(0.7561035, 0.8074951, 1)
+
 [node name="Node3D" type="Node3D" unique_id=1428025145]
+script = ExtResource("1_0hpif")
 
 [node name="SK_Mouton" parent="." unique_id=1725737127 instance=ExtResource("1_1iigj")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SK_Mouton" unique_id=582503726]
 libraries/SheepAnimationPlayer = SubResource("AnimationLibrary_8v3vs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=777496625]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=799182171]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009155273, 0.4055786, 0)
+shape = SubResource("BoxShape3D_0hpif")

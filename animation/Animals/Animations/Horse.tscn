@@ -1,16 +1,27 @@
 [gd_scene format=3 uid="uid://bn0cb7kwvqr35"]
 
 [ext_resource type="PackedScene" uid="uid://bmo4bn0voegv1" path="res://animation/Animals/Models/SK_Horse.fbx" id="1_lv0fa"]
-[ext_resource type="Animation" uid="uid://bjtihrt723p4r" path="res://animation/Animals/Animations/idleHorse.res" id="2_8uxh3"]
+[ext_resource type="Script" uid="uid://ciaev6j2p4q3n" path="res://Scripts/horse.gd" id="1_xeeqw"]
+[ext_resource type="Animation" uid="uid://ncjm75cj8kqp" path="res://animation/Animals/Animations/idleHorse.res" id="2_8uxh3"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xeeqw"]
 _data = {
 &"idleHorse": ExtResource("2_8uxh3")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ip07x"]
+size = Vector3(1, 2.3184204, 1.361206)
+
 [node name="Node3D" type="Node3D" unique_id=993905967]
+script = ExtResource("1_xeeqw")
 
 [node name="SK_Horse" parent="." unique_id=1657516154 instance=ExtResource("1_lv0fa")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SK_Horse" unique_id=1954193854]
 libraries/HorseAnimationPlayer = SubResource("AnimationLibrary_xeeqw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1625606319]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1022557953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1163025, -0.14117432)
+shape = SubResource("BoxShape3D_ip07x")

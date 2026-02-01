@@ -6,11 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://bxkwvymuucao" path="res://entities/enemies/npc2.tscn" id="3_xb3cr"]
 [ext_resource type="PackedScene" uid="uid://b812iuikvckso" path="res://entities/player/Player.tscn" id="4_c15db"]
 [ext_resource type="PackedScene" uid="uid://cnq3tqiw5vasx" path="res://levels/environement_village_v_02.scn" id="4_hmgtm"]
-[ext_resource type="PackedScene" path="res://systems/systems.tscn" id="5_7d5c5"]
+[ext_resource type="PackedScene" uid="uid://bgf6av22o0etn" path="res://systems/systems.tscn" id="5_7d5c5"]
 [ext_resource type="PackedScene" uid="uid://b5x8y1n2m3q1" path="res://ui/hud/HUD.tscn" id="6_34y4k"]
 [ext_resource type="PackedScene" uid="uid://b7ggpa1vwgrl2" path="res://vfx/ShaderComposer.tscn" id="9_mmkkx"]
 [ext_resource type="PackedScene" path="res://ui/hud/FPSCounter.tscn" id="10_fpscnt"]
 [ext_resource type="AudioStream" uid="uid://chwvr4ygpj3ab" path="res://assets/audio/sfx/SFX_NightSound_1.mp3" id="10_mmkkx"]
+[ext_resource type="PackedScene" uid="uid://c6bayq08na6rs" path="res://animation/Animals/Animations/Sheep.tscn" id="12_4js07"]
+[ext_resource type="PackedScene" uid="uid://bn0cb7kwvqr35" path="res://animation/Animals/Animations/Horse.tscn" id="13_pw1os"]
+[ext_resource type="PackedScene" uid="uid://b7okhwwhxke2r" path="res://vfx/Fireflies/fireflies.tscn" id="14_iu8bx"]
 
 [sub_resource type="Environment" id="Environment_4js07"]
 background_energy_multiplier = 0.0
@@ -99,3 +102,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.028837, 0.0004462162, -7.4
 stream = ExtResource("10_mmkkx")
 volume_db = -8.0
 autoplay = true
+
+[node name="Animal" type="Node3D" parent="." unique_id=1247109470]
+
+[node name="Node3D" parent="Animal" unique_id=1428025145 instance=ExtResource("12_4js07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.984735, 0.20818412, -8.493756)
+
+[node name="Node3D2" parent="Animal" unique_id=1618286361 instance=ExtResource("12_4js07")]
+transform = Transform3D(-0.047559716, 0, 0.9988684, 0, 1, 0, -0.9988684, 0, -0.047559716, 8.6823635, 0.20818412, -9.129254)
+
+[node name="Node3D3" parent="Animal" unique_id=993905967 instance=ExtResource("13_pw1os")]
+transform = Transform3D(-0.19524442, 0, -0.9807546, 0, 1, 0, 0.9807546, 0, -0.19524442, 5.7731566, 0.00044631958, 9.819581)
+
+[node name="Node3D4" parent="Animal" unique_id=1798554895 instance=ExtResource("12_4js07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.267625, 0.22220969, 5.9460955)
+
+[node name="Node3D5" parent="Animal" unique_id=542172030 instance=ExtResource("12_4js07")]
+transform = Transform3D(-0.49901712, 0, 0.8665921, 0, 1, 0, -0.8665921, 0, -0.49901712, 0.018507004, 0.13025641, 18.82447)
+
+[node name="Node3D6" parent="Animal" unique_id=1777158060 instance=ExtResource("13_pw1os")]
+transform = Transform3D(-0.57440543, 0, -0.818571, 0, 1, 0, 0.818571, 0, -0.57440543, -13.916064, 0.00044631958, -6.16872)
+
+[node name="Node3D7" parent="Animal" unique_id=525740500 instance=ExtResource("12_4js07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.770041, 0.14949733, -18.514904)
+
+[node name="Node3D8" parent="Animal" unique_id=901253870 instance=ExtResource("12_4js07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.289133, 0.2835899, -18.262009)
+
+[node name="Node3D9" parent="Animal" unique_id=733160821 instance=ExtResource("14_iu8bx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7733898, 1.4042572, 17.441406)
+
+[node name="Node3D10" parent="Animal" unique_id=1021960032 instance=ExtResource("14_iu8bx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.488002, 0.5779809, 6.8481636)
+
+[node name="Node3D11" parent="Animal" unique_id=1957248565 instance=ExtResource("14_iu8bx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0715189, 0.445997, -7.9697285)
+
+[node name="Node3D12" parent="Animal" unique_id=1810754006 instance=ExtResource("14_iu8bx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.474835, 1.1960001, -8.734072)
+
+[node name="Node3D13" parent="Animal" unique_id=1036107156 instance=ExtResource("14_iu8bx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3809586, 0.54652214, 6.6983705)
+
+[node name="Node3D14" parent="Animal" unique_id=548339266 instance=ExtResource("14_iu8bx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.910334, 1.8734214, 0.60785484)
+
+[node name="Node3D15" parent="Animal" unique_id=581499732 instance=ExtResource("14_iu8bx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.65803, 1.0436293, -17.4374)
