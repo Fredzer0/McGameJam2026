@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://btt3ksrf2nhqc"]
+
+[ext_resource type="Shader" uid="uid://bps8k0niw5ehh" path="res://assets/scripts/test.gdshader" id="1_ktyv2"]
+[ext_resource type="Texture2D" uid="uid://dla54iogngw8n" path="res://systems/grass/materials/T_GrassBlade_A.png" id="2_lw26f"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qbyuq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4wxg"]
+render_priority = 0
+shader = ExtResource("1_ktyv2")
+
+[node name="Test" type="Node3D" unique_id=1319518964]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1676057920]
+mesh = SubResource("PlaneMesh_qbyuq")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1949926183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.358161, -15.4053955, -12.232852)
+material_override = SubResource("ShaderMaterial_g4wxg")
+billboard = 2
+transparent = false
+texture = ExtResource("2_lw26f")
