@@ -1,0 +1,38 @@
+[gd_resource type="VisualShader" format=3 uid="uid://vkcwo6qef5xg"]
+
+[ext_resource type="Texture2D" uid="uid://dn448l6t0x5mw" path="res://vfx/Fireflies/T_VFX_basic1.PNG" id="1_5q1wt"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_pur8b"]
+texture = ExtResource("1_5q1wt")
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_2ibb7"]
+default_input_values = [0, 0.0, 1, 5.0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_05x80"]
+input_name = "color"
+
+[sub_resource type="Gradient" id="Gradient_cpy7p"]
+colors = PackedColorArray(0.91, 0.27300003, 0, 1, 0.97, 0.83129, 0.21340004, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mwgep"]
+gradient = SubResource("Gradient_cpy7p")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_sfsd5"]
+texture = SubResource("GradientTexture2D_mwgep")
+
+[resource]
+modes/cull = 2
+flags/unshaded = true
+flags/shadows_disabled = true
+flags/ambient_light_disabled = true
+flags/fog_disabled = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_pur8b")
+nodes/fragment/2/position = Vector2(-693.3333, 160)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFloatOp_2ibb7")
+nodes/fragment/3/position = Vector2(-66.666664, 200)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_05x80")
+nodes/fragment/4/position = Vector2(-720, -66.666664)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_sfsd5")
+nodes/fragment/5/position = Vector2(-53.333332, -106.666664)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 0, 1, 4, 0, 5, 0, 5, 0, 0, 0)
