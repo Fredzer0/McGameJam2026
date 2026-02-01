@@ -13,6 +13,9 @@ specular_mode = 2
 albedo_color = Color(7.8348074, 9.384245, 0, 1)
 disable_receive_shadows = true
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nmvpk"]
+radius = 5.3
+
 [node name="Priest" type="CharacterBody3D" unique_id=249033166]
 script = ExtResource("1_p85cn")
 
@@ -37,7 +40,7 @@ mesh = SubResource("PrismMesh_p85cn")
 surface_material_override/0 = SubResource("StandardMaterial3D_go57i")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Area3D" unique_id=1138655494]
-transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1.9106855e-15, 1, -1.6703743e-22, -0.07623434, -0.48622108, 0)
+transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1.9106855e-15, 1, 0, -1.2742119, -0.48622108, 5.236526e-08)
 light_color = Color(1, 1, 0.3019608, 1)
 light_energy = 16.0
 
@@ -45,5 +48,12 @@ light_energy = 16.0
 
 [node name="Node3D" parent="NPCModel" unique_id=892760705 instance=ExtResource("2_nmvpk")]
 
+[node name="detectplayer" type="Area3D" parent="." unique_id=1973164443]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="detectplayer" unique_id=1945565649]
+shape = SubResource("CylinderShape3D_nmvpk")
+
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="body_entered" from="detectplayer" to="." method="_on_detectplayer_body_entered"]
+[connection signal="body_exited" from="detectplayer" to="." method="_on_detectplayer_body_exited"]

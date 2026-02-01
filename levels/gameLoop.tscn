@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://whl2a2p8t4r5" path="res://entities/enemies/npc.tscn" id="2_7d5c5"]
 [ext_resource type="PackedScene" uid="uid://d2y22dtsfn7sr" path="res://entities/enemies/priest.tscn" id="3_34y4k"]
 [ext_resource type="PackedScene" uid="uid://b812iuikvckso" path="res://entities/player/Player.tscn" id="4_c15db"]
+[ext_resource type="PackedScene" path="res://levels/environement_village_v_02.scn" id="4_hmgtm"]
 [ext_resource type="PackedScene" path="res://systems/systems.tscn" id="5_7d5c5"]
-[ext_resource type="PackedScene" uid="uid://c5wvq0qdvlhpp" path="res://levels/environement_village_v_02.tscn" id="5_c15db"]
 [ext_resource type="PackedScene" uid="uid://b5x8y1n2m3q1" path="res://ui/hud/HUD.tscn" id="6_34y4k"]
 [ext_resource type="PackedScene" uid="uid://dt5h0bmojprp0" path="res://systems/grass/grass_system.tscn" id="8_hmgtm"]
 [ext_resource type="PackedScene" uid="uid://b7ggpa1vwgrl2" path="res://vfx/ShaderComposer.tscn" id="9_mmkkx"]
@@ -51,11 +51,21 @@ script = ExtResource("1_lviyc")
 [node name="Enemies" type="Node3D" parent="." unique_id=931713287]
 
 [node name="NPC" parent="Enemies" unique_id=2091204191 instance=ExtResource("2_7d5c5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0469637, 0.837821, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.881102, 0.837821, -6.4669323)
 
-[node name="Priest" parent="." unique_id=987654321 instance=ExtResource("3_34y4k")]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.84, 0)
+[node name="NPC2" parent="Enemies" unique_id=1478535759 instance=ExtResource("2_7d5c5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.579527, 0.837821, 1.1212902)
+
+[node name="NPC3" parent="Enemies" unique_id=763724913 instance=ExtResource("2_7d5c5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0247326, 0.837821, 9.684746)
+
+[node name="NPC4" parent="Enemies" unique_id=1628902586 instance=ExtResource("2_7d5c5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4350367, 0.837821, -17.14048)
+
+[node name="NPC5" parent="Enemies" unique_id=708846818 instance=ExtResource("2_7d5c5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.865587, 0.837821, -12.438354)
+
+[node name="Priest" parent="Enemies" unique_id=249033166 instance=ExtResource("3_34y4k")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1487729110]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -76,12 +86,12 @@ transform = Transform3D(9.86, 0, 0, 0, 1, 0, 0, 0, 11.6, 0, -0.49545208, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor" unique_id=1870651935]
 shape = SubResource("BoxShape3D_floor")
 
-[node name="EnvironementVillage_v02" parent="NavigationRegion3D" unique_id=430942437 instance=ExtResource("5_c15db")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.029587, -0.008446217, -7.4253283)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1114999956]
 transform = Transform3D(9.86, 0, 0, 0, 1, 0, 0, 0, 11.6, 0, -0.4968263, 0)
 mesh = SubResource("BoxMesh_floor")
+
+[node name="EnvironementVillage_v03" parent="NavigationRegion3D" unique_id=378639700 instance=ExtResource("4_hmgtm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.03, -0.008, -7.425)
 
 [node name="HUD" parent="." unique_id=999043377 instance=ExtResource("6_34y4k")]
 
@@ -120,10 +130,10 @@ shape = SubResource("BoxShape3D_xb3cr")
 environment = SubResource("Environment_4js07")
 
 [node name="Player" parent="SubViewportContainer/SubViewport" unique_id=253799011 instance=ExtResource("4_c15db")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04950142, 1.0766668, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.97773576, 1.0766668, 14.467199)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Player" unique_id=1279967936]
 transform = Transform3D(1, 0, 0, 0, 0.55067, 0.834723, 0, -0.834723, 0.55067, 0, 8.854532, 6.363197)
 projection = 1
-size = 20.159
+size = 9.913
 far = 60.0

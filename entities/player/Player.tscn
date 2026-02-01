@@ -12,7 +12,7 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mab2k"]
 radius = 1.5844727
 
-[node name="Player" type="CharacterBody3D" unique_id=253799011]
+[node name="Player" type="CharacterBody3D" unique_id=253799011 groups=["player"]]
 script = ExtResource("1_script")
 vfx_scene = ExtResource("2_l3c03")
 castingCircle = ExtResource("3_eaotn")
