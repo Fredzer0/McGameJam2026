@@ -4,3 +4,5 @@
 
 [node name="GrassSystem" type="Node3D" unique_id=1244882170]
 script = ExtResource("1_script")
+view_distance = null
+animation_distance = null

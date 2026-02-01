@@ -13,6 +13,7 @@ uniform sampler2D alpha;
 uniform float leaves_scale = 1.0;
 uniform float leaf_bend_amount = 0.7;
 uniform float light_steps = 5.0;
+uniform float animation_distance = 20.0;
 
 varying vec4 view_pos;
 varying vec4 world_pos;
@@ -27,10 +28,18 @@ void vertex() {
 	world_pos = MODEL_MATRIX * vec4(VERTEX, 1.0);
 	view_pos = MODELVIEW_MATRIX * vec4(VERTEX, 1.0);
 	float speed = TIME * wind_speed;
+	
+	// Distance fading logic
+	float dist = length(view_pos);
+	float animation_fade = 0.0;
+	
+	if (animation_distance > 0.1) {
+		animation_fade = 1.0 - smoothstep(animation_distance * 0.8, animation_distance, dist);
+	}
 
 	// Noise for animation
 	float noise_texture = textureLod(wind_noise, (world_pos.xz * wind_scale) - (speed * wind_direction.xz), 1.0).r;
-	noise_texture = (noise_texture * 2. - 1.) * (wind_strength * leaf_bend_amount);
+	noise_texture = (noise_texture * 2. - 1.) * (wind_strength * leaf_bend_amount * animation_fade);
 
 	//Leaves Billboard
 	vec4 new_position = vec4(UV.y, UV.x, 0.0, 1.0);
@@ -39,6 +48,7 @@ void vertex() {
 	new_position *= leaves_scale;
 
 	// Leaves animation
+	// Apply fade to the offset as well just in case, though fading noise_texture is enough.
 	new_position += noise_texture * vec4(1.0, 0.0, 0.0, 0.0) * (UV.x * 2.0 - 1.0) - noise_texture * vec4(0.0, 1.0, 0.0, 0.0) * (UV.y * 2.0 - 1.0);
 
 	new_position *= MODELVIEW_MATRIX;

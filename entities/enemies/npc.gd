@@ -23,6 +23,7 @@ var form: Form = Form.HUMAN
 var idle_wait_time: float = 1.5
 var idle_timer_count: float = 0
 var panic_timer: float = 0.0
+var path_update_timer: float = 0.0
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var animPlayer = find_child("AnimationPlayer", true, false)
@@ -36,6 +37,9 @@ func _ready() -> void:
 		calm_signal.connect(susDirector.on_npc_calm_signal);
 
 	add_to_group("npc")
+	
+	# Desync path updates
+	path_update_timer = randf_range(0.0, 0.2)
 
 func _physics_process(delta: float) -> void:
 	velocity += get_gravity() * delta;
@@ -69,7 +73,8 @@ func rotate_mesh(target_angle: float, delta: float) -> void:
 
 func _on_idle() -> void:
 	velocity = Vector3.ZERO;
-	idle_timer_count = idle_wait_time;
+	# Desync idle times to prevent cpu spikes
+	idle_timer_count = randf_range(idle_wait_time * 0.5, idle_wait_time * 1.5);
 	state = State.WATING_TO_MOVE;
 
 func _on_wating_to_move(delta: float) -> void:
@@ -115,10 +120,13 @@ func _on_panic() -> void:
 		return
 
 	if look_at_target:
-		var flee_target = get_flee_position(look_at_target)
-		var nav_map = navigation_agent_3d.get_navigation_map()
-		var safe_target = NavigationServer3D.map_get_closest_point(nav_map, flee_target)
-		navigation_agent_3d.target_position = safe_target
+		path_update_timer -= get_physics_process_delta_time()
+		if path_update_timer <= 0:
+			path_update_timer = 0.2
+			var flee_target = get_flee_position(look_at_target)
+			var nav_map = navigation_agent_3d.get_navigation_map()
+			var safe_target = NavigationServer3D.map_get_closest_point(nav_map, flee_target)
+			navigation_agent_3d.target_position = safe_target
 
 	var current_position = global_transform.origin;
 	var next_position = navigation_agent_3d.get_next_path_position();

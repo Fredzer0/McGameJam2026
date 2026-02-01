@@ -12,6 +12,7 @@ uniform sampler2D grass_alpha : source_color;
 uniform float grass_bend_amount = 1.0;
 uniform float sway_back : hint_range(0.0, 1.0, 0.01) = 1.0;
 uniform float light_steps = 3.0;
+uniform float animation_distance = 0.0;
 
 varying vec3 node_pos_view;
 varying vec3 node_pos_world;
@@ -35,7 +36,18 @@ void vertex() {
 	// Wind Animation
 	vec4 world_pos = MODEL_MATRIX * vec4(VERTEX, 1.0);
 	float speed = TIME * wind_speed;
-	float displace_ammount = wind_strength * grass_bend_amount;
+	
+	// Distance fading logic
+	// Use vertex position in view space for accurate per-blade fading
+	float dist = length((MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz);
+	float animation_fade = 0.0;
+	
+	if (animation_distance > 0.1) {
+		// Fade starts at 80% of max distance and ends at max distance
+		animation_fade = 1.0 - smoothstep(animation_distance * 0.8, animation_distance, dist);
+	}
+	
+	float displace_ammount = wind_strength * grass_bend_amount * animation_fade;
 	
 	// Use wind direction directly in world space (no view matrix transform)
 	vec3 direction = normalize(wind_direction);

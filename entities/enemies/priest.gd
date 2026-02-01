@@ -22,6 +22,7 @@ var state: State = State.IDLE
 
 var idle_wait_time: float = 1.5
 var idle_timer_count: float = 0
+var path_update_timer: float = 0.0
 @onready var collision_shape_3d: CollisionShape3D = $detectplayer/CollisionShape3D
 @onready var spot_light_3d: SpotLight3D = $Area3D/SpotLight3D
 
@@ -39,8 +40,7 @@ func _ready() -> void:
 
 	add_to_group("priest")
 
-func _process(_delta: float) -> void:
-	pass
+
 	
 func _physics_process(delta: float) -> void:
 	velocity += get_gravity() * delta;
@@ -136,9 +136,12 @@ func _on_follow_target():
 	if not nav_map.is_valid() or NavigationServer3D.map_get_iteration_id(nav_map) == 0:
 		return
 		
-	var target_pos = target_node.global_position
-	var safe_target = NavigationServer3D.map_get_closest_point(nav_map, target_pos)
-	navigation_agent_3d.target_position = safe_target
+	path_update_timer -= get_physics_process_delta_time()
+	if path_update_timer <= 0:
+		path_update_timer = 0.2
+		var target_pos = target_node.global_position
+		var safe_target = NavigationServer3D.map_get_closest_point(nav_map, target_pos)
+		navigation_agent_3d.target_position = safe_target
 	
 	if navigation_agent_3d.is_target_reached():
 		return

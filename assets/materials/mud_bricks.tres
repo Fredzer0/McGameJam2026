@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://mud_bricks_material_001"]
+
+[ext_resource type="Shader" path="res://assets/shaders/mud_bricks.gdshader" id="1_mud"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bricks"]
+noise_type = 3
+frequency = 0.05
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bricks"]
+seamless = true
+noise = SubResource("FastNoiseLite_bricks")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_mud")
+shader_parameter/base_color = Color(0.485108, 0.297072, 0.170624, 1)
+shader_parameter/variation_color = Color(0.589883, 0.380721, 0.231924, 1)
+shader_parameter/mortar_color = Color(0.187176, 0.161033, 0.126442, 1)
+shader_parameter/noise_scale = 1.0
+shader_parameter/brick_scale = Vector2(4, 8)
+shader_parameter/mortar_thickness = 0.05
+shader_parameter/roughness = 0.95
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_bricks")

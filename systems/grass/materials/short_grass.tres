@@ -91,7 +91,7 @@ void light(){
 [resource]
 render_priority = 0
 shader = SubResource("Shader_r8r37")
-shader_parameter/grass_color = Color(0.36857042, 0.643002, 0.29906118, 1)
+shader_parameter/grass_color = Color(0.36862746, 0.6431373, 0.29803923, 1)
 shader_parameter/grass_alpha = ExtResource("2_nsnwb")
 shader_parameter/grass_bend_amount = 1.0
 shader_parameter/sway_back = 1.0
