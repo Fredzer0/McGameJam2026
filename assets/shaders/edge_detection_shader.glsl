@@ -15,8 +15,7 @@ layout(set = 0, binding = 3) uniform sampler2D normal_texture;
 
 
 const vec2 offset = vec2(0.0001);
-const float line_highlight = 0.1;
-const float line_shadow = 0.55;
+
 
 
 float GetLinearDepth(vec2 uv, float mask) {
@@ -113,8 +112,15 @@ void main() {
 	vec3 innerline = vec3(normal_difference) - outline;
 	innerline = clamp(innerline, vec3(0.0), vec3(1.0));
 	
-	// Combine colors with lines
-	vec4 color_with_lines = vec4(color.rgb + (innerline * line_highlight) - (color.rgb * outline * line_shadow), 1.0);
+	vec3 total_edge = clamp(outline + innerline, 0.0, 1.0);
+	
+	// User request: "The edges are grey though, can we ignore perhaps the lighting"
+	// To avoid grey (desaturation) which comes from adding white (0.1) to dark colors,
+	// we multiply the color. This boosts brightness while preserving hue/saturation.
+	// This makes it look like the edge is "glowing" with the material color.
+	
+	float brightness_boost = 2.0; // Multiplier strength
+	vec3 final_rgb = color.rgb * (1.0 + total_edge * brightness_boost);
 
-	imageStore(color_image, uv, color_with_lines);
+	imageStore(color_image, uv, vec4(final_rgb, 1.0));
 }

@@ -9,6 +9,10 @@ func remove_slowdown() -> void:
 
 func _ready() -> void:
 	add_to_group("player")
+	if fireball_scene:
+		fireball_model = fireball_scene.instantiate()
+		add_child(fireball_model)
+		fireball_model.hide()
 
 const BASE_SPEED = 5.0
 var move_speed = BASE_SPEED
@@ -33,6 +37,9 @@ var is_casting = false
 @onready var animPlayer = find_child("AnimationPlayer", true, false)
 @export var vfx_scene: PackedScene
 @export var castingCircle: PackedScene
+@export var fireball_scene: PackedScene
+
+var fireball_model: Node3D
 
 func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -42,7 +49,8 @@ func _physics_process(delta):
 		dash_timer = DASH_DURATION
 		velocity.x = direction.x * DASH_SPEED
 		velocity.z = direction.z * DASH_SPEED
-		currentMana -= dashCost;
+		currentMana -= dashCost
+		start_dash_visuals()
 
 	if Input.is_action_just_pressed("attack") and not is_casting:
 		var bodies = $Area3D.get_overlapping_bodies()
@@ -53,6 +61,7 @@ func _physics_process(delta):
 		dash_timer -= delta
 		if dash_timer <= 0:
 			is_dashing = false
+			end_dash_visuals()
 	elif direction:
 		velocity.x = move_toward(velocity.x, direction.x * move_speed, ACCELERATION * delta)
 		velocity.z = move_toward(velocity.z, direction.z * move_speed, ACCELERATION * delta)
@@ -102,6 +111,35 @@ func becomeBox():
 		vfx.transform.origin = Vector3.ZERO
 		$WitchModel.show()
 		$BoxModel.hide()
+
+func start_dash_visuals() -> void:
+	# Spawn pouff
+	#if vfx_scene:
+		#var vfx = vfx_scene.instantiate()
+		#add_child(vfx)
+		#vfx.transform.origin = Vector3.ZERO
+	
+	$WitchModel.hide()
+	$BoxModel.hide()
+	if fireball_model:
+		fireball_model.show()
+		var target_angle = atan2(velocity.x, velocity.z)
+		fireball_model.rotation.y = target_angle - PI / 2
+
+func end_dash_visuals() -> void:
+	# Spawn pouff
+	#if vfx_scene:
+		#var vfx = vfx_scene.instantiate()
+		#add_child(vfx)
+		#vfx.transform.origin = Vector3.ZERO
+		
+	if fireball_model:
+		fireball_model.hide()
+		
+	if is_hiding:
+		$BoxModel.show()
+	else:
+		$WitchModel.show()
 
 func try_transform_npc(body: Node3D) -> void:
 	if body.is_in_group("npc"):

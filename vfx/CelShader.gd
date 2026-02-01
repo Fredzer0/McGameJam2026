@@ -1,3 +1,4 @@
+# Inspired/Using snippets of code for shaders from Eduardo Schildt
 @tool
 class_name CelShader
 extends CompositorEffect
