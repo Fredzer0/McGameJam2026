@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dt5h0bmojprp0" path="res://systems/grass/grass_system.tscn" id="2_wxpfe"]
 [ext_resource type="PackedScene" uid="uid://bifgi2vv2grow" path="res://vfx/SmokePouff/Smoke.tscn" id="4_wxpfe"]
 [ext_resource type="Material" uid="uid://bf0sca2hfclri" path="res://systems/grass/materials/ground.tres" id="5_umpql"]
+[ext_resource type="PackedScene" uid="uid://d3vibtaye1kdc" path="res://assets/models/Tree/tree.tscn" id="7_umpql"]
 [ext_resource type="PackedScene" uid="uid://dxnjnan0kt0a2" path="res://assets/models/test_house.tscn" id="9_h1aef"]
 
 [sub_resource type="Environment" id="Environment_hh8b3"]
@@ -102,3 +103,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3765297, 0, -6.2252693)
 
 [node name="testHouse" parent="." unique_id=558572274 instance=ExtResource("9_h1aef")]
 transform = Transform3D(-0.2918709, 0, -0.95645773, 0, 1, 0, 0.95645773, 0, -0.2918709, -3.3385086, -4.642162, -7.4410267)
+
+[node name="Node3D3" parent="." unique_id=1748901607 instance=ExtResource("7_umpql")]
+transform = Transform3D(-0.40255773, -0.007877104, 0.9153607, -0.019563893, 0.9998086, 0, -0.9151855, -0.017908018, -0.4026348, -4.7755966, -4.771942, -2.166006)

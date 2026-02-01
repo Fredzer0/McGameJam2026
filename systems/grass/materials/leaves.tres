@@ -1,11 +1,13 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dr6aetemf0cag"]
 
-[ext_resource type="Shader" uid="uid://bsouhh5jf881e" path="res://systems/grass/materials/grass.gdshader" id="1_uin0g"]
+[ext_resource type="Shader" uid="uid://dcpauyyib2djj" path="res://systems/grass/materials/leaves.gdshader" id="1_uin0g"]
+[ext_resource type="Texture2D" uid="uid://c3pb4mjjy0wrx" path="res://assets/models/Tree/T_Leaf_A.png" id="2_xynig"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_uin0g")
-shader_parameter/grass_color = Color(0.37917724, 0.5771868, 0.27094826, 1)
-shader_parameter/grass_bend_amount = 1.0
-shader_parameter/sway_back = 1.0
-shader_parameter/light_steps = 3.0
+shader_parameter/color = Color(0.48423368, 0.48767304, 0.2799149, 1)
+shader_parameter/alpha = ExtResource("2_xynig")
+shader_parameter/leaves_scale = 0.4
+shader_parameter/leaf_bend_amount = 0.2
+shader_parameter/light_steps = 5.0
