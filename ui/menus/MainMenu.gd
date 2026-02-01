@@ -5,7 +5,7 @@ extends Control
 
 func _ready() -> void:
 	# Connect Button Signals
-	var menu_container = $MarginContainer/VBox
+	var menu_container = $MarginContainer/HBoxContainer/VBox
 	
 	menu_container.get_node("PlayButton").pressed.connect(_on_play_pressed)
 	menu_container.get_node("OptionsButton").pressed.connect(_on_options_pressed)
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _on_play_pressed() -> void:
 	# Transition to level scene
-	get_tree().change_scene_to_file("res://levels/World.tscn")
+	get_tree().change_scene_to_file("res://levels/justin.tscn")
 
 func _on_options_pressed() -> void:
 	# Show settings overlay

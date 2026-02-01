@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dxy4bd1gy4cye"]
+
+[ext_resource type="PackedScene" uid="uid://cuqrglfaxlhqq" path="res://animation/witch/models/SK_Witch.fbx" id="1_uewos"]
+[ext_resource type="Animation" uid="uid://cc1c7kw0h0lwu" path="res://animation/witch/animations/Idle.res" id="2_rtgxu"]
+[ext_resource type="Animation" uid="uid://c8qknlqh0fn5q" path="res://animation/witch/animations/Walk.res" id="3_hy31s"]
+[ext_resource type="Animation" uid="uid://dpxtlnytk4rtg" path="res://animation/witch/animations/Spell.res" id="3_rtgxu"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g7wbl"]
+_data = {
+&"Idle": ExtResource("2_rtgxu"),
+&"Spell": ExtResource("3_rtgxu"),
+&"Walk": ExtResource("3_hy31s")
+}
+
+[node name="Node3D" type="Node3D" unique_id=1917188508]
+
+[node name="SK_Witch" parent="." unique_id=1236977500 instance=ExtResource("1_uewos")]
+
+[node name="Skeleton3D" parent="SK_Witch" index="1" unique_id=1850384761]
+bones/2/rotation = Quaternion(0, 0, -9.62965e-35, 1)
+bones/3/rotation = Quaternion(0.9990032, -0.026831148, -0.03566354, 0.0009578487)
+bones/7/rotation = Quaternion(0.6101958, 0.36993042, 0.58454114, -0.38616616)
+bones/9/rotation = Quaternion(-0.4687089, -0.6397098, -0.15580599, 0.58890396)
+bones/10/rotation = Quaternion(0.20253113, -0.0055393064, 0.110319145, 0.9730263)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SK_Witch" unique_id=521298002]
+libraries/WitchMoveSets = SubResource("AnimationLibrary_g7wbl")
+
+[editable path="SK_Witch"]

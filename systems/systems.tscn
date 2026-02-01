@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bgf6av22o0etn"]
+
+[ext_resource type="Script" uid="uid://hnap8lcnuimj" path="res://Scripts/suspicion_director.gd" id="1_crgjv"]
+[ext_resource type="Script" uid="uid://bf8ihgj0m2qtb" path="res://Scripts/game_director.gd" id="2_gj4yf"]
+
+[node name="Systems" type="Node3D" unique_id=1364181550]
+
+[node name="SuspicionDirector" type="Node3D" parent="." unique_id=2037832662 groups=["suspicionDirector"]]
+script = ExtResource("1_crgjv")
+
+[node name="GameDirector" type="Node3D" parent="." unique_id=597707654 groups=["gameDirector"]]
+script = ExtResource("2_gj4yf")
+
+[node name="Timer" type="Timer" parent="GameDirector" unique_id=1098500674]
+wait_time = 300.0
+one_shot = true
+
+[connection signal="timeout" from="GameDirector/Timer" to="GameDirector" method="_on_timer_timeout"]

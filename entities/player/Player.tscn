@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://b812iuikvckso"]
 
 [ext_resource type="Script" uid="uid://caq6eorqv7tg6" path="res://entities/player/Player.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://dxy4bd1gy4cye" path="res://animation/witch/animations/AnimationWitch.tscn" id="2_453mm"]
+[ext_resource type="PackedScene" uid="uid://bifgi2vv2grow" path="res://vfx/SmokePouff/Smoke.tscn" id="2_l3c03"]
+[ext_resource type="PackedScene" uid="uid://bc31tl7pyh31j" path="res://ui/castCircle/castSpellTime.tscn" id="3_eaotn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mab2k"]
 radius = 0.015
@@ -15,21 +16,26 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mab2k"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mab2k"]
+radius = 1.5844727
+
 [node name="Player" type="CharacterBody3D" unique_id=253799011]
 script = ExtResource("1_script")
+vfx_scene = ExtResource("2_l3c03")
+castingCircle = ExtResource("3_eaotn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1747807594]
 shape = SubResource("CapsuleShape3D_1")
 
 [node name="WitchModel" type="Node3D" parent="." unique_id=1809021184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.78610086, 0)
 
-[node name="model" type="MeshInstance3D" parent="WitchModel" unique_id=795629174]
-mesh = SubResource("CapsuleMesh_1")
-
-[node name="nose" type="MeshInstance3D" parent="WitchModel/model" unique_id=2121753403]
-transform = Transform3D(1, 0, 0, 0, 0.07047033, 0.9975139, 0, -0.9975139, 0.07047033, 0, 0.50180423, 0.5673036)
+[node name="nose" type="MeshInstance3D" parent="WitchModel" unique_id=2121753403]
+transform = Transform3D(1, 0, 0, 0, 0.07047033, 0.9975139, 0, -0.9975139, 0.07047033, 0, -0.49819577, 0.5673036)
 mesh = SubResource("CapsuleMesh_mab2k")
 surface_material_override/0 = SubResource("StandardMaterial3D_453mm")
+
+[node name="Node3D" parent="WitchModel" unique_id=1917188508 instance=ExtResource("2_453mm")]
 
 [node name="BoxModel" type="Node3D" parent="." unique_id=916300823]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5777941, -1.7648041, 1.388298)
@@ -38,3 +44,10 @@ visible = false
 [node name="BoxMode" type="MeshInstance3D" parent="BoxModel" unique_id=1744310496]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5777941, 1.7648041, -1.388298)
 mesh = SubResource("BoxMesh_mab2k")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1104595636]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=134141945]
+shape = SubResource("CylinderShape3D_mab2k")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

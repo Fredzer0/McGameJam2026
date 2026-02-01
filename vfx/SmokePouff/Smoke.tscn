@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bifgi2vv2grow"]
 
 [ext_resource type="Shader" uid="uid://de0p6jpwbxcbh" path="res://vfx/SmokePouff/SmokeShader.tres" id="1_x80sq"]
+[ext_resource type="Script" uid="uid://vpyf5vbvadg6" path="res://Scripts/vfx_smoke_pouff.gd" id="2_r1jc2"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_r1jc2"]
 noise_type = 3
@@ -84,11 +85,13 @@ blend_shape_mode = 0
 [node name="Node3D" type="Node3D" unique_id=412120049]
 
 [node name="SmokeTransform" type="Node3D" parent="." unique_id=1050336789]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.967415, -11.275419, -0.79769325)
 
 [node name="VFX_smokePouff" type="GPUParticles3D" parent="SmokeTransform" unique_id=1820700557]
 material_override = SubResource("ShaderMaterial_nr2v5")
+emitting = false
 amount = 16
+one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_qyjgg")
 draw_pass_1 = SubResource("ArrayMesh_17msm")
+script = ExtResource("2_r1jc2")

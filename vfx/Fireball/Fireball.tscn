@@ -56,15 +56,14 @@ curve = SubResource("Curve_gfpes")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mytdf"]
 particle_flag_align_y = true
 emission_shape = 2
-emission_sphere_radius = 0.3
+emission_sphere_radius = 0.1
 direction = Vector3(-1, 0, 0)
 spread = 0.0
-initial_velocity_min = 5.0
-initial_velocity_max = 7.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
 radial_velocity_min = 0.99997765
 radial_velocity_max = 1.9999776
 gravity = Vector3(0, 0, 0)
-scale_max = 3.0
 scale_curve = SubResource("CurveTexture_pn34p")
 color = Color(0.9058309, 0.7875862, 0.8559276, 1)
 
@@ -74,6 +73,7 @@ size = Vector2(0.1, 0.3)
 [node name="Node3D" type="Node3D" unique_id=290144031]
 
 [node name="VFX_Fireball" type="Node3D" parent="." unique_id=1803759635]
+transform = Transform3D(0.59, 0, 0, 0, 0.59, 0, 0, 0, 0.59, 0, 0, 0)
 
 [node name="FireMesh" type="MeshInstance3D" parent="VFX_Fireball" unique_id=372013084]
 transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, 0, 0, 0)
@@ -98,7 +98,7 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_62ltb")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="VFX_Fireball" unique_id=1251967209]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27480555, 0.050698638, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46392062, 0.050698638, 0)
 material_override = SubResource("StandardMaterial3D_erf5i")
 lifetime = 0.7
 explosiveness = 0.3

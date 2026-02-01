@@ -5,36 +5,36 @@ signal calm_signal();
 
 var director: Node;
 
-const SPEED = 3.0
-const ROTATION_SPEED = 14.0
-const MIN_MOVE_RANGE = 6
-const MAX_MOVE_RANGE = 10
+var look_at_target: Node3D = null
 
-enum State {IDLE, WATING_TO_MOVE, MOVE}
+const SPEED = 3.0
+const PANIC_SPEED = 1.0
+const ROTATION_SPEED = 14.0
+const MIN_MOVE_RANGE = 12
+const MAX_MOVE_RANGE = 30
+const PANIC_MAX_DURATION = 10.0
+
+enum State {IDLE, WATING_TO_MOVE, MOVE, PANIC, FROG}
 var state: State = State.IDLE
+
+enum Form {HUMAN, FROG}
+var form: Form = Form.HUMAN
 
 var idle_wait_time: float = 1.5
 var idle_timer_count: float = 0
+var panic_timer: float = 0.0
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	panic_signal.connect(_on_area_3d_body_entered);
-	calm_signal.connect(_on_area_3d_body_exited);
-	
-
 	director = get_tree().get_first_node_in_group("suspicionDirector");
 
 	if (director):
 		panic_signal.connect(director.on_npc_panic_signal);
 		calm_signal.connect(director.on_npc_calm_signal);
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
+	add_to_group("npc")
+
 func _physics_process(delta: float) -> void:
 	velocity += get_gravity() * delta;
 
@@ -45,14 +45,24 @@ func _physics_process(delta: float) -> void:
 			_on_wating_to_move(delta)
 		State.MOVE:
 			_on_move()
+		State.PANIC:
+			_on_panic()
 			
 	move_and_slide()
 	
-	var horizontal_velocity = Vector2(velocity.x, velocity.z)
-	if horizontal_velocity.length() > 0.2:
-		var target_angle = atan2(velocity.x, velocity.z) - PI / 2
-		$MeshInstance3D.rotation.y = lerp_angle($MeshInstance3D.rotation.y, target_angle, ROTATION_SPEED * delta)
-		$Area3D.rotation.y = lerp_angle($Area3D.rotation.y, target_angle, ROTATION_SPEED * delta)
+	if look_at_target and state == State.PANIC:
+		var direction = look_at_target.global_position - global_position
+		var target_angle = atan2(direction.x, direction.z) - PI / 2
+		rotate_mesh(target_angle, delta)
+	else:
+		var horizontal_velocity = Vector2(velocity.x, velocity.z)
+		if horizontal_velocity.length() > 0.2:
+			var target_angle = atan2(velocity.x, velocity.z) - PI / 2
+			rotate_mesh(target_angle, delta)
+
+func rotate_mesh(target_angle: float, delta: float) -> void:
+	$NpcModel.rotation.y = lerp_angle($NpcModel.rotation.y, target_angle, ROTATION_SPEED * delta)
+	$Area3D.rotation.y = lerp_angle($Area3D.rotation.y, target_angle, ROTATION_SPEED * delta)
 
 
 func _on_idle() -> void:
@@ -81,22 +91,79 @@ func _on_move() -> void:
 	var new_velocity = direction * SPEED;
 	navigation_agent_3d.set_velocity(new_velocity);
 
+func get_flee_position(source: Node3D) -> Vector3:
+	var npc_pos = global_transform.origin
+	var player_pos = source.global_position
+	var flee_direction = npc_pos - player_pos
+	flee_direction.y = 0;
+	if flee_direction.length() < 0.1:
+		flee_direction = Vector3(randf_range(-1, 1), 0, randf_range(-1, 1))
+	
+	flee_direction = flee_direction.normalized()
+	var flee_distance = MAX_MOVE_RANGE
+	var flee_target = npc_pos + flee_direction * flee_distance
+	
+	return flee_target
+
+func _on_panic() -> void:
+	panic_timer -= get_physics_process_delta_time()
+	if panic_timer <= 0:
+		state = State.IDLE
+		calm_signal.emit()
+		return
+
+	if look_at_target:
+		var flee_target = get_flee_position(look_at_target)
+		var nav_map = navigation_agent_3d.get_navigation_map()
+		var safe_target = NavigationServer3D.map_get_closest_point(nav_map, flee_target)
+		navigation_agent_3d.target_position = safe_target
+
+	var current_position = global_transform.origin;
+	var next_position = navigation_agent_3d.get_next_path_position();
+	var direction = (next_position - current_position).normalized();
+	var new_velocity = direction * PANIC_SPEED;
+	navigation_agent_3d.set_velocity(new_velocity);
+
+func start_panic(source: Node3D) -> void:
+	panic_timer = PANIC_MAX_DURATION
+	var flee_target = get_flee_position(source);
+	var nav_map = navigation_agent_3d.get_navigation_map();
+	var safe_target = NavigationServer3D.map_get_closest_point(nav_map, flee_target);
+	navigation_agent_3d.target_position = safe_target;
+	state = State.PANIC;
+
+func become_frog() -> void:
+	form = Form.FROG
+	$NpcModel.hide()
+	$FrogModel.show()
+	state = State.FROG
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	if (body.is_in_group("player")):
+	if (body.is_in_group("player")) and form == Form.HUMAN:
 		calm_signal.emit();
-	pass # Replace with function body.
-
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if (body.is_in_group("player")):
+	if (body.is_in_group("player")) and form == Form.HUMAN:
 		panic_signal.emit();
-	pass # Replace with function body.
-
+		start_panic(body);
 
 func _on_navigation_agent_3d_target_reached() -> void:
 	state = State.IDLE;
 
-
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity = safe_velocity;
+
+func _on_detect_look_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player") and form == Form.HUMAN:
+		look_at_target = body
+
+func _on_detect_look_body_exited(body: Node3D) -> void:
+	if body == look_at_target and form == Form.HUMAN:
+		look_at_target = null
+
+func is_panicking() -> bool:
+	return state == State.PANIC
+
+
+func is_frog() -> bool:
+	return state == State.FROG

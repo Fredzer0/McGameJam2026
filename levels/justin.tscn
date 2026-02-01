@@ -4,17 +4,20 @@
 [ext_resource type="Script" uid="uid://bvcrbg4k0fhlp" path="res://levels/justin.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://whl2a2p8t4r5" path="res://entities/enemies/npc.tscn" id="2_x3ip7"]
 [ext_resource type="PackedScene" uid="uid://d2y22dtsfn7sr" path="res://entities/enemies/priest.tscn" id="3_priest"]
+[ext_resource type="AudioStream" uid="uid://cqi5anoq78jqo" path="res://assets/audio/01 - boba date.mp3" id="4_audio"]
+[ext_resource type="PackedScene" uid="uid://b5x8y1n2m3q1" path="res://ui/hud/HUD.tscn" id="6_8up5x"]
+[ext_resource type="PackedScene" path="res://systems/systems.tscn" id="7_vjx2q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_env"]
+[sub_resource type="Sky" id="Sky_rwkf3"]
 sky_material = SubResource("ProceduralSkyMaterial_sky")
 
 [sub_resource type="Environment" id="Environment_default"]
 background_mode = 2
-sky = SubResource("Sky_env")
+sky = SubResource("Sky_rwkf3")
 tonemap_mode = 2
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jap2h"]
@@ -56,8 +59,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1454675, 0)
 transform = Transform3D(1, 0, 0, 0, 0.55067, 0.834723, 0, -0.834723, 0.55067, 0, 10, 6.363197)
 projection = 1
 size = 20.159
+far = 60.0
+
+[node name="BobaMusic" type="AudioStreamPlayer" parent="." unique_id=998877665]
+stream = ExtResource("4_audio")
+autoplay = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1547012272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001162529, 0.008446217, 0.005788803)
 navigation_mesh = SubResource("NavigationMesh_jap2h")
 
 [node name="Floor" type="StaticBody3D" parent="NavigationRegion3D" unique_id=508144722]
@@ -96,3 +105,7 @@ mesh = SubResource("BoxMesh_jap2h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/box3" unique_id=1891912738]
 shape = SubResource("BoxShape3D_x3ip7")
+
+[node name="Systems" parent="." unique_id=1364181550 instance=ExtResource("7_vjx2q")]
+
+[node name="HUD" parent="." unique_id=999043377 instance=ExtResource("6_8up5x")]

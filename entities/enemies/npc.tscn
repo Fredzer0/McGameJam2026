@@ -4,11 +4,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_voh54"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4tst"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t0f4b"]
-albedo_color = Color(0.23137255, 0.52156866, 0.23921569, 1)
-
 [sub_resource type="PrismMesh" id="PrismMesh_rkkgd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjr52"]
@@ -17,16 +12,24 @@ specular_mode = 2
 albedo_color = Color(7.8348074, 9.384245, 0, 1)
 disable_receive_shadows = true
 
-[node name="NPC" type="CharacterBody3D" unique_id=1478535759]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rkkgd"]
+radius = 7.9379883
+
+[sub_resource type="BoxMesh" id="BoxMesh_rkkgd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4tst"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t0f4b"]
+albedo_color = Color(0.23137255, 0.52156866, 0.23921569, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jjr52"]
+
+[node name="NPC" type="CharacterBody3D" unique_id=1478535759 groups=["npc"]]
 axis_lock_linear_y = true
 script = ExtResource("1_rkkgd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=639564354]
 shape = SubResource("CapsuleShape3D_voh54")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1626133996]
-mesh = SubResource("CapsuleMesh_g4tst")
-surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=695016243]
 avoidance_enabled = true
@@ -49,7 +52,35 @@ transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1
 light_color = Color(1, 1, 0.3019608, 1)
 light_energy = 16.0
 
+[node name="detectLook" type="Area3D" parent="." unique_id=296766401]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="detectLook" unique_id=1218516951]
+shape = SubResource("CylinderShape3D_rkkgd")
+
+[node name="BoxModel" type="Node3D" parent="." unique_id=455687129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5777941, -1.7648041, 1.388298)
+visible = false
+
+[node name="BoxMode" type="MeshInstance3D" parent="BoxModel" unique_id=1119078931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5777941, 1.7648041, -1.388298)
+mesh = SubResource("BoxMesh_rkkgd")
+
+[node name="NpcModel" type="Node3D" parent="." unique_id=956098065]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NpcModel" unique_id=1626133996]
+mesh = SubResource("CapsuleMesh_g4tst")
+surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
+
+[node name="FrogModel" type="Node3D" parent="." unique_id=827817256]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FrogModel" unique_id=1585786299]
+mesh = SubResource("BoxMesh_jjr52")
+surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
+
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="detectLook" to="." method="_on_detect_look_body_entered"]
+[connection signal="body_exited" from="detectLook" to="." method="_on_detect_look_body_exited"]
