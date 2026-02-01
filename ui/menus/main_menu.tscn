@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://4p3mpq71r63o"]
+
+[ext_resource type="Script" uid="uid://d2c0jsuymisyk" path="res://ui/menus/MainMenu.gd" id="1_1kjlq"]
+[ext_resource type="Texture2D" uid="uid://c6wbm731qj8h4" path="res://assets/ui/Play.png" id="2_vuv8w"]
+[ext_resource type="Texture2D" uid="uid://bxwtmb45sl03n" path="res://assets/ui/Controls.png" id="3_u0fm7"]
+[ext_resource type="Texture2D" uid="uid://cqhhgu38ul4gj" path="res://assets/ui/Quit.png" id="4_tg3eq"]
+[ext_resource type="PackedScene" uid="uid://cdxokteuc1hu5" path="res://ui/menus/SettingsMenu.tscn" id="5_g305v"]
+[ext_resource type="AudioStream" uid="uid://bcel12k6vuk5w" path="res://assets/audio/Doom Eternal OST  The Only Thing They Fear Is You Mick Gordon Doom Eternal Theme.mp3" id="6_10bvg"]
+[ext_resource type="PackedScene" uid="uid://dxy4bd1gy4cye" path="res://animation/witch/animations/AnimationWitch.tscn" id="7_buwx5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vm5fi"]
+font_size = 109
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vm5fi"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_env"]
+sky_material = SubResource("ProceduralSkyMaterial_vm5fi")
+
+[sub_resource type="Environment" id="Environment_34sxx"]
+background_mode = 2
+sky = SubResource("Sky_env")
+tonemap_mode = 2
+
+[node name="MainMenu" type="Control" unique_id=1857477556]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1kjlq")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=596422491]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -242.5
+offset_right = 18.0
+offset_bottom = 242.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=573251592]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1802251570]
+custom_minimum_size = Vector2(247.05, 30)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=2038950017]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/VBox" unique_id=164179247]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Witching Hours"
+label_settings = SubResource("LabelSettings_vm5fi")
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBox" unique_id=1375715732]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="PlayButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBox" unique_id=932527260]
+layout_mode = 2
+texture_normal = ExtResource("2_vuv8w")
+
+[node name="OptionsButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBox" unique_id=397654769]
+layout_mode = 2
+texture_normal = ExtResource("3_u0fm7")
+
+[node name="QuitButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBox" unique_id=528967245]
+layout_mode = 2
+texture_normal = ExtResource("4_tg3eq")
+
+[node name="SettingsMenu" parent="." unique_id=1624691375 instance=ExtResource("5_g305v")]
+visible = false
+layout_mode = 1
+
+[node name="DoomMusic" type="AudioStreamPlayer" parent="." unique_id=123456789]
+stream = ExtResource("6_10bvg")
+autoplay = true
+
+[node name="Node3D" type="Node3D" parent="." unique_id=313890033]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D" unique_id=476988994]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Node3D" unique_id=1030246584]
+environment = SubResource("Environment_34sxx")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=1343320794]
+transform = Transform3D(1, 0, 0, 0, 0.9863776, 0.16449691, 0, -0.16449691, 0.9863776, 0, 2.6428108, 6.363197)
+projection = 1
+size = 6.041
+
+[node name="Node3D" parent="Node3D" unique_id=1917188508 instance=ExtResource("7_buwx5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1669555, 0, 0)

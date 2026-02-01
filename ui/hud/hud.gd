@@ -41,7 +41,7 @@ func _on_settings_closed() -> void:
 
 func _on_quit_to_menu() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://ui/menus/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://ui/menus/MainMenu3D.tscn")
 
 func add_task(text: String) -> void:
 	var label = Label.new()

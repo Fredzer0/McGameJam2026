@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://tii5wt3vmaim"]
 
 [ext_resource type="Script" uid="uid://d2c0jsuymisyk" path="res://ui/menus/MainMenu.gd" id="1_mainmenu"]
-[ext_resource type="PackedScene" uid="uid://b8x7k1n2m3p4" path="res://ui/common/ActionButton.tscn" id="2_btn"]
+[ext_resource type="Texture2D" uid="uid://c6wbm731qj8h4" path="res://assets/ui/Play.png" id="2_play"]
 [ext_resource type="PackedScene" uid="uid://cdxokteuc1hu5" path="res://ui/menus/SettingsMenu.tscn" id="3_settings"]
+[ext_resource type="Texture2D" uid="uid://bxwtmb45sl03n" path="res://assets/ui/Controls.png" id="4_controls"]
+[ext_resource type="Texture2D" uid="uid://cqhhgu38ul4gj" path="res://assets/ui/Quit.png" id="5_quit"]
+[ext_resource type="AudioStream" uid="uid://bcel12k6vuk5w" path="res://assets/audio/Doom Eternal OST  The Only Thing They Fear Is You Mick Gordon Doom Eternal Theme.mp3" id="6_doom"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vm5fi"]
+font_size = 109
 
 [node name="MainMenu" type="Control" unique_id=1857477556]
 layout_mode = 3
@@ -18,6 +24,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -242.5
+offset_right = 18.0
+offset_bottom = 242.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 50
@@ -25,33 +35,46 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBox" type="VBoxContainer" parent="MarginContainer" unique_id=2038950017]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=573251592]
 layout_mode = 2
-size_flags_horizontal = 0
+
+[node name="Spacer2" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1802251570]
+custom_minimum_size = Vector2(247.05, 30)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=2038950017]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBox" unique_id=164179247]
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/VBox" unique_id=164179247]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "McGameJam 2026"
+text = "Witching Hours"
+label_settings = SubResource("LabelSettings_vm5fi")
+horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="MarginContainer/VBox" unique_id=1375715732]
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBox" unique_id=1375715732]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="PlayButton" parent="MarginContainer/VBox" unique_id=932527260 instance=ExtResource("2_btn")]
+[node name="PlayButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBox" unique_id=932527260]
 layout_mode = 2
-text = "PLAY"
+texture_normal = ExtResource("2_play")
 
-[node name="OptionsButton" parent="MarginContainer/VBox" unique_id=397654769 instance=ExtResource("2_btn")]
+[node name="OptionsButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBox" unique_id=397654769]
 layout_mode = 2
-text = "OPTIONS"
+texture_normal = ExtResource("4_controls")
 
-[node name="QuitButton" parent="MarginContainer/VBox" unique_id=528967245 instance=ExtResource("2_btn")]
+[node name="QuitButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBox" unique_id=528967245]
 layout_mode = 2
-text = "QUIT"
+texture_normal = ExtResource("5_quit")
 
-[node name="SettingsMenu" parent="." instance=ExtResource("3_settings")]
+[node name="SettingsMenu" parent="." unique_id=1624691375 instance=ExtResource("3_settings")]
 visible = false
 layout_mode = 1
+
+[node name="DoomMusic" type="AudioStreamPlayer" parent="." unique_id=123456789]
+stream = ExtResource("6_doom")
+autoplay = true
