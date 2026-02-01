@@ -34,8 +34,8 @@ const SLOW_SPEED = 2.0
 const ACCELERATION = 100.0
 const FRICTION = 80.0
 const ROTATION_SPEED = 14.0
-const DASH_SPEED = 25.0
-const DASH_DURATION = 0.1
+const DASH_SPEED = 20.0
+const DASH_DURATION = 0.09
 
 var is_dashing = false
 var dash_timer = 0.0
@@ -45,8 +45,8 @@ var is_casting = false
 
 @export var maxMana = 100
 @export var manaRegen = 0.1
-@export var dashCost = 20
-@export var hideCost = 30
+@export var dashCost = 30
+@export var hideCost = 20
 
 @onready var animPlayer = find_child("AnimationPlayer", true, false)
 @export var vfx_scene: PackedScene
