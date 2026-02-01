@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://8ll5r8gahiua"
-path="res://.godot/imported/SK_Witch.fbx-7e6af9e812d1388ae103bacf5b0147da.scn"
+uid="uid://dxo8bqhbmom0r"
+path="res://.godot/imported/Anim_NPCIdle.fbx-febf53ebb83ccd38a3d38fec6cd15294.scn"
 
 [deps]
 
-source_file="res://animation/witch/models/SK_Witch.fbx"
-dest_files=["res://.godot/imported/SK_Witch.fbx-7e6af9e812d1388ae103bacf5b0147da.scn"]
+source_file="res://animation/NPC/animations/Anim_NPCIdle.fbx"
+dest_files=["res://.godot/imported/Anim_NPCIdle.fbx-febf53ebb83ccd38a3d38fec6cd15294.scn"]
 
 [params]
 

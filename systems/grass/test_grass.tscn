@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ds550ln226he3"]
 
 [ext_resource type="PackedScene" uid="uid://dt5h0bmojprp0" path="res://systems/grass/grass_system.tscn" id="1_grass"]
-[ext_resource type="Texture2D" uid="uid://nqugt63lt3qp" path="res://systems/grass/T_GrassBlade_A.png" id="2_tex"]
+[ext_resource type="Texture2D" uid="uid://dla54iogngw8n" path="res://systems/grass/materials/T_GrassBlade_A.png" id="2_tex"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_grass"]
 size = Vector3(50, 2, 50)
