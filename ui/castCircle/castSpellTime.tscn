@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bc31tl7pyh31j"]
 
-[ext_resource type="Texture2D" uid="uid://ddrv6uti6npa7" path="res://ui/castCircle/fullCircle.png" id="2_j3hmk"]
+[ext_resource type="Texture2D" uid="uid://xbg58gqsf780" path="res://ui/castCircle/castCircle.png" id="1_j3hmk"]
 [ext_resource type="Script" uid="uid://cb7ajt232kx02" path="res://Scripts/texture_progress_bar.gd" id="3_j3hmk"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tsvdw"]
@@ -11,7 +11,7 @@ script = ExtResource("3_j3hmk")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1661186453]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-pixel_size = 0.002
+pixel_size = 0.004
 texture = SubResource("ViewportTexture_tsvdw")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=2126540719]
@@ -23,5 +23,12 @@ offset_bottom = 40.0
 max_value = 85.0
 value = 59.0
 fill_mode = 4
-texture_progress = ExtResource("2_j3hmk")
-script = ExtResource("3_j3hmk")
+texture_progress = ExtResource("1_j3hmk")
+
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1616880571]
+light_color = Color(0.7454951, 0.5981998, 1, 1)
+light_energy = 2.0
+shadow_enabled = true
+shadow_caster_mask = 4294967294
+omni_range = 3.0

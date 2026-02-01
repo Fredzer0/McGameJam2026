@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" format=3 uid="uid://b82r7cntvi12a"]
 
-[ext_resource type="Texture2D" uid="uid://c2ut3xtsubbbr" path="res://vfx/LightningStrike/Texture_LightningStrike.png" id="1_cv1ml"]
+[ext_resource type="Texture2D" uid="uid://d2ohhouad1xxu" path="res://vfx/LightningStrike/Texture_LightningStrike.png" id="1_cv1ml"]
 
 [sub_resource type="Gradient" id="Gradient_g8xr3"]
 colors = PackedColorArray(0, 1, 0.8499999, 1, 1, 1, 1, 1)
@@ -11,6 +11,10 @@ gradient = SubResource("Gradient_g8xr3")
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_af8d3"]
 texture = SubResource("GradientTexture1D_xs2st")
 texture_type = 1
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_cv1ml"]
+default_input_values = [0, 0.0, 1, 20.0]
+operator = 2
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_20obv"]
 texture = ExtResource("1_cv1ml")
@@ -65,4 +69,6 @@ nodes/fragment/9/node = SubResource("VisualShaderNodeSmoothStep_6vmj5")
 nodes/fragment/9/position = Vector2(146.66667, 346.66666)
 nodes/fragment/10/node = SubResource("VisualShaderNodeTexture_af8d3")
 nodes/fragment/10/position = Vector2(413.33334, 40)
-nodes/fragment/connections = PackedInt32Array(5, 0, 4, 0, 6, 0, 4, 1, 4, 0, 3, 2, 8, 0, 9, 0, 7, 1, 8, 0, 2, 0, 9, 2, 9, 0, 10, 0, 3, 0, 2, 0, 9, 0, 0, 1, 10, 0, 0, 0)
+nodes/fragment/11/node = SubResource("VisualShaderNodeFloatOp_cv1ml")
+nodes/fragment/11/position = Vector2(506.66666, 333.33334)
+nodes/fragment/connections = PackedInt32Array(5, 0, 4, 0, 6, 0, 4, 1, 4, 0, 3, 2, 8, 0, 9, 0, 7, 1, 8, 0, 2, 0, 9, 2, 9, 0, 10, 0, 3, 0, 2, 0, 10, 0, 0, 0, 9, 0, 11, 0, 11, 0, 0, 1)
