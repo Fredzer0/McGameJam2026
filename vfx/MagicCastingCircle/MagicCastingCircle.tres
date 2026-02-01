@@ -23,7 +23,7 @@ texture = SubResource("GradientTexture2D_liaq0")
 texture_type = 1
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_52m71"]
-default_input_values = [0, 0.0, 1, 2.0]
+default_input_values = [0, 0.0, 1, 1.0]
 operator = 2
 
 [resource]
