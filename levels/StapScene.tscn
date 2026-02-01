@@ -4,11 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://74m3t0e8b8cn" path="res://vfx/Fireball/Fireball.tscn" id="2_hh8b3"]
 [ext_resource type="PackedScene" uid="uid://dt5h0bmojprp0" path="res://systems/grass/grass_system.tscn" id="2_wxpfe"]
 [ext_resource type="PackedScene" uid="uid://bifgi2vv2grow" path="res://vfx/SmokePouff/Smoke.tscn" id="4_wxpfe"]
+[ext_resource type="Material" uid="uid://bf0sca2hfclri" path="res://systems/grass/materials/ground.tres" id="5_umpql"]
+[ext_resource type="PackedScene" uid="uid://dxnjnan0kt0a2" path="res://assets/models/test_house.tscn" id="9_h1aef"]
 
 [sub_resource type="Environment" id="Environment_hh8b3"]
+background_energy_multiplier = 0.0
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.3
+ambient_light_energy = 0.1
+volumetric_fog_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_fuo3u"]
 size = Vector3(5, 0.5, 5)
@@ -23,6 +27,9 @@ size = Vector3(1.5, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8rnln"]
 size = Vector3(32, 1, 32)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y8p2d"]
+size = Vector2(50, 50)
 
 [node name="StapScene" type="Node3D" unique_id=73656724]
 
@@ -42,9 +49,8 @@ size = Vector2i(192, 108)
 render_target_update_mode = 4
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=340714600]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_indirect_energy = 0.0
-light_volumetric_fog_energy = 0.0
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 3.3828175, 0, 0)
+light_color = Color(0, 0, 0, 1)
 shadow_enabled = true
 shadow_transmittance_bias = -16.0
 
@@ -72,22 +78,28 @@ projection = 1
 size = 10.0
 far = 50.0
 
-[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport" unique_id=1380971151]
-transform = Transform3D(1, 0, 0, 0, -0.0058468683, 0.9999829, 0, -0.9999829, -0.0058468683, 0, 3.461728, 0)
-
-[node name="GrassSystem" parent="SubViewportContainer/SubViewport" unique_id=829710211 instance=ExtResource("2_wxpfe")]
+[node name="ShortGrassSystem" parent="SubViewportContainer/SubViewport" unique_id=829710211 instance=ExtResource("2_wxpfe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.4680004, 0)
-density = 2.0
+density = 100.0
+tall_grass_threshold = 0.27
 uniform_rotation_degrees = 20.0
 
-[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/GrassSystem" unique_id=506428651]
+[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/ShortGrassSystem" unique_id=506428651]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/GrassSystem/Area3D" unique_id=1249310870]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/ShortGrassSystem/Area3D" unique_id=1249310870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9919863, 0)
 shape = SubResource("BoxShape3D_8rnln")
 
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="SubViewportContainer/SubViewport" unique_id=1287680420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+mesh = SubResource("PlaneMesh_y8p2d")
+surface_material_override/0 = ExtResource("5_umpql")
+
 [node name="Node3D" parent="." unique_id=290144031 instance=ExtResource("2_hh8b3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5350767, 0.9980967, 0.22963071)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3968172, -4.548888, -2.8538527)
 
 [node name="Node3D2" parent="." unique_id=412120049 instance=ExtResource("4_wxpfe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3765297, 0, -6.2252693)
+
+[node name="testHouse" parent="." unique_id=558572274 instance=ExtResource("9_h1aef")]
+transform = Transform3D(-0.2918709, 0, -0.95645773, 0, 1, 0, 0.95645773, 0, -0.2918709, -3.3385086, -4.642162, -7.4410267)

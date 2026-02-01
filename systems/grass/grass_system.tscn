@@ -1,14 +1,6 @@
 [gd_scene format=3 uid="uid://dt5h0bmojprp0"]
 
 [ext_resource type="Script" uid="uid://dgtr53ng82noj" path="res://systems/grass/grass_system.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://nqugt63lt3qp" path="res://systems/grass/T_GrassBlade_A.png" id="2_5mqg4"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5mqg4"]
 
 [node name="GrassSystem" type="Node3D" unique_id=1244882170]
 script = ExtResource("1_script")
-density = 5000.0
-alpha_texture = ExtResource("2_5mqg4")
-noise_texture = SubResource("NoiseTexture2D_5mqg4")
-grass_color = Color(0.072598465, 0.3884736, 0.07217205, 1)
-grass_color_tip = Color(0.39674664, 0.69262874, 0.33997694, 1)

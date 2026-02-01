@@ -13,85 +13,61 @@ extends Node3D
 		if is_node_ready():
 			populate_grass()
 
+@export_group("Tall Grass Settings")
+@export var tall_grass_noise: FastNoiseLite:
+	set(value):
+		tall_grass_noise = value
+		if value and not value.changed.is_connected(populate_grass):
+			value.changed.connect(populate_grass)
+		if is_node_ready():
+			populate_grass()
+
+## The threshold for the noise value (0.0 to 1.0) above which grass becomes tall
+@export_range(-1.0, 1.0) var tall_grass_threshold: float = 0.1:
+	set(value):
+		tall_grass_threshold = value
+		if is_node_ready():
+			populate_grass()
+
 @export_range(0, 360) var uniform_rotation_degrees: float = 0.0:
 	set(value):
 		uniform_rotation_degrees = value
 		if is_node_ready():
 			populate_grass()
 
-@export var alpha_texture: Texture2D:
-	set(value):
-		alpha_texture = value
-		_update_material_properties()
+const GRASS_MESH = preload("res://systems/grass/SM_grassBlade_01.obj")
+const SHORT_GRASS_MATERIAL = preload("res://systems/grass/materials/short_grass.tres")
+const TALL_GRASS_MATERIAL = preload("res://systems/grass/materials/tall_grass.tres")
 
-@export var noise_texture: Texture2D:
-	set(value):
-		noise_texture = value
-		_update_material_properties()
-
-@export var noise_scale: float = 0.05:
-	set(value):
-		noise_scale = value
-		_update_material_properties()
-
-@export var grass_color: Color = Color(0.1, 0.5, 0.1, 1):
-	set(value):
-		grass_color = value
-		_update_material_properties()
-
-@export var grass_color_tip: Color = Color(0.5, 0.8, 0.2, 1):
-	set(value):
-		grass_color_tip = value
-		_update_material_properties()
-
-@export var sway_speed: float = 1.0:
-	set(value):
-		sway_speed = value
-		_update_material_properties()
-
-@export var sway_strength: float = 0.1:
-	set(value):
-		sway_strength = value
-		_update_material_properties()
-
-var _multimesh_instance: MultiMeshInstance3D
-
-func _update_material_properties() -> void:
-	if _multimesh_instance and _multimesh_instance.multimesh and _multimesh_instance.multimesh.mesh:
-		var mat = _multimesh_instance.multimesh.mesh.surface_get_material(0) as ShaderMaterial
-		if mat:
-			mat.set_shader_parameter("alpha_texture", alpha_texture)
-			mat.set_shader_parameter("noise_texture", noise_texture)
-			mat.set_shader_parameter("noise_scale", noise_scale)
-			mat.set_shader_parameter("color", grass_color)
-			mat.set_shader_parameter("color_tip", grass_color_tip)
-			mat.set_shader_parameter("sway_speed", sway_speed)
-			mat.set_shader_parameter("sway_strength", sway_strength)
-			mat.set_shader_parameter("variation_strength", 0.5)
+var _short_grass_mm: MultiMeshInstance3D
+var _tall_grass_mm: MultiMeshInstance3D
 
 func _ready() -> void:
-	_multimesh_instance = MultiMeshInstance3D.new()
-	_multimesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	# Important: Do NOT set name or owner if we don't want it saved. 
-	add_child(_multimesh_instance)
+	# Setup Short Grass
+	_short_grass_mm = MultiMeshInstance3D.new()
+	_short_grass_mm.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+	_short_grass_mm.layers = 2
+	_short_grass_mm.name = "ShortGrassMM"
+	add_child(_short_grass_mm)
 	
-	_multimesh_instance.multimesh = MultiMesh.new()
-	_multimesh_instance.multimesh.transform_format = MultiMesh.TRANSFORM_3D
-	_multimesh_instance.multimesh.mesh = load("res://systems/grass/SM_grassBlade_01.obj")
-		
-	# Setup internal material
-	var mat = ShaderMaterial.new()
-	mat.shader = load("res://systems/grass/grass.gdshader")
-	_multimesh_instance.multimesh.mesh.surface_set_material(0, mat)
+	_short_grass_mm.multimesh = MultiMesh.new()
+	_short_grass_mm.multimesh.transform_format = MultiMesh.TRANSFORM_3D
+	_short_grass_mm.multimesh.use_colors = true
+	_short_grass_mm.multimesh.mesh = GRASS_MESH
+	_short_grass_mm.material_override = SHORT_GRASS_MATERIAL
+
+	# Setup Tall Grass
+	_tall_grass_mm = MultiMeshInstance3D.new()
+	_tall_grass_mm.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+	_tall_grass_mm.layers = 2
+	_tall_grass_mm.name = "TallGrassMM"
+	add_child(_tall_grass_mm)
 	
-	# Load default texture if not set
-	if not alpha_texture:
-		var tex_path = "res://systems/grass/T_GrassBlade_A.png"
-		if ResourceLoader.exists(tex_path):
-			alpha_texture = load(tex_path)
-	
-	# Ensure texture and params are applied
-	_update_material_properties()
+	_tall_grass_mm.multimesh = MultiMesh.new()
+	_tall_grass_mm.multimesh.transform_format = MultiMesh.TRANSFORM_3D
+	_tall_grass_mm.multimesh.use_colors = true
+	_tall_grass_mm.multimesh.mesh = GRASS_MESH
+	_tall_grass_mm.material_override = TALL_GRASS_MATERIAL
 	
 	# Listen for children changes to re-populate
 	child_entered_tree.connect(func(_node): populate_grass())
@@ -100,18 +76,18 @@ func _ready() -> void:
 	populate_grass()
 
 func populate_grass() -> void:
-	if not _multimesh_instance or not _multimesh_instance.multimesh:
+	if not _short_grass_mm or not _short_grass_mm.multimesh or not _tall_grass_mm or not _tall_grass_mm.multimesh:
 		return
 		
 	# Clear existing instances
-	_multimesh_instance.multimesh.instance_count = 0
+	_short_grass_mm.multimesh.instance_count = 0
+	_tall_grass_mm.multimesh.instance_count = 0
 	
-	var total_instances = 0
 	var areas_data = [] 
 	
-	# First pass: Calculate total instances needed
+	# Collect spawn areas
 	for child in get_children():
-		if child == _multimesh_instance: continue 
+		if child == _short_grass_mm or child == _tall_grass_mm: continue 
 		
 		if child is Area3D:
 			for grandchild in child.get_children():
@@ -119,8 +95,9 @@ func populate_grass() -> void:
 					var shape = grandchild.shape as BoxShape3D
 					var size = shape.size
 					var area_xz = size.x * size.z
+					# Calculate approximate count, we might skip some depending on implementation, 
+					# or better yet, just generate points and decide type.
 					var count = int(area_xz * density)
-					total_instances += count
 					
 					areas_data.append({
 						"shape": shape,
@@ -129,18 +106,29 @@ func populate_grass() -> void:
 						"size": size
 					})
 
-	if total_instances == 0:
+	if areas_data.is_empty():
 		return
 
-	_multimesh_instance.multimesh.instance_count = total_instances
-	
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
-	var instance_index = 0
+	# Temporary arrays to hold transforms before setting them to MultiMeshes
+	var short_instances = []
+	var tall_instances = []
 	
 	# We need to transform global points to local space of the MultiMeshInstance
-	var my_global_inverse = _multimesh_instance.global_transform.affine_inverse()
+	# Assuming both MM instances are at (0,0,0) locally relative to this node, 
+	# but safer to check. Since we add them as children, global_transform.affine_inverse() 
+	# of THIS node is what we want if we assume MMs inherit transform identity.
+	var my_global_inverse = global_transform.affine_inverse()
+	
+	# Use default noise if not assigned
+	var noise = tall_grass_noise
+	if not noise:
+		noise = FastNoiseLite.new()
+		noise.noise_type = FastNoiseLite.TYPE_PERLIN
+		noise.frequency = 0.5
+		noise.seed = 1234
 	
 	for data in areas_data:
 		var count = data["count"]
@@ -154,6 +142,7 @@ func populate_grass() -> void:
 			
 			var point_in_shape = Vector3(rx, ry, rz)
 			var point_world = shape_transform * point_in_shape
+			# Convert to local space of the grass system
 			var point_local = my_global_inverse * point_world
 			
 			point_local.y += 0.5 
@@ -161,9 +150,22 @@ func populate_grass() -> void:
 			var rotation_y = deg_to_rad(uniform_rotation_degrees)
 			if random_rotation:
 				rotation_y = rng.randf_range(0, TAU)
-				
+			
 			var basis = Basis(Vector3.UP, rotation_y)
 			var transform = Transform3D(basis, point_local)
 			
-			_multimesh_instance.multimesh.set_instance_transform(instance_index, transform)
-			instance_index += 1
+			# Decide if tall or short
+			var noise_val = noise.get_noise_2d(point_world.x, point_world.z)
+			if noise_val > tall_grass_threshold:
+				tall_instances.append(transform)
+			else:
+				short_instances.append(transform)
+
+	# Apply to MultiMeshes
+	_short_grass_mm.multimesh.instance_count = short_instances.size()
+	for i in range(short_instances.size()):
+		_short_grass_mm.multimesh.set_instance_transform(i, short_instances[i])
+		
+	_tall_grass_mm.multimesh.instance_count = tall_instances.size()
+	for i in range(tall_instances.size()):
+		_tall_grass_mm.multimesh.set_instance_transform(i, tall_instances[i])

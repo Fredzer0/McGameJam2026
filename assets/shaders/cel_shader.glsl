@@ -17,7 +17,7 @@ layout(rgba16f, set = 0, binding = 1) uniform image2D color_image;
 layout(set = 0, binding = 2) uniform sampler2D depth_texture;
 layout(set = 0, binding = 3) uniform sampler2D normal_texture;
 
-const float COLOR_LEVELS = 8.0; // Number of color bands
+const float COLOR_LEVELS = 12.0; // Number of color bands
 
 void main() {
 	vec2 size = params.raster_size;
@@ -31,15 +31,17 @@ void main() {
 	vec4 color = imageLoad(color_image, uv);
 	
 	// Check Roughness from Normal Texture (Alpha channel)
-	// If Roughness is 0.0 (like our grass), skip quantization
+	// If Roughness is < 0.6 (e.g. 0.5 for house), skip quantization
 	float roughness = texture(normal_texture, uv_normalized).a;
 	
-	if (roughness < 0.01) {
+	if (roughness < 0.6) {
 		// Skip quantization for "unshaded" or special material objects
 		imageStore(color_image, uv, color);
 	} else {
-		// Simple quantization
-		vec3 quantized = floor(color.rgb * COLOR_LEVELS) / COLOR_LEVELS;
+		// Smooth quantization
+		vec3 val = color.rgb * COLOR_LEVELS;
+		vec3 quantized = (floor(val) + smoothstep(0.0, 0.2, fract(val))) / COLOR_LEVELS;
+		
 		imageStore(color_image, uv, vec4(quantized, color.a));
 	}
 }

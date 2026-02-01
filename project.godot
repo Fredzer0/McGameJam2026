@@ -66,3 +66,26 @@ hide={
 rendering_device/driver.windows="d3d12"
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
+
+[shader_globals]
+
+wind_direction={
+"type": "vec3",
+"value": Vector3(1, 0, 0)
+}
+wind_noise={
+"type": "sampler2D",
+"value": "res://systems/grass/materials/wind_noise.tres"
+}
+wind_scale={
+"type": "float",
+"value": 0.025
+}
+wind_speed={
+"type": "float",
+"value": 0.075
+}
+wind_strength={
+"type": "float",
+"value": 0.4
+}

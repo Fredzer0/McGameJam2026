@@ -79,6 +79,7 @@ size = Vector2(0.1, 0.3)
 transform = Transform3D(0.475, 0, 0, 0, 0.475, 0, 0, 0, 0.475, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_6tsjc")
 cast_shadow = 0
+gi_mode = 2
 mesh = ExtResource("2_4phh8")
 
 [node name="FireHeader" type="MeshInstance3D" parent="VFX_Fireball" unique_id=1217488735]
@@ -104,3 +105,9 @@ explosiveness = 0.3
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_mytdf")
 draw_pass_1 = SubResource("QuadMesh_rd210")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="VFX_Fireball" unique_id=896841800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1415484, 0, 0)
+light_color = Color(1, 0.41568628, 1, 1)
+shadow_enabled = true
+omni_range = 1.5

@@ -1,18 +1,38 @@
 [gd_scene format=3 uid="uid://ds550ln226he3"]
 
 [ext_resource type="PackedScene" uid="uid://dt5h0bmojprp0" path="res://systems/grass/grass_system.tscn" id="1_grass"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5mqg4"]
+[ext_resource type="Texture2D" uid="uid://nqugt63lt3qp" path="res://systems/grass/T_GrassBlade_A.png" id="2_tex"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_grass"]
 size = Vector3(50, 2, 50)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_1fei3"]
+size = Vector2(50, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oib75"]
+albedo_color = Color(0.07450981, 0.3882353, 0.07058824, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tall"]
+noise_type = 3
+frequency = 0.05
+
+
 [node name="TestGrass" type="Node3D" unique_id=1711438562]
 
 [node name="GrassSystem" parent="." unique_id=768491884 instance=ExtResource("1_grass")]
-density = 5.0
+density = 25.0
 uniform_rotation_degrees = 45.0
-noise_texture = SubResource("NoiseTexture2D_5mqg4")
+grass_alpha = ExtResource("2_tex")
+grass_bend_amount = 1.0
+light_steps = 3.0
+wind_scale = 0.1
+wind_speed = 1.0
+wind_strength = 0.5
+wind_direction = Vector3(1, 0, 0)
+sway_back = 1.0
+tall_grass_noise = SubResource("FastNoiseLite_tall")
+tall_grass_threshold = 0.2
+tall_grass_scale_multiplier = 2.0
 
 [node name="GrassArea" type="Area3D" parent="GrassSystem" unique_id=988018576]
 
@@ -20,7 +40,19 @@ noise_texture = SubResource("NoiseTexture2D_5mqg4")
 shape = SubResource("BoxShape3D_grass")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=143422265]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 10, 10)
+transform = Transform3D(0.9101566, -0.2071323, 0.35876346, 0, 0.8660253, 0.50000024, -0.41426438, -0.4550785, 0.7882187, 3.7184935, 2.4092846, 2.5304432)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=811639620]
+transform = Transform3D(0.86548126, -0.41502085, 0.2805352, -0.030692121, 0.51503193, 0.8566214, -0.5000003, -0.74999994, 0.4330126, 3.113721, 5.932505, 1.1920929e-07)
+spot_range = 10.0
+spot_attenuation = 0.0
+spot_angle_attenuation = 0.054409437
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=944888350]
 transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 0, 0)
+light_color = Color(0, 0, 0, 1)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=28178557]
+mesh = SubResource("PlaneMesh_1fei3")
+surface_material_override/0 = SubResource("StandardMaterial3D_oib75")

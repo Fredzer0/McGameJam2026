@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://cmhqtwiqubm67"]
+[gd_scene format=4 uid="uid://dxnjnan0kt0a2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqk6b"]
 resource_name = "MT_T_darkWood_01"
@@ -18,11 +18,11 @@ albedo_color = Color(0.4416593, 0.30984062, 0.20792876, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7ist"]
 resource_name = "MT_T_light_01"
 cull_mode = 2
-albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+albedo_color = Color(1, 1, 0, 1)
 roughness = 0.5
 emission_enabled = true
-emission = Color(1, 0.7578864, 0, 1)
-emission_energy_multiplier = 2.0
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 5.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_alte3"]
 _surfaces = [{
@@ -67,7 +67,6 @@ _surfaces = [{
 "vertex_count": 8,
 "vertex_data": PackedByteArray("AAD//wAAAAAAAAAA//8AAAAA/v///wAAAAAAAAAAAAD+/wAAAAAAAP///v///wAA/v8AAP//AAD/////AAAAAA==")
 }]
-blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_o7clm"]
 resource_name = "testHouse_HR_Maison_1"
@@ -131,6 +130,7 @@ size = Vector3(6.2769775, 9, 4)
 
 [node name="HR_Maison_1" type="MeshInstance3D" parent="." unique_id=1188985225]
 transform = Transform3D(0.100000024, 0, 0, 0, 0, -0.100000024, 0, 0.100000024, 0, 0, 0, 0)
+cast_shadow = 2
 mesh = SubResource("ArrayMesh_o7clm")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1659760085]
@@ -138,3 +138,24 @@ mesh = SubResource("ArrayMesh_o7clm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=37836828]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006164551, 4, 0)
 shape = SubResource("BoxShape3D_i4deb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1952533385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.663776, 1.2402306, 0)
+visible = false
+light_color = Color(1, 1, 0.45490196, 1)
+shadow_enabled = true
+omni_range = 3.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=146475095]
+transform = Transform3D(-0.67160696, 0.37945378, -0.636364, -0.49240395, 0.413176, 0.76604456, 0.5536088, 0.8278289, -0.09064728, 3.1, 1.8, 0.3)
+light_color = Color(1, 1, 0.24313726, 1)
+shadow_enabled = true
+spot_attenuation = 0.0
+spot_angle = 30.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=74026493]
+transform = Transform3D(0.7331942, 0.2773587, -0.6208852, 0.4924039, 0.41317594, 0.76604444, 0.46900392, -0.8673856, 0.1663657, 3.1, 1.8, -0.3)
+light_color = Color(1, 1, 0.24313726, 1)
+shadow_enabled = true
+spot_attenuation = 0.0
+spot_angle = 30.0
