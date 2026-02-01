@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbtww8erog8pt"]
 
-[ext_resource type="PackedScene" uid="uid://pyq125udegar" path="res://animation/witch/models/SK_WitchFlowerHat.fbx" id="1_a53st"]
+[ext_resource type="PackedScene" uid="uid://c87xvknrwvsjy" path="res://animation/witch/models/SK_Witch_And_FlowerHat.fbx" id="1_a53st"]
 [ext_resource type="Animation" uid="uid://cc1c7kw0h0lwu" path="res://animation/witch/animations/Idle.res" id="2_s1g4d"]
 [ext_resource type="Animation" uid="uid://bboicec6bkekj" path="res://animation/witch/animations/Spell.res" id="3_xt446"]
 [ext_resource type="Animation" uid="uid://c8qknlqh0fn5q" path="res://animation/witch/animations/Walk.res" id="4_ear56"]
@@ -14,7 +14,8 @@ _data = {
 
 [node name="Node3D" type="Node3D" unique_id=765174657]
 
-[node name="SK_WitchFlowerHat" parent="." unique_id=92399093 instance=ExtResource("1_a53st")]
+[node name="SK_Witch_And_FlowerHat" parent="." unique_id=581956656 instance=ExtResource("1_a53st")]
 
-[node name="AnimationTree" type="AnimationTree" parent="SK_WitchFlowerHat" unique_id=1265124352]
+[node name="AnimationTree" type="AnimationTree" parent="SK_Witch_And_FlowerHat" unique_id=1265124352]
+root_node = NodePath("")
 libraries/witchFlowerHat = SubResource("AnimationLibrary_i1rkw")

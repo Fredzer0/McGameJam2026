@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://lhhoqgrgdlue"]
 
-[ext_resource type="PackedScene" uid="uid://32ku6bq58710" path="res://animation/witch/models/SK_WitchHorseHat.fbx" id="1_qiuml"]
+[ext_resource type="PackedScene" uid="uid://b41mx2ulge744" path="res://animation/witch/models/SK_Witch_And_HorseHat.fbx" id="1_qiuml"]
 [ext_resource type="Animation" uid="uid://cc1c7kw0h0lwu" path="res://animation/witch/animations/Idle.res" id="2_v18go"]
 [ext_resource type="Animation" uid="uid://bboicec6bkekj" path="res://animation/witch/animations/Spell.res" id="3_ktyij"]
 [ext_resource type="Animation" uid="uid://c8qknlqh0fn5q" path="res://animation/witch/animations/Walk.res" id="4_p3ikp"]
@@ -14,7 +14,8 @@ _data = {
 
 [node name="Node3D" type="Node3D" unique_id=1606689770]
 
-[node name="SK_WitchHorseHat" parent="." unique_id=19492924 instance=ExtResource("1_qiuml")]
+[node name="SK_Witch_And_HorseHat" parent="." unique_id=339032843 instance=ExtResource("1_qiuml")]
 
-[node name="AnimationTree" type="AnimationTree" parent="SK_WitchHorseHat" unique_id=1748362876]
+[node name="AnimationTree" type="AnimationTree" parent="SK_Witch_And_HorseHat" unique_id=1748362876]
+root_node = NodePath("")
 libraries/witchHorseHat = SubResource("AnimationLibrary_ugf05")
