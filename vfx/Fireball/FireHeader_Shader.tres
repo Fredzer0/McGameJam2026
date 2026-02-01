@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" format=3 uid="uid://dg5xnltkcwbes"]
 
-[ext_resource type="Texture2D" uid="uid://dxxkalaiy6gxw" path="res://vfx/LightningStrike/Texture_ImpactStrike.png" id="1_kao1n"]
+[ext_resource type="Texture2D" uid="uid://0vlgndme0vkp" path="res://vfx/LightningStrike/Texture_ImpactStrike.png" id="1_kao1n"]
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_5wkpu"]
 parameter_name = "ColorParameter"

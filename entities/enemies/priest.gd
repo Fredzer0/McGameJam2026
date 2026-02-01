@@ -9,6 +9,7 @@ const SPEED = 3.0
 const ROTATION_SPEED = 14.0
 const MIN_MOVE_RANGE = 6
 const MAX_MOVE_RANGE = 10
+const MOVE_TIMEOUT = 5.0
 
 const MIN_DETECT_RADIUS = 2.0
 const MAX_DETECT_RADIUS = 8.0
@@ -23,6 +24,7 @@ var is_global_chase: bool = false
 
 var idle_wait_time: float = 1.5
 var idle_timer_count: float = 0
+var move_timer: float = 0.0
 var path_update_timer: float = 0.0
 @onready var collision_shape_3d: CollisionShape3D = $detectplayer/CollisionShape3D
 @onready var spot_light_3d: SpotLight3D = $Area3D/SpotLight3D
@@ -132,6 +134,7 @@ func _on_wating_to_move(delta: float) -> void:
 		var nav_map = navigation_agent_3d.get_navigation_map();
 		var safe_target = NavigationServer3D.map_get_closest_point(nav_map, target);
 		navigation_agent_3d.target_position = safe_target;
+		move_timer = MOVE_TIMEOUT
 		state = State.MOVE;
 
 func investigate(target_pos: Vector3) -> void:
@@ -165,6 +168,10 @@ func _on_move() -> void:
 	var new_velocity = direction * SPEED;
 	navigation_agent_3d.set_velocity(new_velocity);
 	animPlayer.play("NPCAnimPlayer/NPCWalk")
+	
+	move_timer -= get_physics_process_delta_time()
+	if move_timer <= 0:
+		state = State.IDLE
 
 var target_node: Node3D = null
 
@@ -195,6 +202,7 @@ func _on_follow_target():
 	
 	var new_velocity = direction * SPEED
 	navigation_agent_3d.set_velocity(new_velocity)
+	animPlayer.play("NPCAnimPlayer/NPCWalk")
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:

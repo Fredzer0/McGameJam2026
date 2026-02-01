@@ -13,6 +13,7 @@ const ROTATION_SPEED = 14.0
 const MIN_MOVE_RANGE = 12
 const MAX_MOVE_RANGE = 30
 const PANIC_MAX_DURATION = 10.0
+const MOVE_TIMEOUT = 5.0
 
 enum State {IDLE, WATING_TO_MOVE, MOVE, PANIC, FROG}
 var state: State = State.IDLE
@@ -23,6 +24,7 @@ var form: Form = Form.HUMAN
 var idle_wait_time: float = 1.5
 var idle_timer_count: float = 0
 var panic_timer: float = 0.0
+var move_timer: float = 0.0
 var path_update_timer: float = 0.0
 
 @onready var spot_light_3d: SpotLight3D = $Area3D/SpotLight3D
@@ -80,6 +82,7 @@ func _on_idle() -> void:
 	# Desync idle times to prevent cpu spikes
 	idle_timer_count = randf_range(idle_wait_time * 0.5, idle_wait_time * 1.5);
 	state = State.WATING_TO_MOVE;
+	animPlayer.play("NPCAnimPlayer/NPCIdle")
 
 func _on_wating_to_move(delta: float) -> void:
 	idle_timer_count -= delta;
@@ -88,6 +91,7 @@ func _on_wating_to_move(delta: float) -> void:
 		var nav_map = navigation_agent_3d.get_navigation_map();
 		var safe_target = NavigationServer3D.map_get_closest_point(nav_map, target);
 		navigation_agent_3d.target_position = safe_target;
+		move_timer = MOVE_TIMEOUT
 		state = State.MOVE;
 
 func get_new_target_position() -> Vector3:
@@ -101,6 +105,11 @@ func _on_move() -> void:
 	var direction = (next_position - current_position).normalized();
 	var new_velocity = direction * SPEED;
 	navigation_agent_3d.set_velocity(new_velocity);
+	animPlayer.play("NPCAnimPlayer/NPCWalk")
+	
+	move_timer -= get_physics_process_delta_time()
+	if move_timer <= 0:
+		state = State.IDLE
 
 func get_flee_position(source: Node3D) -> Vector3:
 	var npc_pos = global_transform.origin
@@ -137,6 +146,7 @@ func _on_panic() -> void:
 	var direction = (next_position - current_position).normalized();
 	var new_velocity = direction * PANIC_SPEED;
 	navigation_agent_3d.set_velocity(new_velocity);
+	animPlayer.play("NPCAnimPlayer/NPCWalk")
 
 func start_panic(source: Node3D) -> void:
 	panic_timer = PANIC_MAX_DURATION
