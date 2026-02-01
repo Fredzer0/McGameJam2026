@@ -16,6 +16,9 @@ func _ready() -> void:
 	settings_menu.close_requested.connect(_on_settings_closed)
 
 func _on_play_pressed() -> void:
+	# Disable button to prevent double clicks
+	$MarginContainer/HBoxContainer/VBox/PlayButton.disabled = true
+	
 	# Transition to level scene
 	get_tree().change_scene_to_file("res://levels/gameLoop.tscn")
 

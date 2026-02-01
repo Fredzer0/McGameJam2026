@@ -13,5 +13,5 @@ func _process(delta: float) -> void:
 
 
 	if value == max_value:
-		queue_free()
+		get_parent().get_parent().get_parent().queue_free()
 	pass
