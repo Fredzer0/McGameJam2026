@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var bar = $Sprite3D/SubViewPort/TextureProgressBar
+@onready var bar = $Sprite3D/SubViewport/TextureProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
