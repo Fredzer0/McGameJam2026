@@ -1,0 +1,46 @@
+[gd_resource type="VisualShader" format=3 uid="uid://bamoupyrqkhjq"]
+
+[ext_resource type="Texture2D" uid="uid://dpndwr3crrti3" path="res://vfx/LightningStrike/Texture_GroundImpact.png" id="1_a3h6d"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_oeavq"]
+texture = ExtResource("1_a3h6d")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_57r4g"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_7pla0"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_rk4ue"]
+default_input_values = [1, 0.0, 2, 1.0, 3, 1.0, 4, 0.0]
+
+[sub_resource type="Gradient" id="Gradient_aq6x6"]
+colors = PackedColorArray(0, 0.8666668, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o3yns"]
+gradient = SubResource("Gradient_aq6x6")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_vgb2u"]
+texture = SubResource("GradientTexture2D_o3yns")
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_fcqpk"]
+default_input_values = [0, 0.0, 1, 0.5]
+operator = 2
+
+[resource]
+modes/cull = 2
+flags/unshaded = true
+nodes/fragment/0/position = Vector2(826.6667, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_oeavq")
+nodes/fragment/2/position = Vector2(-333.33334, 240)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_57r4g")
+nodes/fragment/3/position = Vector2(-933.3333, -40)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatOp_7pla0")
+nodes/fragment/4/position = Vector2(93.333336, 160)
+nodes/fragment/5/node = SubResource("VisualShaderNodeRemap_rk4ue")
+nodes/fragment/5/position = Vector2(-474.2776, -63.922604)
+nodes/fragment/6/node = SubResource("VisualShaderNodeTexture_vgb2u")
+nodes/fragment/6/position = Vector2(346.66666, -80)
+nodes/fragment/7/node = SubResource("VisualShaderNodeFloatOp_fcqpk")
+nodes/fragment/7/position = Vector2(443.1788, 299.05856)
+nodes/fragment/connections = PackedInt32Array(2, 0, 4, 1, 3, 0, 5, 0, 5, 0, 4, 0, 4, 0, 6, 0, 6, 0, 0, 0, 4, 0, 7, 0, 7, 0, 0, 1)
