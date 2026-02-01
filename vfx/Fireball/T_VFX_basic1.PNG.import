@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbbn6iarjumss"
 path.s3tc="res://.godot/imported/T_VFX_basic1.PNG-64523d9b4663efa182cab1d89292cf4f.s3tc.ctex"
+path.etc2="res://.godot/imported/T_VFX_basic1.PNG-64523d9b4663efa182cab1d89292cf4f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://vfx/Fireball/T_VFX_basic1.PNG"
-dest_files=["res://.godot/imported/T_VFX_basic1.PNG-64523d9b4663efa182cab1d89292cf4f.s3tc.ctex"]
+dest_files=["res://.godot/imported/T_VFX_basic1.PNG-64523d9b4663efa182cab1d89292cf4f.s3tc.ctex", "res://.godot/imported/T_VFX_basic1.PNG-64523d9b4663efa182cab1d89292cf4f.etc2.ctex"]
 
 [params]
 

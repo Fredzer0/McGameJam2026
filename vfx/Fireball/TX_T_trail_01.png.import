@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b22v1b6ko40v4"
 path.s3tc="res://.godot/imported/TX_T_trail_01.png-ab94ea65e8524e4e7a1c78b4a792d07b.s3tc.ctex"
+path.etc2="res://.godot/imported/TX_T_trail_01.png-ab94ea65e8524e4e7a1c78b4a792d07b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://vfx/Fireball/TX_T_trail_01.png"
-dest_files=["res://.godot/imported/TX_T_trail_01.png-ab94ea65e8524e4e7a1c78b4a792d07b.s3tc.ctex"]
+dest_files=["res://.godot/imported/TX_T_trail_01.png-ab94ea65e8524e4e7a1c78b4a792d07b.s3tc.ctex", "res://.godot/imported/TX_T_trail_01.png-ab94ea65e8524e4e7a1c78b4a792d07b.etc2.ctex"]
 
 [params]
 
