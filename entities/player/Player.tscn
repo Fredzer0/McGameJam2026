@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://caq6eorqv7tg6" path="res://entities/player/Player.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://bifgi2vv2grow" path="res://vfx/SmokePouff/Smoke.tscn" id="2_l3c03"]
 [ext_resource type="PackedScene" uid="uid://bc31tl7pyh31j" path="res://ui/castCircle/castSpellTime.tscn" id="3_eaotn"]
+[ext_resource type="PackedScene" uid="uid://bhb36dvx6wb25" path="res://vfx/MagicCastingCircle/MagicCastingCircle.tscn" id="3_highlight"]
 [ext_resource type="PackedScene" uid="uid://lhhoqgrgdlue" path="res://animation/witch/animations/AnimationWitchHorseHat.tscn" id="4_eaotn"]
 [ext_resource type="PackedScene" uid="uid://ct1fvf0atqwkk" path="res://animation/NPC/animations/bucketTransformation_v01.glb" id="5_g3lhm"]
 [ext_resource type="PackedScene" uid="uid://74m3t0e8b8cn" path="res://vfx/Fireball/Fireball.tscn" id="6_fire"]
@@ -19,6 +20,7 @@ radius = 1.5844727
 script = ExtResource("1_script")
 vfx_scene = ExtResource("2_l3c03")
 castingCircle = ExtResource("3_eaotn")
+target_highlight_scene = ExtResource("3_highlight")
 fireball_scene = ExtResource("6_fire")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1747807594]

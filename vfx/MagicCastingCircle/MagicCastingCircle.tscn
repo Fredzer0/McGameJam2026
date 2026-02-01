@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://cfgpsabulc2ht" path="res://vfx/MagicCastingCircle/MagicCastingCircle.tres" id="1_c3xo6"]
 [ext_resource type="PackedScene" uid="uid://gy060uqmuqlp" path="res://animation/NPC/animations/Anim_NPCWalk.fbx" id="2_kvr1p"]
 [ext_resource type="Shader" uid="uid://ddjjw5p7wyq56" path="res://vfx/MagicCastingCircle/MagicCastingWind.tres" id="3_aychu"]
+[ext_resource type="Script" path="res://Scripts/magic_circle_controller.gd" id="4_controller"]
 
 [sub_resource type="Curve" id="Curve_0kevx"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
@@ -18,7 +19,12 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_86v6m"]
 gradient = SubResource("Gradient_aychu")
 
+[sub_resource type="Curve" id="Curve_kvr1p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_ybch1"]
+curve = SubResource("Curve_kvr1p")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0jntc"]
 lifetime_randomness = 0.05
@@ -83,6 +89,7 @@ shader = ExtResource("3_aychu")
 shader_parameter/Vector2Parameter = Vector2(0, 2)
 
 [node name="Node3D" type="Node3D" unique_id=636139643]
+script = ExtResource("4_controller")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=752828077]
 amount = 10
