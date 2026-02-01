@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://bvcrbg4k0fhlp" path="res://levels/justin.gd" id="1_lviyc"]
 [ext_resource type="PackedScene" uid="uid://whl2a2p8t4r5" path="res://entities/enemies/npc.tscn" id="2_7d5c5"]
 [ext_resource type="PackedScene" uid="uid://d2y22dtsfn7sr" path="res://entities/enemies/priest.tscn" id="3_34y4k"]
+[ext_resource type="PackedScene" uid="uid://bxkwvymuucao" path="res://entities/enemies/npc2.tscn" id="3_xb3cr"]
 [ext_resource type="PackedScene" uid="uid://b812iuikvckso" path="res://entities/player/Player.tscn" id="4_c15db"]
-[ext_resource type="PackedScene" path="res://levels/environement_village_v_02.scn" id="4_hmgtm"]
-[ext_resource type="PackedScene" uid="uid://bgf6av22o0etn" path="res://systems/systems.tscn" id="5_7d5c5"]
+[ext_resource type="PackedScene" uid="uid://cnq3tqiw5vasx" path="res://levels/environement_village_v_02.scn" id="4_hmgtm"]
+[ext_resource type="PackedScene" path="res://systems/systems.tscn" id="5_7d5c5"]
 [ext_resource type="PackedScene" uid="uid://b5x8y1n2m3q1" path="res://ui/hud/HUD.tscn" id="6_34y4k"]
 [ext_resource type="PackedScene" uid="uid://b7ggpa1vwgrl2" path="res://vfx/ShaderComposer.tscn" id="9_mmkkx"]
 [ext_resource type="PackedScene" path="res://ui/hud/FPSCounter.tscn" id="10_fpscnt"]
@@ -27,14 +28,14 @@ script = ExtResource("1_lviyc")
 [node name="NPC" parent="Enemies" unique_id=2091204191 instance=ExtResource("2_7d5c5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.881102, 0.837821, -13.466932)
 
-[node name="NPC2" parent="Enemies" unique_id=1478535759 instance=ExtResource("2_7d5c5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.579527, 0.837821, -4.87871)
+[node name="NPC8" parent="Enemies" unique_id=1478535759 instance=ExtResource("3_xb3cr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.798648, 0, -4.499074)
 
 [node name="NPC3" parent="Enemies" unique_id=763724913 instance=ExtResource("2_7d5c5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0247326, 0.837821, 9.684746)
 
-[node name="NPC4" parent="Enemies" unique_id=1628902586 instance=ExtResource("2_7d5c5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4350367, 0.837821, -3.14048)
+[node name="NPC4" parent="Enemies" unique_id=101824009 instance=ExtResource("3_xb3cr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.19351, 0, -5.379668)
 
 [node name="NPC5" parent="Enemies" unique_id=708846818 instance=ExtResource("2_7d5c5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1344128, 0.837821, -19.438354)
@@ -48,8 +49,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.820762, 0.8378191, -12.640
 [node name="NPC7" parent="Enemies" unique_id=445058530 instance=ExtResource("2_7d5c5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.631407, 0.837821, -3.2634926)
 
-[node name="NPC8" parent="Enemies" unique_id=1624189627 instance=ExtResource("2_7d5c5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.74505, 0.837821, 5.6870384)
+[node name="NPC9" parent="Enemies" unique_id=1975903342 instance=ExtResource("3_xb3cr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.870924, 0, 4.3171263)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1487729110]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
