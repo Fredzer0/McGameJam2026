@@ -17,6 +17,7 @@ var idle_wait_time: float = 1.5
 var idle_timer_count: float = 0
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@onready var animPlayer = find_child("AnimationPlayer", true, false)
 
 func _ready() -> void:
 	panic_signal.connect(_on_area_3d_body_entered);
@@ -50,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	var horizontal_velocity = Vector2(velocity.x, velocity.z)
 	if horizontal_velocity.length() > 0.2:
 		var target_angle = atan2(velocity.x, velocity.z) - PI / 2
-		$MeshInstance3D.rotation.y = lerp_angle($MeshInstance3D.rotation.y, target_angle, ROTATION_SPEED * delta)
+		$NPCModel.rotation.y = lerp_angle($NPCModel.rotation.y, target_angle, ROTATION_SPEED * delta)
 		$Area3D.rotation.y = lerp_angle($Area3D.rotation.y, target_angle, ROTATION_SPEED * delta)
 
 
@@ -59,6 +60,7 @@ func _on_idle() -> void:
 	velocity = Vector3.ZERO;
 	idle_timer_count = idle_wait_time;
 	state = State.WATING_TO_MOVE;
+	animPlayer.play("NPCAnimPlayer/NPCIdle")
 
 func _on_wating_to_move(delta: float) -> void:
 	if target_node: return
@@ -82,6 +84,7 @@ func _on_move() -> void:
 	var direction = (next_position - current_position).normalized();
 	var new_velocity = direction * SPEED;
 	navigation_agent_3d.set_velocity(new_velocity);
+	animPlayer.play("NPCAnimPlayer/NPCWalk")
 
 var target_node: Node3D = null
 

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://whl2a2p8t4r5"]
 
 [ext_resource type="Script" uid="uid://e8fwn1465ipw" path="res://entities/enemies/npc.gd" id="1_rkkgd"]
+[ext_resource type="PackedScene" uid="uid://ba7nixn4vyapb" path="res://animation/NPC/animations/villagerMan.tscn" id="2_jjr52"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_voh54"]
 
@@ -15,14 +16,10 @@ disable_receive_shadows = true
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rkkgd"]
 radius = 7.9379883
 
-[sub_resource type="BoxMesh" id="BoxMesh_rkkgd"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4tst"]
+[sub_resource type="BoxMesh" id="BoxMesh_jjr52"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t0f4b"]
 albedo_color = Color(0.23137255, 0.52156866, 0.23921569, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_jjr52"]
 
 [node name="NPC" type="CharacterBody3D" unique_id=1478535759 groups=["npc"]]
 axis_lock_linear_y = true
@@ -36,6 +33,7 @@ avoidance_enabled = true
 debug_enabled = true
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1158340794]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D" unique_id=1965569671]
 transform = Transform3D(1, 0, -4.371139e-08, -4.371139e-08, 1.9106855e-15, -1, 0, 1, 1.9106855e-15, 0, 0, 0)
@@ -48,7 +46,7 @@ mesh = SubResource("PrismMesh_rkkgd")
 surface_material_override/0 = SubResource("StandardMaterial3D_jjr52")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Area3D" unique_id=2075479088]
-transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1.9106855e-15, 1, -1.6703743e-22, -0.07623434, -0.48622108, 0)
+transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1.9106855e-15, 1, -1.6703743e-22, -0.07623434, 0.13085109, 0)
 light_color = Color(1, 1, 0.3019608, 1)
 light_energy = 16.0
 
@@ -57,19 +55,9 @@ light_energy = 16.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="detectLook" unique_id=1218516951]
 shape = SubResource("CylinderShape3D_rkkgd")
 
-[node name="BoxModel" type="Node3D" parent="." unique_id=455687129]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5777941, -1.7648041, 1.388298)
-visible = false
-
-[node name="BoxMode" type="MeshInstance3D" parent="BoxModel" unique_id=1119078931]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5777941, 1.7648041, -1.388298)
-mesh = SubResource("BoxMesh_rkkgd")
-
 [node name="NpcModel" type="Node3D" parent="." unique_id=956098065]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NpcModel" unique_id=1626133996]
-mesh = SubResource("CapsuleMesh_g4tst")
-surface_material_override/0 = SubResource("StandardMaterial3D_t0f4b")
+[node name="Node3D" parent="NpcModel" unique_id=1471463205 instance=ExtResource("2_jjr52")]
 
 [node name="FrogModel" type="Node3D" parent="." unique_id=827817256]
 visible = false

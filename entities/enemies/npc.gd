@@ -25,6 +25,7 @@ var idle_timer_count: float = 0
 var panic_timer: float = 0.0
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@onready var animPlayer = find_child("AnimationPlayer", true, false)
 
 func _ready() -> void:
 	susDirector = get_tree().get_first_node_in_group("suspicionDirector")

@@ -103,11 +103,11 @@ func try_transform_npc(body: Node3D) -> void:
 			is_casting = true
 			animPlayer.play("WitchAnimPlayer/Spell")
 			var cast = castingCircle.instantiate()
-			add_child(cast)
+			body.add_child(cast)
 			cast.transform.origin = Vector3.ZERO
 			await animPlayer.animation_finished
 			var vfx = vfx_scene.instantiate()
-			add_child(vfx)
+			body.add_child(vfx)
 			vfx.transform.origin = Vector3.ZERO
 			body.become_frog()
 			is_casting = false
