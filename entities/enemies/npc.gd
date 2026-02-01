@@ -126,8 +126,10 @@ func get_flee_position(source: Node3D) -> Vector3:
 	return flee_target
 
 func _on_panic() -> void:
+	$Warning.show()
 	panic_timer -= get_physics_process_delta_time()
 	if panic_timer <= 0:
+		$Warning.hide()
 		state = State.IDLE
 		calm_signal.emit()
 		return

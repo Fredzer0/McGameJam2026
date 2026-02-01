@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://brruxpqotaeex" path="res://entities/enemies/priest.gd" id="1_p85cn"]
 [ext_resource type="PackedScene" uid="uid://33l7m5l84rmv" path="res://animation/NPC/animations/villagerClerk.tscn" id="2_nmvpk"]
 [ext_resource type="AudioStream" uid="uid://cp2ndf2hctda6" path="res://assets/audio/sfx/SFX_ThunderSpell.mp3" id="3_go57i"]
+[ext_resource type="AudioStream" uid="uid://rjmg87usg1ei" path="res://assets/audio/choirSound.wav" id="4_6ksxv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_thg7q"]
 
@@ -40,7 +41,7 @@ mesh = SubResource("PrismMesh_p85cn")
 surface_material_override/0 = SubResource("StandardMaterial3D_go57i")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Area3D" unique_id=1138655494]
-transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1.9106855e-15, 1, 0, -1.2742119, -0.48622108, 5.236526e-08)
+transform = Transform3D(-0.801494, 1.7571853e-08, -0.59800285, -0.59800285, 3.5034418e-08, 0.801494, 3.5034414e-08, 1, -1.7571857e-08, 0.4792006, 0.17596579, -2.4278833e-08)
 light_color = Color(0.6901961, 1, 1, 1)
 light_energy = 16.0
 
@@ -58,6 +59,12 @@ shape = SubResource("CylinderShape3D_nmvpk")
 [node name="ThunderSound" type="AudioStreamPlayer" parent="Audio" unique_id=1644477086]
 stream = ExtResource("3_go57i")
 volume_db = -16.0
+
+[node name="Audio2" type="Node" parent="." unique_id=1485754786]
+
+[node name="Choir" type="AudioStreamPlayer" parent="Audio2" unique_id=1741967749]
+stream = ExtResource("4_6ksxv")
+volume_db = -8.246
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

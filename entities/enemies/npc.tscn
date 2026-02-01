@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://e8fwn1465ipw" path="res://entities/enemies/npc.gd" id="1_rkkgd"]
 [ext_resource type="PackedScene" uid="uid://ba7nixn4vyapb" path="res://animation/NPC/animations/villagerMan.tscn" id="2_jjr52"]
 [ext_resource type="Texture2D" uid="uid://cke7uip5ssacc" path="res://assets/textures/sketch1769860507731.png" id="3_oh6r5"]
+[ext_resource type="Texture2D" uid="uid://2qd4obmjuwg" path="res://assets/ui/Alert.png" id="4_s6mif"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_voh54"]
 
@@ -41,9 +42,10 @@ mesh = SubResource("PrismMesh_rkkgd")
 surface_material_override/0 = SubResource("StandardMaterial3D_jjr52")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Area3D" unique_id=2075479088]
-transform = Transform3D(-8.742278e-08, 0, -1, -1, 1.9106855e-15, 8.742278e-08, 1.9106855e-15, 1, 0, -0.34777668, 0.224688, 1.186949e-08)
+transform = Transform3D(-0.6727672, 1.13713305e-08, -0.7398542, -0.7398542, 2.940759e-08, 0.6727672, 2.9407587e-08, 1, -1.1371334e-08, 0.44869465, 0.5958585, 0.40123084)
 light_color = Color(1, 1, 0.3019608, 1)
 light_energy = 16.0
+spot_range = 4.07
 
 [node name="detectLook" type="Area3D" parent="." unique_id=296766401]
 
@@ -59,12 +61,21 @@ visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="FrogModel" unique_id=474683856]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.4327665, 0)
-pixel_size = 0.002
+pixel_size = 0.006
 billboard = 1
 texture_filter = 2
 texture = ExtResource("3_oh6r5")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1027692691]
+
+[node name="Warning" type="Node3D" parent="." unique_id=1816229889]
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="Warning" unique_id=1653990771]
+transform = Transform3D(1, 0, 0, 0, 1.6952088, 0, 0, 0, 1, 0, 2.1085033, 0)
+pixel_size = 0.002
+billboard = 1
+texture = ExtResource("4_s6mif")
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
