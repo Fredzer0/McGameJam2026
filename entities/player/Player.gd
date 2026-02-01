@@ -42,6 +42,7 @@ var dash_timer = 0.0
 var currentMana = 100
 var is_hiding = false
 var is_casting = false
+var is_emoting = false
 
 @export var maxMana = 100
 @export var manaRegen = 0.1
@@ -109,7 +110,7 @@ func _physics_process(delta):
 			animPlayer.play("WitchAnimPlayer/Walk")
 			if !walkSound.playing:
 				walkSound.play(0.5)
-		else:
+		elif !is_emoting:
 			animPlayer.play("WitchAnimPlayer/Idle")
 			walkSound.stop()
 
@@ -118,6 +119,14 @@ func _physics_process(delta):
 		if walkSound.playing:
 			walkSound.stop()
 		becomeBox()
+
+	if Input.is_action_just_pressed("emote") and not is_dashing and not is_casting:
+		animPlayer.play("WitchAnimPlayer/Emote")
+		is_emoting = true
+		await animPlayer.animation_finished
+		is_emoting = false
+
+		
 
 	if !is_dashing and not is_hiding and currentMana < 100 and not is_casting:
 		currentMana += manaRegen

@@ -32,6 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.78610086, 0)
 [node name="Node3D" parent="WitchModel" unique_id=1606689770 instance=ExtResource("4_eaotn")]
 
 [node name="BoxModel" type="Node3D" parent="." unique_id=916300823]
+visible = false
 
 [node name="bucketTransformation_v01" parent="BoxModel" unique_id=1837892099 instance=ExtResource("5_g3lhm")]
 
