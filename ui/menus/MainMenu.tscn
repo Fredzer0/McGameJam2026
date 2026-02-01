@@ -1,14 +1,12 @@
 [gd_scene format=3 uid="uid://tii5wt3vmaim"]
 
 [ext_resource type="Script" uid="uid://d2c0jsuymisyk" path="res://ui/menus/MainMenu.gd" id="1_mainmenu"]
+[ext_resource type="Texture2D" uid="uid://dcjexhvipqj00" path="res://assets/ui/title.png" id="2_34sxx"]
 [ext_resource type="Texture2D" uid="uid://c6wbm731qj8h4" path="res://assets/ui/Play.png" id="2_play"]
 [ext_resource type="PackedScene" uid="uid://cdxokteuc1hu5" path="res://ui/menus/SettingsMenu.tscn" id="3_settings"]
 [ext_resource type="Texture2D" uid="uid://bxwtmb45sl03n" path="res://assets/ui/Controls.png" id="4_controls"]
 [ext_resource type="Texture2D" uid="uid://cqhhgu38ul4gj" path="res://assets/ui/Quit.png" id="5_quit"]
 [ext_resource type="AudioStream" uid="uid://bcel12k6vuk5w" path="res://assets/audio/Doom Eternal OST  The Only Thing They Fear Is You Mick Gordon Doom Eternal Theme.mp3" id="6_doom"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_vm5fi"]
-font_size = 109
 
 [node name="MainMenu" type="Control" unique_id=1857477556]
 layout_mode = 3
@@ -17,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.99852246, 1.0118722)
 script = ExtResource("1_mainmenu")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=596422491]
@@ -48,12 +47,12 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/VBox" unique_id=164179247]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBox" unique_id=1398348942]
+custom_minimum_size = Vector2(0, 677.35)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Witching Hours"
-label_settings = SubResource("LabelSettings_vm5fi")
-horizontal_alignment = 1
+texture = ExtResource("2_34sxx")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBox" unique_id=1375715732]
 custom_minimum_size = Vector2(0, 30)
@@ -78,3 +77,10 @@ layout_mode = 1
 [node name="DoomMusic" type="AudioStreamPlayer" parent="." unique_id=123456789]
 stream = ExtResource("6_doom")
 autoplay = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1618041216]
+layout_mode = 0
+offset_left = 2685.9685
+offset_top = 1091.0469
+offset_right = 2725.9685
+offset_bottom = 1131.0469

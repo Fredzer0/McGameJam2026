@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cvjyeenvvo6qd"]
+
+[ext_resource type="Script" uid="uid://co8uoynd3waae" path="res://ui/menus/character_switcher.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://c16iecyt3nx1u" path="res://assets/ui/left2.png" id="2_s5k1c"]
+[ext_resource type="Texture2D" uid="uid://cjhmbsmjxpjwj" path="res://assets/ui/right2.png" id="3_g8yp2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_arrow"]
+size = Vector3(1, 1, 0.1)
+
+[node name="CharacterSwitcher" type="Node3D" unique_id=196613381]
+script = ExtResource("1_script")
+
+[node name="ModelPivot" type="Node3D" parent="." unique_id=409635109]
+
+[node name="LeftArrow" type="Area3D" parent="." unique_id=200100200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftArrow" unique_id=200100201]
+shape = SubResource("BoxShape3D_arrow")
+
+[node name="Sprite3D" type="Sprite3D" parent="LeftArrow" unique_id=200100202]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+pixel_size = 0.005
+texture = ExtResource("2_s5k1c")
+
+[node name="RightArrow" type="Area3D" parent="." unique_id=300100300]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightArrow" unique_id=300100301]
+shape = SubResource("BoxShape3D_arrow")
+
+[node name="Sprite3D" type="Sprite3D" parent="RightArrow" unique_id=300100302]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+pixel_size = 0.005
+texture = ExtResource("3_g8yp2")

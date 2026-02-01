@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://d3vibtaye1kdc"]
 
-[ext_resource type="Shader" uid="uid://bnvqs3c3uoplo" path="res://assets/models/Tree/leaf.tres" id="1_igqbf"]
+[ext_resource type="Material" uid="uid://dr6aetemf0cag" path="res://systems/grass/materials/leaves.tres" id="1_igqbf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2k7x"]
 resource_name = "lambert2"
@@ -42,13 +42,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_orf4u")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qw3uc"]
-render_priority = 0
-shader = ExtResource("1_igqbf")
-shader_parameter/ColorParameter = Color(0, 0.44705883, 0, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xaamq"]
 resource_name = "standardSurface1"
+cull_mode = 1
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.21249634, 0.122389294, 0.10881759, 1)
 emission_enabled = true
@@ -94,7 +90,7 @@ shadow_mesh = SubResource("ArrayMesh_qtqh3")
 [node name="SM_Leafs_01" type="MeshInstance3D" parent="testTreeGodotShader" unique_id=715526416]
 transform = Transform3D(1, 0, 0, 0, 1, 7.5497894e-08, 0, -7.5497894e-08, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4cqin")
-surface_material_override/0 = SubResource("ShaderMaterial_qw3uc")
+surface_material_override/0 = ExtResource("1_igqbf")
 
 [node name="SM_Tree_01" type="MeshInstance3D" parent="testTreeGodotShader" unique_id=474709841]
 transform = Transform3D(1, 0, 0, 0, 1, 7.5497894e-08, 0, -7.5497894e-08, 1, 0, 0, 0)
