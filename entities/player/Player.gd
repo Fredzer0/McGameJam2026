@@ -51,6 +51,7 @@ var is_casting = false
 @onready var animPlayer = find_child("AnimationPlayer", true, false)
 @export var vfx_scene: PackedScene
 @export var castingCircle: PackedScene
+@export var target_highlight_scene: PackedScene
 @export var fireball_scene: PackedScene
 
 @onready var spellSound = $Audio/Spell
@@ -227,8 +228,8 @@ func update_target_visuals() -> void:
 	for body in current_bodies:
 		if is_valid_target(body):
 			if not active_target_visuals.has(body):
-				if castingCircle:
-					var vfx = castingCircle.instantiate()
+				if target_highlight_scene:
+					var vfx = target_highlight_scene.instantiate()
 					body.add_child(vfx)
 					vfx.transform.origin = Vector3.ZERO
 					vfx.auto_fill = false
