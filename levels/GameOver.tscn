@@ -1,9 +1,45 @@
 [gd_scene format=3 uid="uid://ptut0w1q13vl"]
 
 [ext_resource type="Texture2D" uid="uid://dwdepwbnuotx7" path="res://ui/Assets/GameOver.png" id="1_3vmk3"]
+[ext_resource type="Script" uid="uid://grox067uivyv" path="res://Scripts/GameEnd.gd" id="1_6rfi2"]
 [ext_resource type="Texture2D" uid="uid://fxwwphb8vhn2" path="res://ui/Assets/QuitToMenu.png" id="1_h1ksd"]
-[ext_resource type="Script" uid="uid://cnew2pnnxfead" path="res://Scripts/quitButton.gd" id="2_d516h"]
 [ext_resource type="Texture2D" uid="uid://b4og18jsvoh83" path="res://ui/Assets/sketch1769919467290.png" id="3_d516h"]
+
+[sub_resource type="Animation" id="Animation_swsbe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lfbo0"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d516h"]
+_data = {
+&"RESET": SubResource("Animation_swsbe"),
+&"fade_out": SubResource("Animation_lfbo0")
+}
 
 [node name="GameOver" type="Control" unique_id=160681823]
 layout_mode = 3
@@ -12,10 +48,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6rfi2")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1116225422]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1708677774]
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1708677774]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,45 +59,58 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1111111111]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1111111111]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-themes/theme = null
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=2222222222]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=-2072745074]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=3333333333]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=-961633963]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="GameOverTitle" type="TextureRect" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=763380421]
+[node name="GameOverTitle" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=763380421]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("1_3vmk3")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="QuitButton" type="TextureButton" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=481641400]
+[node name="QuitButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=481641400]
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = ExtResource("1_h1ksd")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("2_d516h")
 
-[node name="Sketch" type="TextureRect" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=616839582]
+[node name="Sketch" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=616839582]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("3_d516h")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=78563586]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect" unique_id=2128419712]
+libraries/ = SubResource("AnimationLibrary_d516h")

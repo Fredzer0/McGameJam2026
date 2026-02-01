@@ -5,7 +5,7 @@ signal calm_signal();
 
 var director: Node;
 
-const SPEED = 3.0
+const SPEED = 5.0
 const ROTATION_SPEED = 14.0
 const MIN_MOVE_RANGE = 6
 const MAX_MOVE_RANGE = 10
