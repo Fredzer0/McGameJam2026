@@ -60,6 +60,9 @@ visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="FrogModel" unique_id=474683856]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.4327665, 0)
+pixel_size = 0.002
+billboard = 1
+texture_filter = 2
 texture = ExtResource("3_oh6r5")
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]

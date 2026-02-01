@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d2y22dtsfn7sr" path="res://entities/enemies/priest.tscn" id="3_34y4k"]
 [ext_resource type="PackedScene" uid="uid://b812iuikvckso" path="res://entities/player/Player.tscn" id="4_c15db"]
 [ext_resource type="PackedScene" uid="uid://cnq3tqiw5vasx" path="res://levels/environement_village_v_02.scn" id="4_hmgtm"]
-[ext_resource type="PackedScene" path="res://systems/systems.tscn" id="5_7d5c5"]
+[ext_resource type="PackedScene" uid="uid://bgf6av22o0etn" path="res://systems/systems.tscn" id="5_7d5c5"]
 [ext_resource type="PackedScene" uid="uid://b5x8y1n2m3q1" path="res://ui/hud/HUD.tscn" id="6_34y4k"]
 [ext_resource type="PackedScene" uid="uid://b7ggpa1vwgrl2" path="res://vfx/ShaderComposer.tscn" id="9_mmkkx"]
 [ext_resource type="PackedScene" path="res://ui/hud/FPSCounter.tscn" id="10_fpscnt"]
