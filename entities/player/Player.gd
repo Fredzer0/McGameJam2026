@@ -22,6 +22,8 @@ var is_casting = false
 @export var hideCost = 20
 
 @onready var animPlayer = find_child("AnimationPlayer", true, false)
+@export var vfx_scene: PackedScene
+@export var castingCircle : PackedScene
 
 func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -70,11 +72,23 @@ func _physics_process(delta):
 func becomeBox():
 	if (!is_hiding and currentMana >= hideCost):
 		is_hiding = true;
+		animPlayer.play("WitchMoveSets/Spell")
+		var cast = castingCircle.instantiate()
+		add_child(cast)
+		cast.transform.origin = Vector3.ZERO
+		await animPlayer.animation_finished
+		var vfx = vfx_scene.instantiate()
+		add_child(vfx)
+		vfx.transform.origin = Vector3.ZERO
 		$WitchModel.hide()
 		$BoxModel.show()
+		
 		currentMana -= hideCost;
 	else:
 		is_hiding = false
+		var vfx = vfx_scene.instantiate()
+		add_child(vfx)
+		vfx.transform.origin = Vector3.ZERO
 		$WitchModel.show()
 		$BoxModel.hide()
 
@@ -85,7 +99,13 @@ func try_transform_npc(body: Node3D) -> void:
 		
 		if body.has_method("become_frog"):
 			is_casting = true
-			animPlayer.play("WitchMoveSets/Idle")
+			animPlayer.play("WitchMoveSets/Spell")
+			var cast = castingCircle.instantiate()
+			add_child(cast)
+			cast.transform.origin = Vector3.ZERO
 			await animPlayer.animation_finished
+			var vfx = vfx_scene.instantiate()
+			add_child(vfx)
+			vfx.transform.origin = Vector3.ZERO
 			body.become_frog()
 			is_casting = false

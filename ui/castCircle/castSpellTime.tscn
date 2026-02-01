@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c0dx3im1cnfgt" path="res://ui/castCircle/emptyCircle.png" id="1_xkxy8"]
 [ext_resource type="Texture2D" uid="uid://ddrv6uti6npa7" path="res://ui/castCircle/fullCircle.png" id="2_j3hmk"]
+[ext_resource type="Script" uid="uid://cb7ajt232kx02" path="res://Scripts/texture_progress_bar.gd" id="3_j3hmk"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tsvdw"]
 viewport_path = NodePath("Sprite3D/SubViewport")
@@ -18,7 +19,9 @@ transparent_bg = true
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Sprite3D/SubViewport" unique_id=970566606]
 offset_right = 40.0
 offset_bottom = 40.0
+max_value = 85.0
 value = 59.0
 fill_mode = 4
 texture_under = ExtResource("1_xkxy8")
 texture_progress = ExtResource("2_j3hmk")
+script = ExtResource("3_j3hmk")
