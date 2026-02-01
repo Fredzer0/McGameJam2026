@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://0sh3cpfeak6y"]
+
+[ext_resource type="PackedScene" uid="uid://ddrgt7e25yj7h" path="res://animation/NPC/models/SK_VillagerWoman_v2.fbx" id="1_vefvl"]
+[ext_resource type="Animation" uid="uid://cw2qia3wph3cd" path="res://animation/NPC/animations/NPCIdle.res" id="2_w2yam"]
+[ext_resource type="Animation" uid="uid://f2ti2oumq86o" path="res://animation/NPC/animations/NPCWalk.res" id="3_ufwqu"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vefvl"]
+_data = {
+&"NPCIdle": ExtResource("2_w2yam"),
+&"NPCWalk": ExtResource("3_ufwqu")
+}
+
+[node name="Node3D" type="Node3D" unique_id=1285294220]
+
+[node name="SK_VillagerWoman_v2" parent="." unique_id=27488783 instance=ExtResource("1_vefvl")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SK_VillagerWoman_v2" unique_id=1316240501]
+libraries/NPCAnimPlayer = SubResource("AnimationLibrary_vefvl")
