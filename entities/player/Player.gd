@@ -53,6 +53,11 @@ var is_casting = false
 @export var castingCircle: PackedScene
 @export var fireball_scene: PackedScene
 
+@onready var spellSound = $Audio/Spell
+@onready var dashSound = $Audio/Dash
+@onready var walkSound = $Audio/Walk
+
+
 var fireball_model: Node3D
 var can_move = true
 
@@ -74,6 +79,7 @@ func _physics_process(delta):
 		velocity.x = direction.x * DASH_SPEED
 		velocity.z = direction.z * DASH_SPEED
 		currentMana -= dashCost
+		dashSound.play()
 		start_dash_visuals()
 
 	if Input.is_action_just_pressed("attack") and not is_casting:
@@ -100,8 +106,11 @@ func _physics_process(delta):
 		move_and_slide()
 		if input_dir:
 			animPlayer.play("WitchAnimPlayer/Walk")
+			if !walkSound.playing:
+				walkSound.play(0.4)
 		else:
 			animPlayer.play("WitchAnimPlayer/Idle")
+			walkSound.stop()
 
 
 	if Input.is_action_just_pressed("hide") and not is_dashing and not is_casting:
@@ -116,6 +125,7 @@ func becomeBox():
 		is_hiding = true
 		is_casting = true
 		animPlayer.play("WitchAnimPlayer/Spell")
+		spellSound.play()
 		var cast = castingCircle.instantiate()
 		add_child(cast)
 		cast.transform.origin = Vector3.ZERO
@@ -171,6 +181,7 @@ func try_transform_npc(body: Node3D) -> void:
 		if body.has_method("become_frog"):
 			is_casting = true
 			animPlayer.play("WitchAnimPlayer/Spell")
+			spellSound.play()
 			var cast = castingCircle.instantiate()
 			body.add_child(cast)
 			cast.transform.origin = Vector3.ZERO

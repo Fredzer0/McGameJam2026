@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://lhhoqgrgdlue" path="res://animation/witch/animations/AnimationWitchHorseHat.tscn" id="4_eaotn"]
 [ext_resource type="PackedScene" uid="uid://ct1fvf0atqwkk" path="res://animation/NPC/animations/bucketTransformation_v01.glb" id="5_g3lhm"]
 [ext_resource type="PackedScene" uid="uid://74m3t0e8b8cn" path="res://vfx/Fireball/Fireball.tscn" id="6_fire"]
+[ext_resource type="AudioStream" uid="uid://dgyiv86elue6b" path="res://assets/audio/sfx/SFX_Dash_1.mp3" id="7_rl6fg"]
+[ext_resource type="AudioStream" uid="uid://2vr5gf3snv1w" path="res://assets/audio/sfx/SFX_SpellWitch_1.mp3" id="8_q57vx"]
+[ext_resource type="AudioStream" uid="uid://bsexuwnymrydv" path="res://assets/audio/sfx/SFX_StepOutside_1.mp3" id="9_q57vx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 
@@ -34,5 +37,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.78610086, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=134141945]
 shape = SubResource("CylinderShape3D_mab2k")
+
+[node name="Audio" type="Node" parent="." unique_id=1088019788]
+
+[node name="Dash" type="AudioStreamPlayer" parent="Audio" unique_id=1869496424]
+stream = ExtResource("7_rl6fg")
+volume_db = -5.474
+
+[node name="Spell" type="AudioStreamPlayer" parent="Audio" unique_id=1615574478]
+stream = ExtResource("8_q57vx")
+volume_db = -2.737
+
+[node name="Walk" type="AudioStreamPlayer" parent="Audio" unique_id=325332000]
+stream = ExtResource("9_q57vx")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

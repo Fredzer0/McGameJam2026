@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://de0p6jpwbxcbh" path="res://vfx/SmokePouff/SmokeShader.tres" id="1_x80sq"]
 [ext_resource type="Script" uid="uid://vpyf5vbvadg6" path="res://Scripts/vfx_smoke_pouff.gd" id="2_r1jc2"]
+[ext_resource type="AudioStream" uid="uid://chaewb2rq46v3" path="res://assets/audio/sfx/SFX_TransformationWitch_1.mp3" id="3_bg6pg"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_r1jc2"]
 noise_type = 3
@@ -95,3 +96,8 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_qyjgg")
 draw_pass_1 = SubResource("ArrayMesh_17msm")
 script = ExtResource("2_r1jc2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SmokeTransform" unique_id=1215563726]
+stream = ExtResource("3_bg6pg")
+volume_db = -5.0
+autoplay = true
