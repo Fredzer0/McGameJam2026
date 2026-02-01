@@ -9,7 +9,6 @@ const SPEED = 3.0
 const ROTATION_SPEED = 14.0
 const MIN_MOVE_RANGE = 6
 const MAX_MOVE_RANGE = 10
-const MOVE_TIMEOUT = 5.0
 
 const MIN_DETECT_RADIUS = 2.0
 const MAX_DETECT_RADIUS = 8.0
@@ -50,16 +49,22 @@ func _physics_process(delta: float) -> void:
 
 	match state:
 		State.IDLE:
+			print("IDLE")
 			_on_idle()
 		State.WATING_TO_MOVE:
+			print("WATING_TO_MOVE")
 			_on_wating_to_move(delta)
 		State.MOVE:
+			print("MOVE")
 			_on_move()
 		State.INVESTIGATE:
-			_on_move() # Re-use move logic to follow path
+			print("INVESTIGATE")
+			_on_move()
 		State.PRAYING:
+			print("PRAYING")
 			velocity = Vector3.ZERO
 		State.GAME_OVER:
+			print("GAME_OVER")
 			velocity = Vector3.ZERO
 			
 	if target_node:
@@ -74,8 +79,13 @@ func _physics_process(delta: float) -> void:
 			state = State.GAME_OVER
 			velocity = Vector3.ZERO
 			
-			if collider.has_method("disable_movement"):
+			if collider.has_method("disable_movement") and not (collider.get("is_hiding") if "is_hiding" in collider else false):
 				collider.disable_movement()
+			else:
+				# If player is hiding, ignore collision/game over logic (or just return/pass)
+				if "is_hiding" in collider and collider.is_hiding:
+					return
+
 			animPlayer.play("NPCAnimPlayer/ClerkPrayer")
 			
 			var tree = get_tree()
@@ -134,7 +144,6 @@ func _on_wating_to_move(delta: float) -> void:
 		var nav_map = navigation_agent_3d.get_navigation_map();
 		var safe_target = NavigationServer3D.map_get_closest_point(nav_map, target);
 		navigation_agent_3d.target_position = safe_target;
-		move_timer = MOVE_TIMEOUT
 		state = State.MOVE;
 
 func investigate(target_pos: Vector3) -> void:
@@ -180,6 +189,11 @@ func set_follow_target(target: Node3D):
 
 func _on_follow_target():
 	if not target_node: return
+	if target_node.get("is_hiding"):
+		target_node = null
+		state = State.IDLE
+		velocity = Vector3.ZERO
+		return
 
 	var nav_map = navigation_agent_3d.get_navigation_map()
 	if not nav_map.is_valid() or NavigationServer3D.map_get_iteration_id(nav_map) == 0:
@@ -249,6 +263,13 @@ func stop_global_chase() -> void:
 
 func _on_detectplayer_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		# Check if player is hiding
+		if body.get("is_hiding"):
+			target_node = null
+			state = State.IDLE
+			velocity = Vector3.ZERO
+			return
+			
 		if body.has_method("apply_slowdown"):
 			panic_signal.emit(body.global_position);
 			body.apply_slowdown()
