@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://e8fwn1465ipw" path="res://entities/enemies/npc.gd" id="1_rkkgd"]
 [ext_resource type="PackedScene" uid="uid://ba7nixn4vyapb" path="res://animation/NPC/animations/villagerMan.tscn" id="2_jjr52"]
 [ext_resource type="Texture2D" uid="uid://cke7uip5ssacc" path="res://assets/textures/sketch1769860507731.png" id="3_oh6r5"]
+[ext_resource type="Texture2D" uid="uid://2qd4obmjuwg" path="res://assets/ui/Alert.png" id="4_s6mif"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_voh54"]
 
@@ -66,6 +67,15 @@ texture_filter = 2
 texture = ExtResource("3_oh6r5")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1027692691]
+
+[node name="Warning" type="Node3D" parent="." unique_id=1816229889]
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="Warning" unique_id=1653990771]
+transform = Transform3D(1, 0, 0, 0, 1.6952088, 0, 0, 0, 1, 0, 2.1085033, 0)
+pixel_size = 0.002
+billboard = 1
+texture = ExtResource("4_s6mif")
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
