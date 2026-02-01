@@ -24,7 +24,6 @@ shape = SubResource("CapsuleShape3D_thg7q")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1920977543]
 avoidance_enabled = true
-debug_enabled = true
 
 [node name="Area3D" type="Area3D" parent="." unique_id=153327195]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.5574732, 0)
