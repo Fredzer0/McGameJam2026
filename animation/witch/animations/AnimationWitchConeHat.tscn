@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://cjkef4knswc8l"]
 
 [ext_resource type="PackedScene" uid="uid://bi01c56fovftf" path="res://animation/witch/models/SK_WitchDefault_Fit.fbx" id="1_q0itw"]
+[ext_resource type="Animation" uid="uid://dwv15ar38je2i" path="res://animation/witch/animations/Emote.res" id="2_3t8s7"]
 [ext_resource type="Animation" uid="uid://cc1c7kw0h0lwu" path="res://animation/witch/animations/Idle.res" id="2_genth"]
 [ext_resource type="Animation" uid="uid://bboicec6bkekj" path="res://animation/witch/animations/Spell.res" id="3_3t8s7"]
 [ext_resource type="Animation" uid="uid://c8qknlqh0fn5q" path="res://animation/witch/animations/Walk.res" id="4_s01cj"]
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_q0itw"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s01cj"]
 _data = {
+&"Emote": ExtResource("2_3t8s7"),
 &"Idle": ExtResource("2_genth"),
 &"Spell": ExtResource("3_3t8s7"),
 &"Walk": ExtResource("4_s01cj")
@@ -16,5 +18,5 @@ _data = {
 
 [node name="SK_WitchDefault_Fit" parent="." unique_id=350828485 instance=ExtResource("1_q0itw")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SK_WitchDefault_Fit" unique_id=1971144834]
-libraries/WitchAnimPlayer = SubResource("AnimationLibrary_q0itw")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SK_WitchDefault_Fit" unique_id=48961311]
+libraries/WitchAnimPlayer = SubResource("AnimationLibrary_s01cj")

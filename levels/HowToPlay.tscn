@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://dtkal3cg4gmau"]
+[gd_scene format=3 uid="uid://ect13vlhkcm"]
 
 [ext_resource type="Texture2D" uid="uid://cjhhgjabxo1xo" path="res://assets/ui/Back.png" id="1_lvage"]
 [ext_resource type="Texture2D" uid="uid://cx10shacb17k" path="res://assets/ui/HowToPlay.png" id="1_pyfxq"]
-[ext_resource type="Texture2D" uid="uid://5nsro07dhsbx" path="res://assets/ui/ControlDisplay.png" id="1_w8sg8"]
+[ext_resource type="Texture2D" uid="uid://bdbd74nicsmnl" path="res://assets/ui/ControlDisplay.png" id="1_w8sg8"]
 [ext_resource type="Script" uid="uid://cnew2pnnxfead" path="res://Scripts/quitButton.gd" id="3_1eaay"]
 
 [node name="HowToPlay" type="Control" unique_id=508775598]
@@ -48,7 +48,8 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("1_w8sg8")
-expand_mode = 5
+expand_mode = 3
+stretch_mode = 6
 
 [node name="QuitButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=964586090]
 layout_mode = 2
