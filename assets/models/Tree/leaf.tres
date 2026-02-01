@@ -1,0 +1,23 @@
+[gd_resource type="VisualShader" format=3 uid="uid://bnvqs3c3uoplo"]
+
+[ext_resource type="Texture2D" uid="uid://c3pb4mjjy0wrx" path="res://assets/models/Tree/T_Leaf_A.png" id="1_xikeh"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_orpqt"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_gpdmk"]
+texture = ExtResource("1_xikeh")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_j04tv"]
+constant = Color(0, 0, 0, 1)
+
+[resource]
+modes/cull = 2
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorParameter_orpqt")
+nodes/fragment/3/position = Vector2(-93.333336, 146.66667)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_gpdmk")
+nodes/fragment/4/position = Vector2(-1.8172884, 928.2475)
+nodes/fragment/5/node = SubResource("VisualShaderNodeColorConstant_j04tv")
+nodes/fragment/5/position = Vector2(13.333333, 440)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0, 4, 0, 0, 21, 5, 0, 0, 3)
