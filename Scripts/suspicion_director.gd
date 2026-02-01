@@ -7,13 +7,13 @@ var panicStatus = false;
 @export var cooloffRate = 1;
 @export var passiveCooling = 0.001;
 var detection = false;
+@onready var player: CharacterBody3D = $"../../SubViewportContainer/SubViewport/Player"
 
-var player 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	currentPanic = 0;
 	detection = false;
-	player = get_tree().get_first_node_in_group("player")
+	#player = get_tree().get_first_node_in_group("player")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
